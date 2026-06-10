@@ -6,7 +6,7 @@
 ## Participants
 - Daniyar
 - Arina
-- Yuliana
+- Iuliana
 - Svetlana
 - Eugene (customer)
 
