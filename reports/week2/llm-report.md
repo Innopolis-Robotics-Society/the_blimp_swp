@@ -1,18 +1,23 @@
 # LLM Usage Report
 
 ## Tool used
+
 ChatGPT (OpenAI)
 
 ## How we used it
 
-**1. Transcription and translation**
-We recorded the interview in Russian. ChatGPT helped us turn the recording into text and translate it to English. Then we checked everything and fixed mistakes.
+### 1. User stories
 
-**2. Figma prototyping**
-We asked ChatGPT how to make a simple prototype in Figma. It explained the steps and what elements to include. We did the actual design ourselves.
+The team prepared all user stories independently. ChatGPT was used only to review the formatting and compare it with the assignment requirements.
 
-**3. MVP v0 planning**
-ChatGPT helped us understand what MVP v0 should look like. It gave examples of smoke-check scenarios and deployment options. We chose the technologies and did the work.
+### 2. Documentation templates
+
+ChatGPT helped generate initial markdown templates for some report files, including documentation structure and section headings. The content was later completed and edited by the team.
+
+### 3. MVP v0 and smoke-check
+
+The team decided what should be included in the MVP for our robotics project. ChatGPT provided general examples and suggestions that were reviewed and adapted before use.
 
 ## Important
-No AI-generated text was used without checking. All final decisions, priorities, customer approvals, and technical choices were made by the team.
+
+ChatGPT was used only as a supporting tool. All generated content was manually reviewed and modified where necessary. Final technical decisions, priorities, documentation, and project planning were completed by the team.
