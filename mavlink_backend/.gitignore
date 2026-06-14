@@ -1,0 +1,29 @@
+# IDE settings
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.venv
+env/
+venv/
+
+# Build files
+dist/
+build/
+*.egg-info/
