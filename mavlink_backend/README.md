@@ -22,9 +22,3 @@
 - Python 3.9+
 - Полётный контроллер с прошивкой ArduPilot (или SITL симулятор для тестов)
 
-## 📦 Установка
-
-1. Клонируйте репозиторий:
-```bash
-git clone <repository-url>
-cd airship-backend
