@@ -4,6 +4,7 @@ from pydantic import BaseModel
 from typing import List, Optional
 import uvicorn
 import asyncio
+from contextlib import asynccontextmanager
 from mavlink_backend import MAVLinkBackend
 
 logging.basicConfig(
@@ -14,8 +15,6 @@ logging.basicConfig(
 )
 
 logger = logging.getLogger(__name__)
-
-app = FastAPI(title="Airship MAVLink Backend", version="1.0")
 
 backend: Optional[MAVLinkBackend] = None
 
@@ -37,8 +36,9 @@ class MissionRequest(BaseModel):
     waypoints: List[Waypoint]
 
 
-@app.on_event("startup")
-async def startup_event():
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup
     global backend
     try:
         backend = MAVLinkBackend('udp:127.0.0.1:14550')
@@ -46,12 +46,17 @@ async def startup_event():
     except Exception as e:
         logger.error(f"Failed to connect to SITL: {e}")
 
+    yield  # Приложение работает здесь
 
-@app.on_event("shutdown")
-async def shutdown_event():
-    global backend
+    # Shutdown
     if backend:
         backend.stop()
+
+
+
+
+
+app = FastAPI(title="Airship MAVLink Backend", version="1.0", lifespan=lifespan)
 
 
 @app.get("/")
