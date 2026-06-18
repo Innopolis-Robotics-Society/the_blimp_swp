@@ -1,0 +1,39 @@
+blimp:
+  mass: 0.5
+  volume: 0.06
+  drag_coefficient: 0.4
+  cross_section_area: 0.05
+
+motors:
+  count: 4
+  max_thrust: 0.15
+  positions:
+    - [0.1, 0.0, 0.0]
+    - [-0.1, 0.0, 0.0]
+    - [0.0, 0.0, 0.1]
+    - [0.0, 0.1, 0.0]
+  directions:
+    - [1.0, 0.0, 0.0]
+    - [-1.0, 0.0, 0.0]
+    - [0.0, 0.0, -1.0]
+    - [0.0, 1.0, 0.0]
+
+physics:
+  air_density: 1.225
+  gravity: 9.81
+  dt: 0.004
+
+wind:
+  enabled: true
+  base_speed: [0.5, 0.0, 0.0]
+  gust_amplitude: 0.3
+  gust_frequency: 0.1
+
+sim_json:
+  listen_port: 9002
+  listen_address: "127.0.0.1"
+
+home:
+  lat: 47.9945
+  lon: 55.9638
+  alt: 0.0

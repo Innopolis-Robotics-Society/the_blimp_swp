@@ -1,0 +1,6 @@
+services:
+  blimp-sim:
+    build: .
+    ports:
+      - "9002:9002/udp"
+    restart: unless-stopped
