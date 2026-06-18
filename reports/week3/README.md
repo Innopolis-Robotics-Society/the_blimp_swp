@@ -13,7 +13,6 @@
 - [Roadmap](../../docs/roadmap.md)
 - [Definition of Done](../../docs/definition-of-done.md)
 - [CHANGELOG](../../CHANGELOG.md)
-- [Process Requirements](../../Process_Requirements.md)
 
 ## Two repositories
 Our main repository is [`the_blimp_swp`](https://github.com/Innopolis-Robotics-Society/the_blimp_swp).  
