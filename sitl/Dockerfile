@@ -16,7 +16,7 @@ ENV TZ=Etc/UTC
 
 # Pin to a stable Copter release tag. Do NOT use master — it breaks.
 # Bump this deliberately, not by accident.
-ARG ARDUPILOT_TAG=Copter-4.5.7
+ARG ARDUPILOT_TAG=Copter-4.6.3
 
 # --- base tooling -----------------------------------------------------------
 RUN apt-get update && apt-get install -y --no-install-recommends \

@@ -1,0 +1,60 @@
+# ArduPilot build artifacts
+build/
+*/build/
+build/sitl/
+build/sitl/bin/
+build/sitl/lib/
+
+# Compiled binaries
+*.bin
+*.exe
+*.elf
+*.o
+*.so
+
+# MAVProxy logs
+*.log
+*.tlog
+*.BIN
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files
+tmp/
+tmp.*
+*.tmp
+*.bak
+
+# Docker volumes
+volumes/
+
+# ArduPilot specific
+modules/ChibiOS/build/
+modules/waf/.waf-*
+
+# Parameters (optional - uncomment if you don't want to commit local params)
+# params/*.parm
+
+# Scripts (optional - uncomment if you don't want to commit local scripts)
+# scripts/*.lua
