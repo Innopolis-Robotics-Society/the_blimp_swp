@@ -8,7 +8,6 @@ sensor data as JSON.
 """
 
 import argparse
-import math
 import socket
 import struct
 import time
@@ -41,10 +40,6 @@ class BlimpConfig:
     air_density: float = 1.225
     gravity: float = 9.81
     dt: float = 0.004
-    wind_enabled: bool = True
-    wind_base: List[float] = field(default_factory=lambda: [0.5, 0.0, 0.0])
-    wind_gust_amp: float = 0.3
-    wind_gust_freq: float = 0.1
     listen_port: int = 9002
     listen_address: str = "127.0.0.1"
     home_lat: float = 47.9945
@@ -148,26 +143,14 @@ class BlimpPhysics:
         R = self._body_to_earth_rotation(q)
         return R @ v_body
 
-    def _compute_wind(self, t: float) -> np.ndarray:
-        if not self.config.wind_enabled:
-            return np.zeros(3)
-        base = np.array(self.config.wind_base)
-        amp = self.config.wind_gust_amp
-        freq = self.config.wind_gust_freq
-        gust_x = amp * math.sin(2 * math.pi * freq * t)
-        gust_y = amp * math.cos(2 * math.pi * freq * 0.7 * t)
-        gust_z = amp * 0.3 * math.sin(2 * math.pi * freq * 1.3 * t)
-        return base + np.array([gust_x, gust_y, gust_z])
-
-    def step(self, motors: np.ndarray, dt: float) -> BlimpState:
+    def _drag_force(self, velocity: np.ndarray) -> np.ndarray:
         s = self.state
         t = s.timestamp
 
         F_buoy = self._net_buoyancy_force()
         F_thrust, tau_thrust = self._thrust_forces(motors)
 
-        v_rel = s.velocity - self._compute_wind(t)
-        F_drag = self._drag_force(v_rel)
+        F_drag = self._drag_force(s.velocity)
 
         F_total = F_buoy + F_thrust + F_drag
         a = F_total / self.config.mass
@@ -210,8 +193,7 @@ class BlimpPhysics:
 
             F_buoy = self._net_buoyancy_force()
             F_thrust, tau_thrust = self._thrust_forces(motors_arr)
-            v_rel = vel - self._compute_wind(t)
-            F_drag = self._drag_force(v_rel)
+            F_drag = self._drag_force(vel)
             F_total = F_buoy + F_thrust + F_drag
             a = F_total / self.config.mass
             alpha = self.inertia_inv @ tau_thrust
@@ -363,12 +345,6 @@ def load_config(path: str) -> BlimpConfig:
     cfg.air_density = p.get("air_density", cfg.air_density)
     cfg.gravity = p.get("gravity", cfg.gravity)
     cfg.dt = p.get("dt", cfg.dt)
-
-    w = raw.get("wind", {})
-    cfg.wind_enabled = w.get("enabled", cfg.wind_enabled)
-    cfg.wind_base = w.get("base_speed", cfg.wind_base)
-    cfg.wind_gust_amp = w.get("gust_amplitude", cfg.wind_gust_amp)
-    cfg.wind_gust_freq = w.get("gust_frequency", cfg.wind_gust_freq)
 
     s = raw.get("sim_json", {})
     cfg.listen_port = s.get("listen_port", cfg.listen_port)

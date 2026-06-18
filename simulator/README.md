@@ -10,7 +10,7 @@
 - Выталкивающая сила (гелий)
 - Тяга 4 моторов (векторная)
 - Аэродинамическое сопротивление
-- Гравитация + ветер с порывами
+- Гравитация
 - Интегрирование: RK4, 250 Гц
 
 ## Структура
@@ -18,10 +18,9 @@
 ```
 simulator/
 ├── blimp_sim.py         # Движок + UDP-сервер
-├── blimp_config.yaml    # Параметры (масса, моторы, ветер)
+├── blimp_config.yaml    # Параметры (масса, моторы)
 ├── Dockerfile
 ├── docker-compose.yml
-├── run.sh               # Обход credential helper
 ├── requirements.txt
 ├── PROTOCOL.md          # Протокол ввода/вывода
 └── README.md
@@ -29,16 +28,10 @@ simulator/
 
 ## Запуск
 
-### Docker (рекомендуется)
+### Docker
 
 ```bash
 cd simulator
-./run.sh
-```
-
-Или напрямую:
-
-```bash
 docker compose up -d --build
 ```
 
@@ -75,6 +68,4 @@ docker logs -f simulator-blimp-sim-1
 | `blimp`   | `volume`           | 0.06 м³     | Объём оболочки        |
 | `motors`  | `max_thrust`       | 0.15 Н      | Тяга одного мотора    |
 | `physics` | `dt`               | 0.004 с     | Шаг симуляции (250 Гц)|
-| `wind`    | `enabled`          | true        | Включить ветер        |
-| `wind`    | `base_speed`       | [0.5,0,0]   | Базовая скорость ветра|
 | `sim_json`| `listen_port`      | 9002        | UDP-порт              |
