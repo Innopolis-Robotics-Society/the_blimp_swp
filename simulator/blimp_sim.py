@@ -20,8 +20,8 @@ from typing import List, Tuple
 class BlimpConfig:
     mass: float = 0.5
     volume: float = 0.06
-    drag_coefficients: List[float] = field(default_factory=lambda: [0.4, 0.4, 0.4])
-    cross_section_areas: List[float] = field(default_factory=lambda: [0.05, 0.05, 0.03])
+    drag_coefficients: List[float] = field(default_factory=lambda: [0.4, 0.4, 0.3])
+    cross_section_areas: List[float] = field(default_factory=lambda: [0.05, 0.05, 0.08])
     inertia: List[float] = field(default_factory=lambda: [0.004, 0.004, 0.002])
     motor_count: int = 4
     max_thrust: float = 0.15
