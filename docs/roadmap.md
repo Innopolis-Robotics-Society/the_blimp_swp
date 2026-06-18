@@ -1,6 +1,6 @@
 # Roadmap
 
-## Sprint 1 (16–20 June)
+## Sprint 1 (16–21 June)
 - Run SITL ArduPilot Blimp
 - Set up MAVLink
 - Get telemetry
