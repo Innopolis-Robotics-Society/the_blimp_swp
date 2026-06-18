@@ -9,7 +9,7 @@
 - [Historical user stories (Week 2)](../week2/user-stories.md)
 - [Product Backlog](link-to-board-when-ready)
 - [Sprint Backlog](link-to-board-when-ready)
-- [Sprint Milestone](link-to-milestone)
+- [Sprint Milestone](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/milestone/1)
 - [Roadmap](../../docs/roadmap.md)
 - [Definition of Done](../../docs/definition-of-done.md)
 - [CHANGELOG](../../CHANGELOG.md)
