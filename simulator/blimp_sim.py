@@ -3,14 +3,13 @@
 ArduPilot SITL external physics engine for indoor blimp/dirigible.
 
 Receives motor PWM values from ArduPilot via SIM_JSON UDP protocol,
-simulates blimp dynamics (buoyancy, thrust, drag, wind), and returns
+simulates blimp dynamics (buoyancy, thrust, drag), and returns
 sensor data as JSON.
 """
 
 import argparse
 import socket
 import struct
-import time
 import yaml
 import numpy as np
 from dataclasses import dataclass, field
@@ -21,8 +20,9 @@ from typing import List, Tuple
 class BlimpConfig:
     mass: float = 0.5
     volume: float = 0.06
-    drag_coefficient: float = 0.4
-    cross_section_area: float = 0.05
+    drag_coefficients: List[float] = field(default_factory=lambda: [0.4, 0.4, 0.4])
+    cross_section_areas: List[float] = field(default_factory=lambda: [0.05, 0.05, 0.03])
+    inertia: List[float] = field(default_factory=lambda: [0.004, 0.004, 0.002])
     motor_count: int = 4
     max_thrust: float = 0.15
     motor_positions: List[List[float]] = field(default_factory=lambda: [
@@ -62,16 +62,9 @@ class BlimpPhysics:
         self.state = BlimpState()
         self.motor_positions = np.array(config.motor_positions)
         self.motor_directions = np.array(config.motor_directions)
-        self._compute_inertia()
-
-    def _compute_inertia(self):
-        m = self.config.mass
-        r = 0.15
-        self.inertia = np.diag([
-            0.4 * m * r**2,
-            0.4 * m * r**2,
-            0.4 * m * r**2,
-        ])
+        self.Cd = np.array(config.drag_coefficients)
+        self.A = np.array(config.cross_section_areas)
+        self.inertia = np.diag(config.inertia)
         self.inertia_inv = np.linalg.inv(self.inertia)
 
     def _net_buoyancy_force(self) -> np.ndarray:
@@ -100,14 +93,9 @@ class BlimpPhysics:
         return F_total, tau_total
 
     def _drag_force(self, velocity: np.ndarray) -> np.ndarray:
-        v = velocity
-        speed = np.linalg.norm(v)
-        if speed < 1e-6:
-            return np.zeros(3)
         rho = self.config.air_density
-        Cd = self.config.drag_coefficient
-        A = self.config.cross_section_area
-        F = -0.5 * rho * Cd * A * speed * v
+        v_abs = np.abs(velocity)
+        F = -0.5 * rho * self.Cd * self.A * v_abs * velocity
         return F
 
     def _quaternion_multiply(self, q: np.ndarray, r: np.ndarray) -> np.ndarray:
@@ -143,38 +131,15 @@ class BlimpPhysics:
         R = self._body_to_earth_rotation(q)
         return R @ v_body
 
-    def _drag_force(self, velocity: np.ndarray) -> np.ndarray:
-        s = self.state
-        t = s.timestamp
-
+    def _derivs(self, pos, vel, quat, angvel, t, motors_arr):
         F_buoy = self._net_buoyancy_force()
-        F_thrust, tau_thrust = self._thrust_forces(motors)
-
-        F_drag = self._drag_force(s.velocity)
-
+        F_thrust, tau_thrust = self._thrust_forces(motors_arr)
+        F_drag = self._drag_force(vel)
         F_total = F_buoy + F_thrust + F_drag
         a = F_total / self.config.mass
-
-        tau_total = tau_thrust
-        alpha = self.inertia_inv @ tau_total
-
-        v_new = s.velocity + a * dt
-        pos_new = s.position + v_new * dt
-
-        omega_new = s.angular_velocity + alpha * dt
-        q_dot = self._quaternion_derivative(s.orientation, omega_new)
-        q_new = s.orientation + q_dot * dt
-        q_new = self._quaternion_normalize(q_new)
-
-        s_new = BlimpState(
-            position=pos_new,
-            velocity=v_new,
-            orientation=q_new,
-            angular_velocity=omega_new,
-            timestamp=t + dt,
-        )
-        self.state = s_new
-        return s_new
+        alpha = self.inertia_inv @ tau_thrust
+        q_dot = self._quaternion_derivative(quat, angvel)
+        return vel, a, q_dot, alpha
 
     def step_rk4(self, motors: np.ndarray, dt: float) -> BlimpState:
         s = self.state
@@ -184,41 +149,29 @@ class BlimpPhysics:
         orig_angvel = s.angular_velocity.copy()
         orig_t = s.timestamp
 
-        def derivs(pos, vel, quat, angvel, t, motors_arr):
-            self.state.position = pos
-            self.state.velocity = vel
-            self.state.orientation = quat
-            self.state.angular_velocity = angvel
-            self.state.timestamp = t
-
-            F_buoy = self._net_buoyancy_force()
-            F_thrust, tau_thrust = self._thrust_forces(motors_arr)
-            F_drag = self._drag_force(vel)
-            F_total = F_buoy + F_thrust + F_drag
-            a = F_total / self.config.mass
-            alpha = self.inertia_inv @ tau_thrust
-            q_dot = self._quaternion_derivative(quat, angvel)
-            return vel, a, q_dot, alpha
-
-        k1_v, k1_a, k1_qd, k1_ad = derivs(orig_pos, orig_vel, orig_quat, orig_angvel, orig_t, motors)
+        k1_v, k1_a, k1_qd, k1_ad = self._derivs(
+            orig_pos, orig_vel, orig_quat, orig_angvel, orig_t, motors)
 
         p2 = orig_pos + 0.5*dt*k1_v
         v2 = orig_vel + 0.5*dt*k1_a
         q2 = self._quaternion_normalize(orig_quat + 0.5*dt*k1_qd)
         w2 = orig_angvel + 0.5*dt*k1_ad
-        k2_v, k2_a, k2_qd, k2_ad = derivs(p2, v2, q2, w2, orig_t+0.5*dt, motors)
+        k2_v, k2_a, k2_qd, k2_ad = self._derivs(
+            p2, v2, q2, w2, orig_t+0.5*dt, motors)
 
         p3 = orig_pos + 0.5*dt*k2_v
         v3 = orig_vel + 0.5*dt*k2_a
         q3 = self._quaternion_normalize(orig_quat + 0.5*dt*k2_qd)
         w3 = orig_angvel + 0.5*dt*k2_ad
-        k3_v, k3_a, k3_qd, k3_ad = derivs(p3, v3, q3, w3, orig_t+0.5*dt, motors)
+        k3_v, k3_a, k3_qd, k3_ad = self._derivs(
+            p3, v3, q3, w3, orig_t+0.5*dt, motors)
 
         p4 = orig_pos + dt*k3_v
         v4 = orig_vel + dt*k3_a
         q4 = self._quaternion_normalize(orig_quat + dt*k3_qd)
         w4 = orig_angvel + dt*k3_ad
-        k4_v, k4_a, k4_qd, k4_ad = derivs(p4, v4, q4, w4, orig_t+dt, motors)
+        k4_v, k4_a, k4_qd, k4_ad = self._derivs(
+            p4, v4, q4, w4, orig_t+dt, motors)
 
         self.state = BlimpState(
             position=orig_pos + (dt/6.0)*(k1_v + 2*k2_v + 2*k3_v + k4_v),
@@ -290,11 +243,9 @@ class SIMJsonServer:
 
         pos = state.position
 
-        accel_body = np.array([0.0, 0.0, self.config.gravity])
         g_earth = np.array([0.0, 0.0, self.config.gravity])
         R = self.physics._body_to_earth_rotation(q)
-        accel_earth = R.T @ g_earth
-        accel_body = accel_earth
+        accel_body = R.T @ g_earth
 
         json_str = (
             '{"timestamp":%.6f,'
@@ -332,8 +283,9 @@ def load_config(path: str) -> BlimpConfig:
     b = raw.get("blimp", {})
     cfg.mass = b.get("mass", cfg.mass)
     cfg.volume = b.get("volume", cfg.volume)
-    cfg.drag_coefficient = b.get("drag_coefficient", cfg.drag_coefficient)
-    cfg.cross_section_area = b.get("cross_section_area", cfg.cross_section_area)
+    cfg.drag_coefficients = b.get("drag_coefficients", cfg.drag_coefficients)
+    cfg.cross_section_areas = b.get("cross_section_areas", cfg.cross_section_areas)
+    cfg.inertia = b.get("inertia", cfg.inertia)
 
     m = raw.get("motors", {})
     cfg.motor_count = m.get("count", cfg.motor_count)
@@ -369,6 +321,8 @@ def main():
 
     print(f"Blimp physics engine started on {config.listen_address}:{config.listen_port}")
     print(f"  Mass: {config.mass} kg, Volume: {config.volume} m^3")
+    print(f"  Drag Cd: {config.drag_coefficients}, Area: {config.cross_section_areas}")
+    print(f"  Inertia: {config.inertia}")
     print(f"  Motors: {config.motor_count}, Max thrust: {config.max_thrust} N")
     print(f"  Physics step: {config.dt} s ({int(1/config.dt)} Hz)")
     print("Waiting for ArduPilot SITL SIM_JSON connection...")
