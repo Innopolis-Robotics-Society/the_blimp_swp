@@ -38,3 +38,9 @@ MVP v1 includes the following Must Have stories:
 - Sprint Review with customer
 - Record video demonstration
 - Create SemVer release
+
+## Week 3 Documents
+- [Reflection](reflection.md)
+- [Retrospective](retrospective.md)
+- [LLM Report](llm-report.md)
+- [Customer Review Summary](customer-review-summary.md) (will be added after meeting)
