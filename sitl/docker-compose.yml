@@ -26,7 +26,8 @@ x-common: &common
     - QT_X11_NO_MITSHM=1
   volumes:
     # ---- your repo: params + scripts live here, editable from the host ----
-    - .:/home/blimp/blimp-flight:rw
+    - ./params:/home/blimp/blimp-flight/params:rw
+    - ./scripts:/home/blimp/blimp-flight/scripts:rw
     # ---- X11 for the MAVProxy --map window (optional) ---------------------
     - /tmp/.X11-unix:/tmp/.X11-unix:rw
     - ${HOME}/.Xauthority:/home/blimp/.Xauthority:rw
