@@ -13,25 +13,25 @@ Containerized ArduPilot SITL (Software In The Loop) simulation for the Blimp pro
 
 ### 1. Build the image
 
-\`\`\`bash
+```bash
 docker-compose build
-\`\`\`
+```
 
 > First build takes ~30 minutes (clones ArduPilot + compiles). Subsequent builds are fast.
 
 ### 2. Run
 
 **Interactive shell** (manual control):
-\`\`\`bash
+```bash
 docker-compose up -d sitl
 docker-compose exec sitl bash
 sim_vehicle.py -v ArduCopter --console
-\`\`\`
+```
 
 **Auto-start** (boots straight into SITL with blimp params):
-\`\`\`bash
+```bash
 docker-compose up sitl-auto
-\`\`\`
+```
 
 ### 3. Connect a GCS
 
@@ -41,7 +41,7 @@ Point QGroundControl / Mission Planner at:
 
 ## Project layout
 
-\`\`\`
+```
 sitl/
 ├── Dockerfile            # Image definition
 ├── docker-compose.yml    # Services: sitl, sitl-auto
@@ -51,32 +51,32 @@ sitl/
 │   └── blimp.parm
 └── scripts/              # Lua scripts (mounted into container)
     └── blimp_motors.lua
-\`\`\`
+```
 
 Edits to `params/` and `scripts/` on the host are picked up immediately — no rebuild needed.
 
 ## Useful commands
 
-\`\`\`bash
+```bash
 docker-compose ps          # list running containers
 docker-compose logs -f     # follow logs
 docker-compose exec sitl bash   # open shell inside container
 docker-compose down -v     # stop and remove containers + volumes
-\`\`\`
+```
 
 ## Rebuilding after Dockerfile changes
 
-\`\`\`bash
+```bash
 docker-compose build --no-cache
 docker-compose up -d --force-recreate
-\`\`\`
+```
 
 ## Troubleshooting
 
-- **\`sim_vehicle.py: command not found\`** → run \`export PATH=\$PATH:/home/blimp/ardupilot/Tools/autotest\`
-- **\`python: not found\`** → the Dockerfile creates a \`python3\` → \`python\` symlink; rebuild if missing
+- **`sim_vehicle.py: command not found`** → run `export PATH=\$PATH:/home/blimp/ardupilot/Tools/autotest`
+- **`python: not found`** → the Dockerfile creates a `python3` → `python` symlink; rebuild if missing
 - **Time-went-backwards warnings** → harmless in WSL2; simulation still works
-- **Port already in use** → stop other SITL instances or change \`network_mode\`
+- **Port already in use** → stop other SITL instances or change `network_mode`
 
 ## License
 
