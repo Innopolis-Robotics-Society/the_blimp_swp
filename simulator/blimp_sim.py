@@ -37,6 +37,13 @@ class BlimpConfig:
         [0.0, 0.0, -1.0],
         [0.0, 1.0, 0.0],
     ])
+    motor_torque_dirs: List[List[float]] = field(default_factory=lambda: [
+        [0.0, 0.0, -1.0],
+        [0.0, 0.0, -1.0],
+        [0.0, 0.0, 1.0],
+        [0.0, 0.0, 1.0],
+    ])
+    motor_torque_coeff: float = 0.01
     air_density: float = 1.225
     gravity: float = 9.81
     dt: float = 0.004
@@ -62,6 +69,7 @@ class BlimpPhysics:
         self.state = BlimpState()
         self.motor_positions = np.array(config.motor_positions)
         self.motor_directions = np.array(config.motor_directions)
+        self.motor_torque_dirs = np.array(config.motor_torque_dirs)
         self.Cd = np.array(config.drag_coefficients)
         self.A = np.array(config.cross_section_areas)
         self.inertia = np.diag(config.inertia)
@@ -81,6 +89,7 @@ class BlimpPhysics:
     def _thrust_forces(self, motors: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
         F_total = np.zeros(3)
         tau_total = np.zeros(3)
+        k = self.config.motor_torque_coeff
         for i in range(self.config.motor_count):
             if i >= len(motors):
                 break
@@ -88,8 +97,10 @@ class BlimpPhysics:
             d = self.motor_directions[i]
             r = self.motor_positions[i]
             F_i = T * d
+            tau_pos = np.cross(r, F_i)
+            tau_react = k * T * self.motor_torque_dirs[i]
             F_total += F_i
-            tau_total += np.cross(r, F_i)
+            tau_total += tau_pos + tau_react
         return F_total, tau_total
 
     def _drag_force(self, velocity: np.ndarray) -> np.ndarray:
@@ -292,6 +303,8 @@ def load_config(path: str) -> BlimpConfig:
     cfg.max_thrust = m.get("max_thrust", cfg.max_thrust)
     cfg.motor_positions = m.get("positions", cfg.motor_positions)
     cfg.motor_directions = m.get("directions", cfg.motor_directions)
+    cfg.motor_torque_dirs = m.get("torque_dirs", cfg.motor_torque_dirs)
+    cfg.motor_torque_coeff = m.get("torque_coeff", cfg.motor_torque_coeff)
 
     p = raw.get("physics", {})
     cfg.air_density = p.get("air_density", cfg.air_density)
