@@ -58,3 +58,11 @@ modules/waf/.waf-*
 
 # Scripts (optional - uncomment if you don't want to commit local scripts)
 # scripts/*.lua
+# MAVProxy and SITL artifacts
+eeprom.bin
+mav.parm
+mav.tlog
+mav.tlog.raw
+*.tlog
+*.BIN
+*.bin
