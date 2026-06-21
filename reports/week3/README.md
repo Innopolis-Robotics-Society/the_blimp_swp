@@ -59,7 +59,7 @@ All Must Have issues are closed. SITL works with MAVLink, mission upload, and te
  - [Product Backlog](images/product-backlog.png)
  - [Sprint Backlog](images/sprint-backlog.png)
  - [Sprint milestone](images/milestone.png)
- - [MVP version field](images/mvp-label.png)
+ - [MVP version field](images/sprint-backlog.png) (tracked via Sprint Milestone)
  - [SemVer release](images/release.png)
  - [Delivered MVP v1](images/mvp-demo.png)
  - [Example reviewed PR](images/reviewed-pr.png)
