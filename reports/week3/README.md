@@ -41,7 +41,7 @@ MVP v1 includes the following Must Have stories:
 - Sprint 1: 26
 
 ## Current Status
-MVP v1 implementation is in progress. SITL is running. MAVLink connection works. QGroundControl shows telemetry.
+All Must Have issues are closed. SITL works with MAVLink, mission upload, and telemetry. Smoke-check is in progress.
 
 ## Next Steps
 - Finish remaining tasks for MVP v1
