@@ -54,3 +54,12 @@ All Must Have issues are closed. SITL works with MAVLink, mission upload, and te
 - [LLM Report](llm-report.md)
 - [Customer Review Summary](customer-review-summary.md)
 - [Customer Review Transcript](customer-review-transcript.md)
+
+## Images
+ - [Product Backlog](images/product-backlog.png)
+ - [Sprint Backlog](images/sprint-backlog.png)
+ - [Sprint milestone](images/milestone.png)
+ - [MVP version field](images/mvp-label.png)
+ - [SemVer release](images/release.png)
+ - [Delivered MVP v1](images/mvp-demo.png)
+ - [Example reviewed PR](images/reviewed-pr.png)
