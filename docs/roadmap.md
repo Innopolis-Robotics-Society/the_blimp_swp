@@ -1,9 +1,9 @@
 # Roadmap
 
-## Sprint 1 (16–21 June)
-- Run SITL ArduPilot Blimp
-- Set up MAVLink
-- Get telemetry
+## Sprint 1 (16–21 June) – Done
+- [x] Run SITL ArduPilot Blimp
+- [x] Set up MAVLink
+- [x] Get telemetry
 
 ## Sprint 2 (23–27 June)
 - Connect UWB
