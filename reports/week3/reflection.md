@@ -14,3 +14,6 @@
 
 ## Planned response
 - In the next sprint, we will connect UWB.
+
+## Updated status
+All Must Have issues were closed before the deadline. US-14 (UWB) and US-22 (Smoke-check) are still in progress but not blocking MVP v1.
