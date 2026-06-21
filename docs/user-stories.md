@@ -6,17 +6,17 @@
 
 | ID | Short title | MoSCoW priority | Issue | Requirement status | Work Status | Sprint |
 |---|---|---|---|---|---|---|
-| US-12 | SITL heartbeat | Must Have | [#1](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues/1) | Active | To Do | Sprint 1 |
-| US-13 | Mission upload | Must Have | [#14](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues/14) | Active | To Do | Sprint 1 |
-| US-14 | Position feedback | Must Have | [#4](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues/4) | Active | To Do | Sprint 1 |
-| US-15 | Telemetry streaming | Must Have | [#15](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues/15) | Active | To Do | Sprint 1 |
-| US-16 | Arming via MAVLink | Should Have | [#16](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues/16) | Active | To Do | — |
-| US-17 | Mode switching | Should Have | [#17](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues/17) | Active | To Do | — |
-| US-18 | Parameter read/write | Could Have | [#18](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues/18) | Active | To Do | — |
-| US-19 | Logging | Could Have | [#19](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues/19) | Active | To Do | — |
-| US-20 | Fail-safe on connection loss | Should Have | [#21](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues/21) | Active | To Do | — |
-| US-21 | SITL startup script | Must Have | [#22](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues/22) | Active | To Do | Sprint 1 |
-| US-22 | Smoke-check automation | Must Have | [#23](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues/23) | Active | To Do | Sprint 1 |
+| US-12 | SITL heartbeat | Must Have | [#1](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues/1) | Active | Done | Sprint 1 |
+| US-13 | Mission upload | Must Have | [#14](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues/14) | Active | Done | Sprint 1 |
+| US-14 | Position feedback | Must Have | [#4](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues/4) | Active | In Progress | Sprint 1 |
+| US-15 | Telemetry streaming | Must Have | [#15](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues/15) | Active | Done | Sprint 1 |
+| US-16 | Arming via MAVLink | Should Have | [#16](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues/16) | Active | Done | — |
+| US-17 | Mode switching | Should Have | [#17](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues/17) | Active | Done | — |
+| US-18 | Parameter read/write | Could Have | [#18](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues/18) | Active | Done | — |
+| US-19 | Logging | Could Have | [#19](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues/19) | Active | Done | — |
+| US-20 | Fail-safe on connection loss | Should Have | [#21](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues/21) | Active | Done | — |
+| US-21 | SITL startup script | Must Have | [#22](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues/22) | Active | Done | Sprint 1 |
+| US-22 | Smoke-check automation | Must Have | [#23](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues/23) | Active | In Porgress | Sprint 1 |
 
 ## Removed stories (from Assignment 2)
 
