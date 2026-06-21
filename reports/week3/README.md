@@ -7,13 +7,22 @@
 ## Links
 - [User stories (current)](../../docs/user-stories.md)
 - [Historical user stories (Week 2)](../week2/user-stories.md)
-- [Product Backlog](link-to-board-when-ready)
-- [Sprint Backlog](link-to-board-when-ready)
 - [Sprint Milestone](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/milestone/1)
 - [Roadmap](../../docs/roadmap.md)
 - [Definition of Done](../../docs/definition-of-done.md)
 - [CHANGELOG](../../CHANGELOG.md)
 - [Process Requirements](https://gitlab.pg.innopolis.university/swp_26/swp_26/-/blob/main/Process_Requirements.md#product-backlog-items-and-scope)
+
+## Product Backlog
+We do not use GitHub Projects. Instead, we track the Product Backlog using **open Issues**. All active user stories and tasks are stored as issues with labels for type and priority.
+
+- All open issues: [Issues](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues)
+- Filtered by user stories: [User stories](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues?q=is%3Aissue%20state%3Aopen%20label%3Auser-story)
+
+## Sprint Backlog
+We track the Sprint Backlog using the **Sprint Milestone**. Issues assigned to the `Sprint 1 – MVP v1` milestone represent the current Sprint Backlog.
+
+- Link to Sprint Milestone: [Sprint 1 – MVP v1](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/milestone/1)
 
 ## Two repositories
 Our main repository is [`the_blimp_swp`](https://github.com/Innopolis-Robotics-Society/the_blimp_swp).  
@@ -32,16 +41,16 @@ MVP v1 includes the following Must Have stories:
 - Sprint 1: 26
 
 ## Current Status
-(will be added after tasks are completed)
+MVP v1 implementation is in progress. SITL is running. MAVLink connection works. QGroundControl shows telemetry.
 
 ## Next Steps
-- Create Project boards
-- Sprint Review with customer
-- Record video demonstration
+- Finish remaining tasks for MVP v1
+- Record video demonstration(done in the video with customer review)
 - Create SemVer release
 
 ## Week 3 Documents
 - [Reflection](reflection.md)
 - [Retrospective](retrospective.md)
 - [LLM Report](llm-report.md)
-- [Customer Review Summary](customer-review-summary.md) (will be added after meeting)
+- [Customer Review Summary](customer-review-summary.md)
+- [Customer Review Transcript](customer-review-transcript.md)
