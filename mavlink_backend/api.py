@@ -54,8 +54,6 @@ async def lifespan(app: FastAPI):
 
 
 
-
-
 app = FastAPI(title="Airship MAVLink Backend", version="1.0", lifespan=lifespan)
 
 

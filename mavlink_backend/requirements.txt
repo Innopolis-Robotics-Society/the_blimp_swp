@@ -1,0 +1,24 @@
+
+---
+
+## 2. Файл `requirements.txt`
+
+```txt
+# Web Framework
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+
+# MAVLink
+pymavlink>=2.4.49
+
+# Data Validation
+pydantic>=2.0.0
+
+# WebSocket (встроен в uvicorn, но явно укажем)
+websockets>=12.0
+
+# Async support (встроен в Python 3.9+, но для совместимости)
+asyncio>=3.4.3
+
+# Optional: для тестирования API
+httpx>=0.26.0
