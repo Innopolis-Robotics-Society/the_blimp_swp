@@ -6,9 +6,8 @@
 3. We added technical tasks to the backlog (Docker, startup script, QGC integration).
 
 ## What did not go well
-1. Some team members still can't create GitHub Projects (permissions).
-2. We don't have hardware for testing — we use only SITL.
-3. US-14 (UWB) and US-22 (smoke-check) are not done and moved to the next Sprint.
+1. We don't have hardware for testing — we use only SITL.
+2. US-14 (UWB) and US-22 (smoke-check) are not done and moved to the next Sprint.
 
 ## Action points from last Sprint
 1. Ask others to create Projects → **Done** (projects are created now).
