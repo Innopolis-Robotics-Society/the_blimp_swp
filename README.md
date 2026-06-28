@@ -17,17 +17,6 @@ This project simulates an indoor airship with near-zero buoyancy using ArduPilot
 
 ---
 
-## Local setup
-
-1. Clone the repository.
-2. Install Docker and Python 3.10+.
-3. Run the startup script:
-   ```bash
-   ./start.sh
-4. Open QGroundControl and connect to MAVLink.
-
----
-
 ## Links
 - [Week 2 Report](reports/week2/README.md)
 - [Week 3 Report](reports/week3/README.md)
