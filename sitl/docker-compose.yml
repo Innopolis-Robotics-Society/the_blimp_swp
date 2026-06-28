@@ -17,8 +17,15 @@
 # ---------------------------------------------------------------------------
 
 x-common: &common
+  build:
+    context: .
+    dockerfile: Dockerfile
   image: blimp/sitl:0.1.0
-  network_mode: host          # exposes 5760 (TCP) / 14550 (UDP) on localhost
+#  network_mode: host          # exposes 5760 (TCP) / 14550 (UDP) on localhost
+  ports:
+    - "14550:14550/udp"
+  extra_hosts:
+    - "host.docker.internal:host-gateway"
   stdin_open: true
   tty: true
   environment:
@@ -55,6 +62,6 @@ services:
       - "/bin/bash"
       - "-lc"
       - >
+        sudo chown -R blimp:blimp /home/blimp/blimp-flight &&
         sim_vehicle.py -v ArduCopter
-        --add-param-file=/home/blimp/blimp-flight/params/blimp.parm
-        --console -w --no-rebuild
+        -w --no-rebuild --out host.docker.internal:14550
