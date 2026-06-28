@@ -17,6 +17,44 @@ This project simulates an indoor airship with near-zero buoyancy using ArduPilot
 
 ---
 
+## Local Setup
+
+### Prerequisites
+- Docker and Docker Compose
+- Python 3.10+
+- QGroundControl
+
+### MAVLink Backend
+
+cd mavlink_backend
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+python api.py
+
+Backend runs on port 8000.
+API docs available at /docs when running.
+
+### SITL (ArduPilot)
+
+cd sitl
+docker build -t ardupilot-sitl .
+docker run -d --name sitl -p 14550:14550/udp ardupilot-sitl
+
+### Run System
+
+1. Start SITL (above)
+2. Start backend (above)
+3. Connect QGroundControl to udp:127.0.0.1:14550
+4. Test API via Swagger UI
+
+### Troubleshooting
+
+- Port in use: docker stop sitl && docker rm sitl
+- No connection: Check SITL is running
+
+---
+
 ## Links
 - [Week 2 Report](reports/week2/README.md)
 - [Week 3 Report](reports/week3/README.md)
