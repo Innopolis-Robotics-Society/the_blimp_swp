@@ -4,12 +4,14 @@
 
 **How we used it:**
 
-1. **Writing quality requirements** – ChatGPT helped us write clear, measurable quality requirements (speed, stability, telemetry rate) for our project.
+1. **Transcription and translation** – We recorded the customer review meeting in Russian. ChatGPT helped us transcribe the audio and translate it into English. We then reviewed the text, fixed mistakes, and prepared the final version for the repository.
 
-2. **Creating test templates** – ChatGPT gave us starting code for Python tests, which we adjusted to fit our code.
+2. **Writing quality requirements** – The team defined all quality requirements based on project needs. ChatGPT helped us format them correctly and suggested how to write them in a measurable way.
 
-3. **Writing UAT scenarios** – ChatGPT helped us write three simple user acceptance test scenarios based on our user stories and customer feedback.
+3. **Creating test templates** – The team wrote the actual test logic. ChatGPT gave simple code templates, but we changed them to fit our backend and SITL setup.
 
-4. **Report templates** – ChatGPT helped us structure `reports/week4/README.md`, `reflection.md`, and `retrospective.md`.
+4. **Writing UAT scenarios** – The team came up with the test steps based on user stories. ChatGPT helped us put them into a clear structure.
 
-**Important:** We checked and changed all AI-generated content to match our project. The team made all final decisions about quality requirements, tests, and priorities.
+5. **Report templates** – ChatGPT created empty markdown templates for `reports/week4/README.md`, `reflection.md`, and `retrospective.md`. The team wrote all the actual content and made all decisions.
+
+**Important:** We did not copy AI-generated content without checking. All final decisions about quality requirements, tests, and priorities were made by the team. ChatGPT was used only as a helper.
