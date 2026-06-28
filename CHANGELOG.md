@@ -21,7 +21,6 @@
 
 ---
 
-## [Unreleased]
 ### Added
 - SITL ArduPilot Blimp runs in Docker
 - MAVLink connection with QGroundControl
