@@ -1,58 +1,79 @@
 # User Acceptance Tests
 
-## UAT-01: Start SITL and get heartbeat
+## UAT-01: Setup, container launch and basic connection (Smoke test)
 
-**As a** test engineer,  
-**I want to** start the SITL simulation and get a MAVLink heartbeat,  
-**so that** I know the simulation is ready.
+**Goal:** Make sure the user can run the Docker container, open QGroundControl, and see telemetry from the connected (virtual) vehicle.
+
+**Preconditions:**
+- Docker is installed on the user's machine.
+- No physical drone is connected (SITL simulator is used).
+- Setup instructions are available.
 
 **Steps:**
-1. Run `./start.sh`.
-2. Wait for the system to start.
-3. Check the console output.
+1. Clone the repository: `git clone https://github.com/Innopolis-Robotics-Society/the_blimp_swp.git`
+2. If using WSL, switch to the WSL branch: `git checkout fix/wsl-sitl-latest`
+3. Run the Docker container using the instructions in `sitl/README.md#quickstart` (use Auto-start for quick testing).
+4. Wait for the container to reach `Up` status.
+5. Open QGroundControl.
+6. Go to the **Fly** tab.
+7. Check that telemetry widgets are visible (altitude, speed, battery, GPS status).
+8. Click the **Arm** button (or check the readiness status).
 
 **Expected result:**
-- `Heartbeat received` appears in the console.
-- The system shows `Ready`.
-
-**Status:** Pass / Fail (to be filled after UAT)
+- Container starts without critical errors (no `panic` or `fatal error` in logs).
+- The Fly tab shows a connected vehicle.
+- Telemetry widgets show real values. GPS indicator shows satellite lock.
+- UAT-01 passed.
 
 ---
 
-## UAT-02: Upload mission and fly
+## UAT-02: Mission planning, upload and autonomous flight
 
-**As a** test engineer,  
-**I want to** upload a mission with waypoints via MAVLink and start the flight,  
-**so that** I can check if the autopilot follows the path.
+**Goal:** Check two-way communication between QGC and the backend (simulator), and verify that the mission planning module works correctly.
+
+**Preconditions:**
+- UAT-01 passed. Vehicle is connected and visible in QGC.
 
 **Steps:**
-1. Load a mission file with at least 3 waypoints.
-2. Upload the mission to SITL.
-3. Start the simulation.
+1. Go to the **Plan** tab.
+2. Add at least 3–4 waypoints on the map to create a simple route (e.g., a square).
+3. Set a safe altitude for each waypoint (e.g., 10–15 meters).
+4. Click **Upload** to send the mission to the vehicle.
+5. Go to the **Fly** tab.
+6. Arm the motors.
+7. Switch the flight mode to **Auto** or **Mission**.
+8. Watch the drone marker move on the map and telemetry change.
+9. Wait for all waypoints to be completed and the vehicle to return or land (or cancel with RTL / Return).
 
 **Expected result:**
-- Mission upload is accepted (`OK`).
-- The vehicle starts moving to the first waypoint.
-- Telemetry shows position changes.
-
-**Status:** Pass / Fail (to be filled after UAT)
+- Mission is built successfully in the editor.
+- Upload shows a confirmation message (`Mission uploaded`).
+- After switching to Auto mode, the virtual drone starts moving through the waypoints.
+- The map marker is synchronized with the actual (virtual) position.
+- Telemetry (altitude, distance to home) updates in real time.
+- UAT-02 passed.
 
 ---
 
-## UAT-03: See telemetry in QGroundControl
+## UAT-03: Parameter change and pre-arm safety check
 
-**As a** test engineer,  
-**I want to** see telemetry (position, attitude, speed) in QGroundControl,  
-**so that** I can monitor the flight.
+**Goal:** Make sure the user can change vehicle parameters through QGC, save them, and use standard safety checklists.
+
+**Preconditions:**
+- UAT-01 passed. Vehicle is connected.
 
 **Steps:**
-1. Start QGroundControl.
-2. Connect to SITL via MAVLink.
-3. Look at the telemetry fields.
+1. Go to **Vehicle Setup** (gear icon or 'Q' in the top left).
+2. Select the **Parameters** tab.
+3. Search for a safe parameter, e.g., `RTL_ALT` (return altitude) or `BRD_SAFETY_DEFLT`.
+4. Change the value (e.g., set `RTL_ALT` from 1500 to 2000).
+5. Click **Save** and confirm any restart if prompted.
+6. Wait for the vehicle to reconnect.
+7. Go to the **Summary** or **Pre-flight** check section (if enabled).
+8. Return to the **Fly** tab and try to arm the motors without calibration or checks (e.g., right after SITL restart, before GPS is ready).
 
 **Expected result:**
-- QGroundControl shows position (lat, lon, alt).
-- QGroundControl shows attitude (roll, pitch, yaw).
-- QGroundControl shows speed (ground speed, vertical speed).
-
-**Status:** Pass / Fail (to be filled after UAT)
+- Parameter list loads without interface freezing.
+- The new value is saved and applied successfully.
+- QGC responds correctly: if the vehicle is not ready (e.g., compass/gyro not passed in SITL), QGC shows a clear warning (`Pre-arm safety check failed`) and prevents arming.
+- UAT-03 passed.
