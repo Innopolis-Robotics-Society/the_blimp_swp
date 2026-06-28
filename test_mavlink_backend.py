@@ -3,16 +3,9 @@ from unittest.mock import Mock, patch, MagicMock
 import time
 import socket
 import threading
-# Добавляем текущую директорию в путь поиска, если тест лежит в той же папке, что и модуль
-import sys
-import os
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+# Импорт тестируемого модуля
+from mavlink_backend import MAVLinkBackend
 
-# Если тест в корне, а модуль в папке mavlink_backend:
-from mavlink_backend.mavlink_backend import MAVLinkBackend 
-
-
-# --- Фикстуры ---
 
 @pytest.fixture
 def mock_master():
@@ -26,12 +19,16 @@ def mock_master():
 @pytest.fixture
 def backend(mock_master):
     """Создает экземпляр MAVLinkBackend с моком вместо реального соединения"""
+    # Патчим mavlink_connection в модуле pymavlink.mavutil, который используется внутри mavlink_backend
     with patch('mavlink_backend.mavutil.mavlink_connection', return_value=mock_master):
+        # Также патчим wait_heartbeat, чтобы не ждать реально
         with patch.object(mock_master, 'wait_heartbeat'):
             b = MAVLinkBackend(connection_string='udp:test')
             b.stop()
             yield b
 
+
+# ... (далее идут твои тесты) ...
 
 @pytest.fixture
 def sitl_backend():
