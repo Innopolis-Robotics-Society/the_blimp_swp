@@ -12,6 +12,10 @@
 - Parameter read and write via MAVLink
 - Flight log recording
 - Fail‑safe mode on MAVLink connection loss
+-  Quality requirements (QR-01, QR-02, QR-03)
+- Automated quality requirement tests (QRT-01, QRT-02, QRT-03)
+- UAT scenarios (UAT-01, UAT-02, UAT-03)
+- Updated Definition of Done with tests and coverage
 
 - ### Fixed
 - No critical issues reported
