@@ -5,7 +5,7 @@ from typing import List, Optional
 import uvicorn
 import asyncio
 from contextlib import asynccontextmanager
-from mavlink_backend import MAVLinkBackend
+from mavlink_backend.backend import MAVLinkBackend
 
 logging.basicConfig(
     level=logging.INFO,
@@ -38,7 +38,6 @@ class MissionRequest(BaseModel):
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Startup
     global backend
     try:
         backend = MAVLinkBackend('udp:127.0.0.1:14550')
@@ -46,12 +45,10 @@ async def lifespan(app: FastAPI):
     except Exception as e:
         logger.error(f"Failed to connect to SITL: {e}")
 
-    yield  # Приложение работает здесь
+    yield
 
-    # Shutdown
     if backend:
         backend.stop()
-
 
 
 app = FastAPI(title="Airship MAVLink Backend", version="1.0", lifespan=lifespan)
