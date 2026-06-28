@@ -5,13 +5,13 @@
 - [x] Set up MAVLink
 - [x] Get telemetry
 
-## Sprint 2 (23–27 June)
-- Connect UWB
-- Configure EKF3
-- First tests
-- Add quality requirements and automated tests
-- Update Definition of Done
-- Create UAT scenarios
+## Sprint 2 (23–28 June) - Done
+- [x] Connect UWB
+- [x] Configure EKF3
+- [x] First tests
+- [x] Add quality requirements and automated tests
+- [x] Update Definition of Done
+- [x] Create UAT scenarios
 
 ## Sprint 3 (30 June – 4 July)
 - Integrate planner
