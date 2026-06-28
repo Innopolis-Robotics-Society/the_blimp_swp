@@ -74,8 +74,13 @@ We use ISO/IEC 25010. Quality requirements are in `docs/quality-requirements.md`
 - [x] Definition of Done: updated
 - [x] UAT scenarios: ready and passed with customer
 - [x] Customer meeting: done on 28.06.2026
-- [x] Release v0.2.0: created
+- [x] Release v0.2.0: [created](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/releases/tag/v0.2.0)
 - [x] All Sprint issues: closed
+
+---
+
+## Demo Video
+[Watch the demo on Yandex Disk](https://disk.yandex.ru/i/Euiq1Bod1XcbEg)
 
 ---
 
