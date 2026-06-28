@@ -3,7 +3,13 @@ from unittest.mock import Mock, patch, MagicMock
 import time
 import socket
 import threading
-from mavlink_backend import MAVLinkBackend
+# Добавляем текущую директорию в путь поиска, если тест лежит в той же папке, что и модуль
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+# Если тест в корне, а модуль в папке mavlink_backend:
+from mavlink_backend.mavlink_backend import MAVLinkBackend 
 
 
 # --- Фикстуры ---
