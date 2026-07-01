@@ -36,5 +36,5 @@ We use GitHub issues with status labels:
 - **In Progress** – currently working
 - **Done** – merged and closed
 
-**Definition of Done**
+**Definition of Done**  
 See [Definition Of Done](definition-of-done.md).
