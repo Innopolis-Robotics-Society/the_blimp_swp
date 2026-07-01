@@ -2,24 +2,24 @@
 
 ## Git Workflow
 
-We use a feature-branch workflow with pull requests.
+We use a feature-branch workflow with pull requests.  
 
 ```mermaid
 gitGraph
-    commit
+    commit id: "v1.0" tag: "release"
     branch feature/week4-docs
     checkout feature/week4-docs
-    commit
-    commit
+    commit id: "add docs"
+    commit id: "fix typos"
     checkout main
-    merge feature/week4-docs
-    commit
+    merge feature/week4-docs id: "merge docs" tag: "v1.1"
+    commit id: "hotfix"
     branch feature/mavlink-backend
     checkout feature/mavlink-backend
-    commit
-    commit
+    commit id: "add mavlink"
+    commit id: "tests"
     checkout main
-    merge feature/mavlink-backend
+    merge feature/mavlink-backend id: "merge backend" tag: "v1.2"
 ```
 
 **How we use it**
