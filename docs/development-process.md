@@ -37,4 +37,4 @@ We use GitHub issues with status labels:
 - **Done** – merged and closed
 
 **Definition of Done**
-See [Definition Of Done](docs/definition-of-done.md).
+See [Definition Of Done](definition-of-done.md).
