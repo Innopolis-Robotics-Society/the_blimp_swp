@@ -7,6 +7,7 @@
 **What we check:** When the system gets a MAVLink heartbeat, it must parse and save it within **50 ms** on a Raspberry Pi 4 (or similar hardware).  
 **How we test:** QRT-01 runs automatically in CI. It sends 100 messages and checks the average time. If it is over 50 ms, the test fails.  
 **Related stories:** US-12, US-15, US-21.
+**Related ADRs:** [ADR-002](architecture/adr/ADR-002-use-mavlink.md), [ADR-003](architecture/adr/ADR-003-use-python-backend.md)
 
 ---
 
@@ -17,6 +18,7 @@
 **What we check:** The system runs a 5-minute mission with at least 3 waypoints and MAVLink connection. No crashes or errors are allowed.  
 **How we test:** QRT-02 runs this mission in CI. If the simulation crashes or shows an error, the test fails.  
 **Related stories:** US-12, US-13, US-21.
+**Related ADRs:** [ADR-001](architecture/adr/ADR-001-use-ardupilot-sitl.md)
 
 ---
 
@@ -27,3 +29,4 @@
 **What we check:** The system must send telemetry (position, attitude, velocity) at least **10 times per second** during simulation.  
 **How we test:** QRT-03 checks the telemetry stream. If the average rate is below 10 Hz, the test fails.  
 **Related stories:** US-15.
+**Related ADRs:** [ADR-002](architecture/adr/ADR-002-use-mavlink.md), [ADR-003](architecture/adr/ADR-003-use-python-backend.md)
