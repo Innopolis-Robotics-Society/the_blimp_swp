@@ -1,60 +1,33 @@
-# ---------------------------------------------------------------------------
-# Blimp SITL — docker-compose
-#
-# The image carries ArduPilot SITL (compiled at build time, pinned tag).
-# THIS compose file mounts your blimp-flight repo (params + Lua scripts) into
-# the container at runtime. SITL is launched FROM inside the mounted repo, so
-# the `scripts/` folder ArduPilot looks for is YOUR scripts/ folder on the
-# host — edit a .lua on the host, `scripting restart` in MAVProxy, done.
-#
-# Run this compose file from the ROOT of your blimp-flight repo:
-#   blimp-flight/
-#     ├── docker-compose.yml   <- this file (or symlink it here)
-#     ├── params/
-#     │     └── blimp.parm
-#     └── scripts/
-#           └── blimp_motors.lua
-# ---------------------------------------------------------------------------
+version: '3.8'
 
 x-common: &common
-  image: blimp/sitl:0.1.0
-  network_mode: host          # exposes 5760 (TCP) / 14550 (UDP) on localhost
+  image: blimp/sitl:final
+  network_mode: host
   stdin_open: true
   tty: true
   environment:
-    - DISPLAY                 # only needed if you use --map (X forwarding)
+    - DISPLAY=${DISPLAY:-:0}
     - QT_X11_NO_MITSHM=1
   volumes:
-    # ---- your repo: params + scripts live here, editable from the host ----
     - ./params:/home/blimp/blimp-flight/params:rw
     - ./scripts:/home/blimp/blimp-flight/scripts:rw
-    # ---- X11 for the MAVProxy --map window (optional) ---------------------
     - /tmp/.X11-unix:/tmp/.X11-unix:rw
     - ${HOME}/.Xauthority:/home/blimp/.Xauthority:rw
-  # Persist the virtual EEPROM between runs by working inside the repo.
   working_dir: /home/blimp/blimp-flight
 
 services:
-  # --------------------------------------------------------------------------
-  # Default: interactive shell. You start SITL yourself (full control).
-  # --------------------------------------------------------------------------
   sitl:
     <<: *common
     container_name: blimp_sitl
-    command: ["/bin/bash", "-lc", "exec bash"]
+    command: ["/bin/bash"]
 
-  # --------------------------------------------------------------------------
-  # One-shot: boots SITL straight into your params, no map (headless).
-  # Connect a GCS (QGC / Mission Planner / MAVProxy) to udp:127.0.0.1:14550
-  # or tcp:127.0.0.1:5760.
-  # --------------------------------------------------------------------------
   sitl-auto:
     <<: *common
     container_name: blimp_sitl_auto
-    command:
-      - "/bin/bash"
-      - "-lc"
-      - >
-        sim_vehicle.py -v ArduCopter
-        --add-param-file=/home/blimp/blimp-flight/params/blimp.parm
-        --console -w --no-rebuild
+    command: >
+      /bin/bash -c "
+      cd /home/blimp/ardupilot &&
+      sim_vehicle.py -v ArduBlimp 
+      --add-param-file=/home/blimp/blimp-flight/params/blimp.parm
+      --console -w --no-rebuild
+      "
