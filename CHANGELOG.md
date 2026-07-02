@@ -1,6 +1,26 @@
 # Changelog
 
-## [Unreleased]
+## [v0.2.0] - 2026-06-28
+### Added
+- Quality requirements (QR-01, QR-02, QR-03) with ISO/IEC 25010 sub-characteristics
+- Automated quality requirement tests (QRT-01, QRT-02, QRT-03)
+- UAT scenarios (UAT-01, UAT-02, UAT-03)
+- Updated Definition of Done with tests and coverage
+- Testing strategy documentation (`docs/testing.md`)
+- CI configuration for automated test execution
+- MAVLink backend with REST API and WebSocket
+- Integration tests with SITL
+- Local setup instructions in README
+
+### Changed
+- All Sprint 2 issues (#32–#40) are closed
+- Updated root README.md with local setup instructions
+
+### Fixed
+- No critical issues reported
+
+---
+
 ### Added
 - SITL ArduPilot Blimp runs in Docker
 - MAVLink connection with QGroundControl
@@ -12,13 +32,11 @@
 - Parameter read and write via MAVLink
 - Flight log recording
 - Fail‑safe mode on MAVLink connection loss
--  Quality requirements (QR-01, QR-02, QR-03)
-- Automated quality requirement tests (QRT-01, QRT-02, QRT-03)
-- UAT scenarios (UAT-01, UAT-02, UAT-03)
-- Updated Definition of Done with tests and coverage
 
-- ### Fixed
+### Fixed
 - No critical issues reported
+
+---
 
 ## [v0.1.0] - 2026-06-20
 ### Added
