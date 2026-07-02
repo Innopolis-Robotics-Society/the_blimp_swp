@@ -1,3 +1,5 @@
+# SITL-сервисы для ArduMotorBlimp
+
 version: '3.8'
 
 x-common: &common
@@ -16,18 +18,22 @@ x-common: &common
   working_dir: /home/blimp/blimp-flight
 
 services:
+  # Интерактивная оболочка
+  # docker-compose up -d sitl && docker-compose exec sitl bash
   sitl:
     <<: *common
     container_name: blimp_sitl
     command: ["/bin/bash"]
 
+  # Автозапуск SITL с параметрами дирижабля
+  # docker-compose up sitl-auto
   sitl-auto:
     <<: *common
     container_name: blimp_sitl_auto
     command: >
       /bin/bash -c "
       cd /home/blimp/ardupilot &&
-      sim_vehicle.py -v ArduBlimp 
+      sim_vehicle.py -v ArduBlimp
       --add-param-file=/home/blimp/blimp-flight/params/blimp.parm
       --console -w --no-rebuild
       "
