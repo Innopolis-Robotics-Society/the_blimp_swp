@@ -60,6 +60,17 @@ Sprint total: 26
 
 ---
 
+## Contribution traceability
+
+| Name | Issues | PRs | Reviews | Other |
+|------|--------|-----|---------|-------|
+| Daniyar | #3, #48 | #50 | Reviewed #47, #49 | Sprint Review, ArduPilot config |
+| Arina | #42 | #51 | — | Docs, ADRs, reports, PDF |
+| Iuliana | #40 | #52 | — | Backend tests, MAVLink |
+| Svetlana | #47, #49 | #53 | — | Diagrams, UAT, Docker |
+
+---
+
 ## Architecture Summary
 
 We documented the system architecture with three views:
