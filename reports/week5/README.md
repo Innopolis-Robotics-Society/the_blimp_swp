@@ -32,12 +32,12 @@ Start: 01 July 2026
 Finish: 05 July 2026
 
 ## Sprint Scope
-- [ ] Architecture documentation (static, dynamic, deployment views)
-- [ ] 3 ADRs
-- [ ] Development process documentation
-- [ ] MVP v2 implementation
-- [ ] 2 new UAT scenarios
-- [ ] Release v0.3.0
+- [x] Architecture documentation (static, dynamic, deployment views)
+- [x] 3 ADRs
+- [x] Development process documentation
+- [x] MVP v2 implementation
+- [x] 2 new UAT scenarios
+- [x] Release v0.3.0
 
 ## Sprint Review
 - [Recording](https://disk.yandex.ru/i/eWTmeSGCYJ8JZw)
@@ -46,7 +46,7 @@ Finish: 05 July 2026
 - [Summary](sprint-review-summary.md)
 
 ## Total Story Points
-Sprint total: (to be filled)
+Sprint total: 26
 
 ---
 
@@ -54,17 +54,18 @@ Sprint total: (to be filled)
 
 | Feedback point | Resulting PBI or issue | Status | Response |
 |---|---|---|---|
-| Customer wants QGroundControl in Docker. | [#3](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues/3) | Planned | Will be added in MVP v2. |
-| Customer asked for documentation automation. | [#42](link) | Done | Added ADRs and architecture docs. |
+| Customer wants QGroundControl in Docker. | [#3](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues/3) | Done | Added to Docker setup. |
+| Customer asked for documentation automation. | [#42](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues/42) | Done | Added ADRs and architecture docs. |
+| Customer suggested removing Windows support from docs. | — | Done | Removed Windows instructions from README. |
 
 ---
 
 ## Architecture Summary
 
 We documented the system architecture with three views:
-- **Static view:** component diagram showing system structure
-- **Dynamic view:** sequence diagram for mission upload
-- **Deployment view:** deployment diagram for local and hardware setups
+- **Static view:** [component diagram](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/blob/week5/docs/architecture/static-view/static-view.png) showing system structure
+- **Dynamic view:** [sequence diagram](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/blob/week5/docs/architecture/dynamic-view/dynamic-view.png) for mission upload
+- **Deployment view:** [deployment diagram](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/blob/week5/docs/architecture/deployment-view/deployment-view.png) for local and hardware setups
 
 ## Testing and CI Status
 - Tests pass in CI.
@@ -74,20 +75,16 @@ We documented the system architecture with three views:
 ---
 
 ## Status
-- [ ] Architecture docs: in progress
-- [ ] ADRs: in progress
-- [ ] MVP v2: in progress
-- [ ] UAT: planned
+- [x] Architecture docs: done
+- [x] ADRs: done
+- [x] MVP v2: done
+- [x] UAT: done
 
 ---
 
 ## Next Steps
-- Complete MVP v2 implementation
-- Run UAT with customer
-- Create release v0.3.0
-- Record demo video
-
----
+- Prepare for Assignment 6
+- Start integration with Capstone team on motor frames
 
 ## Documents
 - [Reflection](reflection.md)
