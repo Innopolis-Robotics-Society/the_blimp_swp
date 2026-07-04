@@ -77,3 +77,50 @@
 - The new value is saved and applied successfully.
 - QGC responds correctly: if the vehicle is not ready (e.g., compass/gyro not passed in SITL), QGC shows a clear warning (`Pre-arm safety check failed`) and prevents arming.
 - UAT-03 passed.
+
+## UAT-04: Run Dockerized SITL on Linux
+
+**Goal:** Make sure the user can run the Dockerized SITL environment on Linux without additional configuration.
+
+**Preconditions:**
+- Linux OS (Ubuntu 22.04+)
+- Docker and Docker Compose installed
+- Repository cloned
+
+**Steps:**
+1. Clone the repository.
+2. Run `docker compose up` in the `sitl/` folder.
+3. Wait for the container to start.
+4. Open QGroundControl.
+5. Connect to `udp:127.0.0.1:14550`.
+
+**Expected result:**
+- Container starts without errors.
+- QGroundControl shows a connected vehicle.
+- Telemetry is visible.
+
+**Status:** Passed (customer confirmed during Sprint Review)
+
+---
+
+## UAT-05: Custom ArduPilot vehicle build
+
+**Goal:** Verify that the custom ArduPilot vehicle (ArduMotorBlimp) can be built and configured.
+
+**Preconditions:**
+- Linux OS
+- ArduPilot build environment set up
+- Custom vehicle files in place
+
+**Steps:**
+1. Run `./waf configure --board sitl`.
+2. Run `./waf build --vehicle ArduMotorBlimp`.
+3. Check build output for errors.
+4. Run the built vehicle in SITL.
+
+**Expected result:**
+- Build completes without errors.
+- SITL starts with the custom vehicle.
+- Vehicle responds to MAVLink commands.
+
+**Status:** Passed (customer confirmed during Sprint Review)
