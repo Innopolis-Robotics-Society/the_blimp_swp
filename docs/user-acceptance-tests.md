@@ -78,6 +78,8 @@
 - QGC responds correctly: if the vehicle is not ready (e.g., compass/gyro not passed in SITL), QGC shows a clear warning (`Pre-arm safety check failed`) and prevents arming.
 - UAT-03 passed.
 
+---
+
 ## UAT-04: Run Dockerized SITL on Linux
 
 **Goal:** Make sure the user can run the Dockerized SITL environment on Linux without additional configuration.
