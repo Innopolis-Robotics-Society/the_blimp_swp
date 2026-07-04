@@ -21,7 +21,7 @@ ARG ARDUPILOT_TAG=Copter-4.6.3
 # --- base tooling -----------------------------------------------------------
 RUN apt-get update && apt-get install -y --no-install-recommends \
     sudo git wget curl ca-certificates gnupg lsb-release \
-    nano tree iputils-ping net-tools \
+    nano tree iputils-ping net-tools iproute2 \
     python3 python3-pip python3-dev \
     build-essential \
  && ln -s /usr/bin/python3 /usr/bin/python \
@@ -49,6 +49,8 @@ WORKDIR /home/$USERNAME/ardupilot
 RUN bash Tools/environment_install/install-prereqs-ubuntu.sh -y || true
 # Install ALL required Python packages at once
 RUN pip3 install --default-timeout=1000 \
+    mavproxy \
+    pymavlink \
     empy==3.3.4 \
     pexpect \
     future \
@@ -56,6 +58,7 @@ RUN pip3 install --default-timeout=1000 \
 # Make sim_vehicle.py / mavproxy available on PATH for every shell.
 RUN echo 'export PATH=$PATH:/home/'"$USERNAME"'/ardupilot/Tools/autotest' >> /home/$USERNAME/.bashrc \
  && echo 'export PATH=$PATH:/home/'"$USERNAME"'/.local/bin' >> /home/$USERNAME/.bashrc
+ENV PATH="/home/${USERNAME}/ardupilot/Tools/autotest:/home/${USERNAME}/.local/bin:${PATH}"
 
 # --- pre-build the SITL Copter binary ---------------------------------------
 # Building here means container start is fast (no compile on first run).
@@ -70,7 +73,3 @@ RUN test -f /home/$USERNAME/ardupilot/build/sitl/bin/arducopter
 WORKDIR /home/$USERNAME
 CMD ["bash"]
 
-# Build:
-#   docker build -t blimp/sitl:0.1.0 \
-#     --build-arg USER_UID=$(id -u) --build-arg USER_GID=$(id -g) \
-#     -f Dockerfile .
