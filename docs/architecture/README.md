@@ -14,9 +14,9 @@ The system consists of:
 
 The component diagram shows the main system components and their interactions.
 
-[Component diagram](static-view/component-diagram.png)
+![Component diagram](static-view/static-view.png)
 
-**PlantUML source:** [component-diagram.puml](static-view/component-diagram.puml)
+**PlantUML source:** [static-view.puml](static-view/static-view.puml)
 
 ### Coupling and Cohesion
 - The backend communicates with SITL via MAVLink over UDP.
@@ -38,9 +38,9 @@ The component diagram shows the main system components and their interactions.
 
 The sequence diagram shows the mission upload flow.
 
-[Sequence diagram](dynamic-view/sequence-diagram.png)
+![Sequence diagram](dynamic-view/dynamic-view.png)
 
-**PlantUML source:** [sequence-diagram.puml](dynamic-view/sequence-diagram.puml)
+**PlantUML source:** [dynamic-view.puml](dynamic-view/dynamic-view.puml)
 
 ### Scenario
 This diagram shows how a user uploads a mission via the backend.
@@ -58,9 +58,9 @@ This flow is critical for autonomous flight and shows the interaction between co
 
 The deployment diagram shows where components run.
 
-[Deployment diagram](deployment-view/deployment-diagram.png)
+![Deployment diagram](deployment-view/deployment-view.png)
 
-**PlantUML source:** [deployment-diagram.puml](deployment-view/deployment-diagram.puml)
+**PlantUML source:** [deployment-view.puml](deployment-view/deployment-view.puml)
 
 ### Deployment model
 - SITL runs in Docker (locally).
