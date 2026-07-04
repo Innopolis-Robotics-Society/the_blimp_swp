@@ -39,6 +39,12 @@ Finish: 05 July 2026
 - [ ] 2 new UAT scenarios
 - [ ] Release v0.3.0
 
+## Sprint Review
+- [Recording](https://disk.yandex.ru/i/eWTmeSGCYJ8JZw)
+- [Demo video](https://disk.yandex.ru/i/Gnx4jJR4zkuf9Q)
+- [Transcript](sprint-review-transcript.md)
+- [Summary](sprint-review-summary.md)
+
 ## Total Story Points
 Sprint total: (to be filled)
 
