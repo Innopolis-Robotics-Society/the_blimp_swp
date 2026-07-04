@@ -5,7 +5,7 @@
 - [x] Set up MAVLink
 - [x] Get telemetry
 
-## Sprint 2 (23–28 June) - Done
+## Sprint 2 (23–28 June) – Done
 - [x] Connect UWB
 - [x] Configure EKF3
 - [x] First tests
@@ -13,7 +13,10 @@
 - [x] Update Definition of Done
 - [x] Create UAT scenarios
 
-## Sprint 3 (30 June – 4 July)
-- Integrate planner
-- Fly mission
-- Finish UWB and smoke-check
+## Sprint 3 (30 June – 4 July) – Done
+- [x] Integrate planner
+- [x] Fly mission
+- [x] Finish UWB and smoke-check
+- [x] Architecture documentation
+- [x] ADRs
+- [x] MVP v2
