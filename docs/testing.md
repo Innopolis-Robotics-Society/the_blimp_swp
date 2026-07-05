@@ -33,16 +33,23 @@ All tests run on GitHub Actions on every push to `main` and on pull requests.
 - Link checking (Lychee) is already configured and runs in CI.
 
 ## Test execution
-**Run all tests locally:**
+
+**Run all tests locally**
+
 ```bash
 pytest tests/
-**Run with coverage:**
+```
+
+**Run with coverage**
+
 ```bash
 pytest --cov=. tests/
 ```
+
 ---
 
-**MVP v2 updates**
+## MVP v2 updates
+
 - Added UAT-04 and UAT-05 scenarios.
 - Custom ArduPilot vehicle (ArduMotorBlimp) build is tested in CI.
 - Dockerized SITL is verified on Linux.
