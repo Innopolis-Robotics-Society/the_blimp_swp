@@ -18,6 +18,11 @@
 - Writing ADRs takes time.
 - ArduPilot build system has some issues with custom vehicles.
 
+## Customer feedback incorporated
+
+- Removed Windows-specific setup instructions.
+- Continued work on a custom ArduPilot vehicle.
+
 ## What we will do next  
 - Continue integrating the custom ArduMotorBlimp vehicle.
 - Improve autonomous navigation.
