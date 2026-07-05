@@ -26,11 +26,13 @@ This project simulates an indoor airship with near-zero buoyancy using ArduPilot
 
 ### MAVLink Backend
 
+```bash
 cd mavlink_backend
 python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 python api.py
+```
 
 Backend runs on port 8000.
 API docs available at /docs when running.
