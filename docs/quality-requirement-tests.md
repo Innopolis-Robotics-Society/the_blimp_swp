@@ -22,7 +22,7 @@
 # tests/test_mavlink_performance.py
 import time
 import random
-from your_backend import process_heartbeat
+# Example implementation
 
 def test_mavlink_processing_time():
     times = []
@@ -54,6 +54,7 @@ def test_mavlink_processing_time():
 
 ```python
 # tests/test_sitl_stability.py
+# Example implementation
 import subprocess
 import time
 
@@ -84,7 +85,7 @@ def test_sitl_stability():
 ```python
 # tests/test_telemetry_rate.py
 import time
-from your_backend import telemetry_stream
+# Example implementation
 
 def test_telemetry_rate():
     start = time.time()
