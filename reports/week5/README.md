@@ -74,10 +74,14 @@ Sprint total: 26
 
 ## Architecture Summary
 
-We documented the system architecture with three views:
-- **Static view:** [component diagram](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/blob/week5/docs/architecture/static-view/static-view.png) showing system structure
-- **Dynamic view:** [sequence diagram](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/blob/week5/docs/architecture/dynamic-view/dynamic-view.png) for mission upload
-- **Deployment view:** [deployment diagram](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/blob/week5/docs/architecture/deployment-view/deployment-view.png) for local and hardware setups
+The system architecture is documented using three complementary views:
+
+- **Static view (component diagram):** ../../docs/architecture/static-view/static-view.png — describes the main software components and their relationships.
+- **Dynamic view (sequence diagram):** ../../docs/architecture/dynamic-view/dynamic-view.png — illustrates the mission upload workflow and interactions between system components.
+- **Deployment view (deployment diagram):** ../../docs/architecture/deployment-view/deployment-view.png — shows how the backend, SITL, and QGroundControl are deployed and communicate.
+
+The complete architecture documentation is available in
+[Architecture Documentation](../../docs/architecture/README.md), together with the corresponding Architecture Decision Records (ADRs).
 
 ## Testing and CI Status
 - Tests pass in CI.
