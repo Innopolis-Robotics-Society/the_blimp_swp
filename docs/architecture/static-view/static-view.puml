@@ -1,0 +1,39 @@
+@startuml
+title The Blimp SWP - Static Architecture View
+
+skinparam componentStyle rectangle
+
+package "Backend System" {
+    component "FastAPI Server\n(api.py)" as API
+    component "MAVLink Backend\n(backend.py)" as MAVLink
+    database "Telemetry Store" as Telemetry
+}
+
+package "Simulation Environment" {
+    component "ArduPilot SITL\n(Docker Container)" as SITL
+}
+
+package "Ground Control" {
+    component "QGroundControl" as QGC
+}
+
+package "External Clients" {
+    component "Web Client" as Web
+    component "Mobile App" as Mobile
+    component "Third-party API" as External
+}
+
+' Connections
+API --> MAVLink : "Python calls"
+MAVLink --> Telemetry : "updates"
+MAVLink --> SITL : "MAVLink Protocol\n(UDP 14550)"
+SITL --> MAVLink : "MAVLink messages"
+
+QGC --> SITL : "MAVLink\n(UDP 14550 / TCP 5760)"
+QGC ..> MAVLink : "monitoring"
+
+Web --> API : "HTTP/REST\n(port 8000)"
+Mobile --> API : "HTTP/REST + WebSocket"
+External --> API : "HTTP/REST"
+
+@enduml

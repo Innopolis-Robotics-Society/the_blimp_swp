@@ -1,0 +1,36 @@
+@startuml
+title The Blimp SWP - Deployment View
+
+node "Development Machine\n(Local Host)" as Host {
+    
+    node "Docker Engine" as Docker {
+        node "SITL Container\n(blimp/sitl:0.1.0)" as SITL {
+            component "ArduPilot Copter-4.6.3" as ArduPilot
+            component "sim_vehicle.py" as SimVehicle
+            component "Mounted Volumes" as Volumes
+        }
+    }
+    
+    node "Python Environment" as PythonEnv {
+        component "FastAPI Server" as FastAPI
+        component "MAVLink Backend" as MAVLink
+    }
+    
+    component "QGroundControl" as QGC
+    
+    node "Web Browser" as Browser {
+        component "Frontend Client" as Frontend
+    }
+}
+
+node "UDP 14550" as UDP14550
+node "TCP 8000" as TCP8000
+
+FastAPI --> TCP8000 : "listens on"
+MAVLink --> UDP14550 : "connects to"
+ArduPilot --> UDP14550 : "telemetry stream"
+
+Frontend --> TCP8000 : "HTTP/WebSocket"
+QGC --> UDP14550 : "MAVLink"
+
+@enduml
