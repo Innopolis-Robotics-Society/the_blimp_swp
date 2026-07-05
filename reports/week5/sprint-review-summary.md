@@ -14,10 +14,13 @@
 Deliver MVP v2 with architecture documentation and ADRs.
 
 ## Delivered increment
-- MVP v2 in progress
-- Architecture documentation started (ADRs, diagrams in progress)
-- Development process documented
-- UAT scenarios updated
+
+- MVP v2 implementation completed
+- Architecture documentation (static, dynamic, and deployment views)
+- Three Architecture Decision Records (ADRs)
+- Development process documentation
+- Two additional UAT scenarios
+- Release v0.3.0
 
 ## UAT results
 - UAT-01: SITL started, heartbeat received – passed
@@ -36,7 +39,8 @@ Deliver MVP v2 with architecture documentation and ADRs.
 - Coordinate with Capstone team on motor frames and build issues.
 
 ## Action points
-- Finish MVP v2 implementation.
-- Complete architecture diagrams (PlantUML).
-- Create release v0.3.0.
-- Record public demo video.
+
+- Continue integrating the custom ArduMotorBlimp vehicle.
+- Coordinate with the Capstone team on motor frame configuration.
+- Extend automated testing for the custom vehicle.
+- Prepare Sprint 4 backlog.

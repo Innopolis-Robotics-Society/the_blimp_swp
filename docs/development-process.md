@@ -7,12 +7,12 @@ We use a feature-branch workflow with pull requests.
 ```mermaid
 gitGraph
     commit id: "v1.0" tag: "release"
-    branch feature/week4-docs
-    checkout feature/week4-docs
-    commit id: "add docs"
-    commit id: "fix typos"
+    branch feature/architecture
+    checkout feature/architecture
+    commit id: "architecture"
+    commit id: "ADRs"
     checkout main
-    merge feature/week4-docs id: "merge docs" tag: "v1.1"
+    merge feature/architecture id: "merge architecture" tag: "v0.3.0"
     commit id: "hotfix"
     branch feature/mavlink-backend
     checkout feature/mavlink-backend

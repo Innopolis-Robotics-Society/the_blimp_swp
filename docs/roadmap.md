@@ -20,3 +20,10 @@
 - [x] Architecture documentation
 - [x] ADRs
 - [x] MVP v2
+
+## Future Work
+
+- Integrate with the Capstone team's motor frame.
+- Support deployment on real airship hardware.
+- Improve autonomous navigation and localization.
+- Expand automated integration and system testing.

@@ -26,20 +26,24 @@ This project simulates an indoor airship with near-zero buoyancy using ArduPilot
 
 ### MAVLink Backend
 
+```bash
 cd mavlink_backend
 python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 python api.py
+```
 
 Backend runs on port 8000.
 API docs available at /docs when running.
 
 ### SITL (ArduPilot)
 
+```bash
 cd sitl
 docker build -t ardupilot-sitl .
 docker run -d --name sitl -p 14550:14550/udp ardupilot-sitl
+```
 
 ### Run System
 

@@ -57,7 +57,7 @@ Sprint total: 26
 |---|---|---|---|
 | Customer wants QGroundControl in Docker. | [#3](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues/3) | Done | Added to Docker setup. |
 | Customer asked for documentation automation. | [#42](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues/42) | Done | Added ADRs and architecture docs. |
-| Customer suggested removing Windows support from docs. | — | Done | Removed Windows instructions from README. |
+| Customer suggested removing Windows support from docs. | [#52](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/pull/52) | Done | Removed Windows instructions from README. |
 
 ---
 
@@ -65,23 +65,27 @@ Sprint total: 26
 
 | Name | Issues | PRs | Reviews | Other |
 |------|--------|-----|---------|-------|
-| Daniyar | #3, #48 | #50 | Reviewed #47, #49 | Sprint Review, ArduPilot config |
-| Arina | #42 | #51 | — | Docs, ADRs, reports, PDF |
-| Iuliana | #40 | #52 | — | Backend tests, MAVLink |
-| Svetlana | #47, #49 | #53 | — | Diagrams, UAT, Docker |
+| Daniyar (DaniK-51) | #3, #48 | #50 | #45, #46, #47, #49, #50, #52 | Sprint Review, ArduPilot config, team coordination |
+| Arina (mimics0s) | #42 | #45, #52 | — | Docs, ADRs, reports, PDF, root README |
+| Iuliana (kaftanovaa) | #40 | — | — | Backend tests, MAVLink |
+| Svetlana (withearrt) | #47, #48, #49 | #46, #50 | — | Diagrams, UAT, Docker, QGC in Docker |
 
 ---
 
 ## Architecture Summary
 
-We documented the system architecture with three views:
-- **Static view:** [component diagram](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/blob/week5/docs/architecture/static-view/static-view.png) showing system structure
-- **Dynamic view:** [sequence diagram](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/blob/week5/docs/architecture/dynamic-view/dynamic-view.png) for mission upload
-- **Deployment view:** [deployment diagram](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/blob/week5/docs/architecture/deployment-view/deployment-view.png) for local and hardware setups
+The system architecture is documented using three complementary views:
+
+- [**Static view (component diagram):**](../../docs/architecture/static-view/static-view.png) — describes the main software components and their relationships.
+- [**Dynamic view (sequence diagram):**](../../docs/architecture/dynamic-view/dynamic-view.png) — illustrates the mission upload workflow and interactions between system components.
+- [**Deployment view (deployment diagram):**](../../docs/architecture/deployment-view/deployment-view.png) — shows how the backend, SITL, and QGroundControl are deployed and communicate.
+
+The complete architecture documentation is available in
+[Architecture Documentation](../../docs/architecture/README.md), together with the corresponding Architecture Decision Records (ADRs).
 
 ## Testing and CI Status
 - Tests pass in CI.
-- Coverage is at least 30% for critical modules.
+- Coverage target (30% for critical modules) is satisfied.
 - Quality requirement tests are passing.
 
 ---
@@ -104,3 +108,9 @@ We documented the system architecture with three views:
 - [LLM Report](llm-report.md)
 - [Sprint Review Summary](sprint-review-summary.md)
 - [Sprint Review Transcript](sprint-review-transcript.md)
+
+---
+
+## Release
+
+- [Release v0.3.0](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/releases/tag/v0.3.0)

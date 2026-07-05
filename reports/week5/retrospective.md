@@ -16,3 +16,4 @@
 1. Start architecture work earlier in the next Sprint.
 2. Use PlantUML templates to save time.
 3. Coordinate with Egor (Capstone team) on ArduPilot build issues.
+4. Increase automated testing coverage for the custom vehicle.

@@ -18,7 +18,13 @@
 - Writing ADRs takes time.
 - ArduPilot build system has some issues with custom vehicles.
 
-## What we will do next
-- Finish MVP v2 implementation.
-- Coordinate with Capstone team on motor frames.
-- Continue improving architecture documentation as the system grows.
+## Customer feedback incorporated
+
+- Removed Windows-specific setup instructions.
+- Continued work on a custom ArduPilot vehicle.
+
+## What we will do next  
+- Continue integrating the custom ArduMotorBlimp vehicle.
+- Improve autonomous navigation.
+- Coordinate with the Capstone team.
+- Extend system testing on real hardware.
