@@ -70,6 +70,7 @@ docker run -d --name sitl -p 14550:14550/udp ardupilot-sitl
 - [Architecture](docs/architecture/README.md)
 - [ADRs](docs/architecture/adr/)
 - [Development Process](docs/development-process.md)
+- [Hosted Documentation](https://innopolis-robotics-society.github.io/the_blimp_swp/)
 
 ---
 
