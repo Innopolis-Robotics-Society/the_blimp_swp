@@ -108,3 +108,9 @@ The complete architecture documentation is available in
 - [LLM Report](llm-report.md)
 - [Sprint Review Summary](sprint-review-summary.md)
 - [Sprint Review Transcript](sprint-review-transcript.md)
+
+---
+
+## Release
+
+- [Release v0.3.0](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/releases/tag/v0.3.0)
