@@ -76,9 +76,9 @@ Sprint total: 26
 
 The system architecture is documented using three complementary views:
 
-- **Static view (component diagram):** ../../docs/architecture/static-view/static-view.png — describes the main software components and their relationships.
-- **Dynamic view (sequence diagram):** ../../docs/architecture/dynamic-view/dynamic-view.png — illustrates the mission upload workflow and interactions between system components.
-- **Deployment view (deployment diagram):** ../../docs/architecture/deployment-view/deployment-view.png — shows how the backend, SITL, and QGroundControl are deployed and communicate.
+- [**Static view (component diagram):**](../../docs/architecture/static-view/static-view.png) — describes the main software components and their relationships.
+- [**Dynamic view (sequence diagram):**](../../docs/architecture/dynamic-view/dynamic-view.png) — illustrates the mission upload workflow and interactions between system components.
+- [**Deployment view (deployment diagram):**](../../docs/architecture/deployment-view/deployment-view.png) — shows how the backend, SITL, and QGroundControl are deployed and communicate.
 
 The complete architecture documentation is available in
 [Architecture Documentation](../../docs/architecture/README.md), together with the corresponding Architecture Decision Records (ADRs).
