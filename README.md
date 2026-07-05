@@ -39,9 +39,11 @@ API docs available at /docs when running.
 
 ### SITL (ArduPilot)
 
+```bash
 cd sitl
 docker build -t ardupilot-sitl .
 docker run -d --name sitl -p 14550:14550/udp ardupilot-sitl
+```
 
 ### Run System
 
