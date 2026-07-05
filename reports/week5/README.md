@@ -21,6 +21,7 @@
 - [ADRs](../../docs/architecture/adr/)
 - [CHANGELOG](../../CHANGELOG.md)
 - [CI Pipeline](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/actions)
+- [Hosted Documentation](https://innopolis-robotics-society.github.io/the_blimp_swp/)
 
 ---
 
