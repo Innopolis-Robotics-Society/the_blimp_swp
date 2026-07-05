@@ -57,7 +57,7 @@ Sprint total: 26
 |---|---|---|---|
 | Customer wants QGroundControl in Docker. | [#3](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues/3) | Done | Added to Docker setup. |
 | Customer asked for documentation automation. | [#42](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues/42) | Done | Added ADRs and architecture docs. |
-| Customer suggested removing Windows support from docs. | — | Done | Removed Windows instructions from README. |
+| Customer suggested removing Windows support from docs. | [#52](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/pull/52) | Done | Removed Windows instructions from README. |
 
 ---
 
@@ -65,10 +65,10 @@ Sprint total: 26
 
 | Name | Issues | PRs | Reviews | Other |
 |------|--------|-----|---------|-------|
-| Daniyar | #3, #48 | #50 | Reviewed #47, #49 | Sprint Review, ArduPilot config |
-| Arina | #42 | #51 | — | Docs, ADRs, reports, PDF |
-| Iuliana | #40 | #52 | — | Backend tests, MAVLink |
-| Svetlana | #47, #49 | #53 | — | Diagrams, UAT, Docker |
+| Daniyar (DaniK-51) | #3, #48 | #50 | #45, #46, #47, #49, #50, #52 | Sprint Review, ArduPilot config, team coordination |
+| Arina (mimics0s) | #42 | #45, #52 | — | Docs, ADRs, reports, PDF, root README |
+| Iuliana (kaftanovaa) | #40 | — | — | Backend tests, MAVLink |
+| Svetlana (withearrt) | #47, #48, #49 | #46, #50 | — | Diagrams, UAT, Docker, QGC in Docker |
 
 ---
 
