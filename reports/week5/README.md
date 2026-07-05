@@ -81,7 +81,7 @@ We documented the system architecture with three views:
 
 ## Testing and CI Status
 - Tests pass in CI.
-- Coverage is at least 30% for critical modules.
+- Coverage target (30% for critical modules) is satisfied.
 - Quality requirement tests are passing.
 
 ---
