@@ -39,7 +39,8 @@ Deliver MVP v2 with architecture documentation and ADRs.
 - Coordinate with Capstone team on motor frames and build issues.
 
 ## Action points
-- Finish MVP v2 implementation.
-- Complete architecture diagrams (PlantUML).
-- Create release v0.3.0.
-- Record public demo video.
+
+- Continue integrating the custom ArduMotorBlimp vehicle.
+- Coordinate with the Capstone team on motor frame configuration.
+- Extend automated testing for the custom vehicle.
+- Prepare Sprint 4 backlog.
