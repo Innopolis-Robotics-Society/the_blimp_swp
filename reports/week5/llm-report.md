@@ -12,4 +12,6 @@
 
 4. **Report templates** – ChatGPT helped structure `reports/week5/README.md`, `reflection.md`, and `retrospective.md`.
 
-**Important:** All AI-generated content was manually reviewed and adapted to match our project.
+## Verification
+
+All generated content was manually reviewed, corrected where necessary, and approved by the team before being committed.
