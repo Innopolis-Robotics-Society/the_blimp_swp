@@ -56,5 +56,4 @@ services:
       - "-lc"
       - >
         sim_vehicle.py -v ArduMotorBlimp
-        --add-param-file=/home/blimp/blimp-flight/params/blimp.parm
         --console -w --no-rebuild
