@@ -37,8 +37,8 @@ RUN groupadd --gid $USER_GID $USERNAME \
  && chmod 0440 /etc/sudoers.d/$USERNAME
 
 # --- copy patch script (before USER switch so it's owned by root) -----------
-COPY scripts/patch-ardupilot.sh /tmp/patch-ardupilot.sh
-RUN chmod +x /tmp/patch-ardupilot.sh
+COPY scripts/patch-ardupilot.sh scripts/patch_vehicleinfo.py /tmp/
+RUN chmod +x /tmp/patch-ardupilot.sh /tmp/patch_vehicleinfo.py
 
 # --- clone ArduPilot at the pinned tag --------------------------------------
 USER $USERNAME
