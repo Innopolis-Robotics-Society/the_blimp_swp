@@ -16,18 +16,7 @@ python3 -c "
 path = '$ARDUPILOT_DIR/Tools/autotest/pysim/vehicleinfo.py'
 with open(path) as f:
     c = f.read()
-entry = '''
-    \"ArduMotorBlimp\": {
-        \"default_frame\": \"ArduMotorBlimp\",
-        \"frames\": {
-            \"ArduMotorBlimp\": {
-                \"waf_target\": \"bin/ardublimp\",
-                \"default_params_filename\": \"default_params/blimp.parm\",
-            },
-        },
-    },
-'''
-c = c.replace('    \"Blimp\": {', '    \"Blimp\": {' + entry, 1)
+c = c.replace('    },\n    "ArduPlane": {', '    },\n    "ArduMotorBlimp": {\n        "default_frame": "ArduMotorBlimp",\n        "frames": {\n            "ArduMotorBlimp": {\n                "waf_target": "bin/ardublimp",\n                "default_params_filename": "default_params/blimp.parm",\n            },\n        },\n    },\n    "ArduPlane": {', 1)
 with open(path, 'w') as f:
     f.write(c)
 "

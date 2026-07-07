@@ -37,9 +37,13 @@ API docs available at /docs when running.
 
 ### SITL (ArduPilot)
 
+```bash
 cd sitl
-docker build -t ardupilot-sitl .
-docker run -d --name sitl -p 14550:14550/udp ardupilot-sitl
+docker compose build
+docker compose up sitl-auto
+```
+
+See [sitl/README.md](sitl/README.md) for details.
 
 ### Run System
 
@@ -50,7 +54,7 @@ docker run -d --name sitl -p 14550:14550/udp ardupilot-sitl
 
 ### Troubleshooting
 
-- Port in use: docker stop sitl && docker rm sitl
+- Port in use: `docker compose down -v`
 - No connection: Check SITL is running
 
 ---
