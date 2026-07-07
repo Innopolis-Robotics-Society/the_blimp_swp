@@ -56,7 +56,9 @@ RUN pip3 install --default-timeout=1000 \
     empy==3.3.4 \
     pexpect \
     future \
-    lxml
+    lxml \
+    pymavlink \
+    mavproxy
 RUN echo 'export PATH=$PATH:/home/'"$USERNAME"'/ardupilot/Tools/autotest' >> /home/$USERNAME/.bashrc \
  && echo 'export PATH=$PATH:/home/'"$USERNAME"'/.local/bin' >> /home/$USERNAME/.bashrc
 
