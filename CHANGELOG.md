@@ -1,5 +1,23 @@
 # Changelog
 
+## [v0.3.0] - 2026-07-05
+### Added
+- Architecture documentation (static, dynamic, deployment views)
+- 3 ADRs (Architecture Decision Records)
+- Development process documentation with Mermaid diagram
+- MVP v2 implementation
+- 2 new UAT scenarios (UAT-04, UAT-05)
+
+### Changed
+- Updated roadmap with Sprint 3 completion
+- Updated quality requirements with links to ADRs
+- Removed Windows instructions from documentation (customer feedback)
+
+### Fixed
+- No critical issues reported
+
+---
+
 ## [v0.2.0] - 2026-06-28
 ### Added
 - Quality requirements (QR-01, QR-02, QR-03) with ISO/IEC 25010 sub-characteristics
@@ -19,7 +37,7 @@
 ### Fixed
 - No critical issues reported
 
----
+## [Unreleased]
 
 ### Added
 - SITL ArduPilot Blimp runs in Docker

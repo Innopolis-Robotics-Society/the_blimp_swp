@@ -8,6 +8,9 @@
 # ---------------------------------------------------------------------------
 
 x-common: &common
+  build:
+    context: .
+    dockerfile: Dockerfile
   image: blimp/sitl:0.1.0
   network_mode: host          # exposes 5760 (TCP) / 14550 (UDP) on localhost
   stdin_open: true

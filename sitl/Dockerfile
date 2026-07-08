@@ -25,7 +25,7 @@ ARG VEHICLE_BRANCH=feat/build-from-stock-blimp
 # --- base tooling -----------------------------------------------------------
 RUN apt-get update && apt-get install -y --no-install-recommends \
     sudo git wget curl ca-certificates gnupg lsb-release \
-    nano tree iputils-ping net-tools \
+    nano tree iputils-ping net-tools iproute2 \
     python3 python3-pip python3-dev \
     build-essential \
  && ln -s /usr/bin/python3 /usr/bin/python \
@@ -53,6 +53,8 @@ RUN git clone --depth 1 --branch ${ARDUPILOT_TAG} \
 WORKDIR /home/$USERNAME/ardupilot
 RUN bash Tools/environment_install/install-prereqs-ubuntu.sh -y || true
 RUN pip3 install --default-timeout=1000 \
+    mavproxy \
+    pymavlink \
     empy==3.3.4 \
     pexpect \
     future \
@@ -61,6 +63,7 @@ RUN pip3 install --default-timeout=1000 \
     mavproxy
 RUN echo 'export PATH=$PATH:/home/'"$USERNAME"'/ardupilot/Tools/autotest' >> /home/$USERNAME/.bashrc \
  && echo 'export PATH=$PATH:/home/'"$USERNAME"'/.local/bin' >> /home/$USERNAME/.bashrc
+ENV PATH="/home/${USERNAME}/ardupilot/Tools/autotest:/home/${USERNAME}/.local/bin:${PATH}"
 
 ENV PATH="/home/$USERNAME/ardupilot/Tools/autotest:/home/$USERNAME/.local/bin:$PATH"
 
@@ -84,3 +87,4 @@ RUN test -f /home/$USERNAME/ardupilot/build/sitl/bin/ardublimp
 
 WORKDIR /home/$USERNAME
 CMD ["bash"]
+
