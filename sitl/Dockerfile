@@ -81,6 +81,14 @@ RUN sudo /tmp/patch-ardupilot.sh /home/$USERNAME/ardupilot \
 RUN . /home/$USERNAME/.profile 2>/dev/null; \
     rm -f build/sitl/target_list; \
     ./waf configure --board sitl \
+ && echo "=== Vehicles in wscript ===" \
+ && grep "vehicles = " wscript \
+ && echo "=== ArduMotorBlimp dir ===" \
+ && ls ArduMotorBlimp/wscript \
+ && echo "=== ArduMotorBlimp wscript program_name ===" \
+ && grep program_name ArduMotorBlimp/wscript \
+ && echo "=== target_list ===" \
+ && cat build/sitl/target_list 2>/dev/null | grep -i blimp \
  && ./waf build --target bin/ardublimp
 
 # Sanity: confirm the binary exists where sim_vehicle expects it.
