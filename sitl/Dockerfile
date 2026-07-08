@@ -20,7 +20,7 @@ ARG ARDUPILOT_TAG=Copter-4.6.3
 
 # Custom vehicle repo (ArduMotorBlimp)
 ARG VEHICLE_REPO=DaniK-51/ArduMotorBlimp
-ARG VEHICLE_BRANCH=feat/build-from-stock-blimp
+ARG VEHICLE_BRANCH=main
 
 # --- base tooling -----------------------------------------------------------
 RUN apt-get update && apt-get install -y --no-install-recommends \
