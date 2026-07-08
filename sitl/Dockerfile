@@ -79,6 +79,7 @@ RUN sudo /tmp/patch-ardupilot.sh /home/$USERNAME/ardupilot \
 
 # --- pre-build the SITL ArduMotorBlimp binary -------------------------------
 RUN . /home/$USERNAME/.profile 2>/dev/null; \
+    rm -f build/sitl/target_list; \
     ./waf configure --board sitl \
  && ./waf build --target bin/ardublimp
 
