@@ -53,8 +53,6 @@ RUN git clone --depth 1 --branch ${ARDUPILOT_TAG} \
 WORKDIR /home/$USERNAME/ardupilot
 RUN bash Tools/environment_install/install-prereqs-ubuntu.sh -y || true
 RUN pip3 install --default-timeout=1000 \
-    mavproxy \
-    pymavlink \
     empy==3.3.4 \
     pexpect \
     future \
@@ -63,7 +61,6 @@ RUN pip3 install --default-timeout=1000 \
     mavproxy
 RUN echo 'export PATH=$PATH:/home/'"$USERNAME"'/ardupilot/Tools/autotest' >> /home/$USERNAME/.bashrc \
  && echo 'export PATH=$PATH:/home/'"$USERNAME"'/.local/bin' >> /home/$USERNAME/.bashrc
-ENV PATH="/home/${USERNAME}/ardupilot/Tools/autotest:/home/${USERNAME}/.local/bin:${PATH}"
 
 ENV PATH="/home/$USERNAME/ardupilot/Tools/autotest:/home/$USERNAME/.local/bin:$PATH"
 
@@ -81,14 +78,6 @@ RUN sudo /tmp/patch-ardupilot.sh /home/$USERNAME/ardupilot \
 RUN . /home/$USERNAME/.profile 2>/dev/null; \
     rm -f build/sitl/target_list; \
     ./waf configure --board sitl \
- && echo "=== Vehicles in wscript ===" \
- && grep "vehicles = " wscript \
- && echo "=== ArduMotorBlimp dir ===" \
- && ls ArduMotorBlimp/wscript \
- && echo "=== ArduMotorBlimp wscript program_name ===" \
- && grep program_name ArduMotorBlimp/wscript \
- && echo "=== target_list ===" \
- && cat build/sitl/target_list 2>/dev/null | grep -i blimp \
  && ./waf build --target bin/ardublimp
 
 # Sanity: confirm the binary exists where sim_vehicle expects it.
