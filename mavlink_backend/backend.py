@@ -1,7 +1,7 @@
 import time
 import threading
 import logging
-from pymavlink import mavutil
+import pymavlink.mavutil as mavutil
 
 logger = logging.getLogger(__name__)
 

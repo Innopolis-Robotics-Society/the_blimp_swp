@@ -1,0 +1,40 @@
+# QGroundControl — GCS для блимпа
+#
+# Запуск:
+#   docker compose up -d qgc
+#   docker compose exec qgc bash          # интерактивно
+#
+# Если X11 не работает:
+#   xhost +local:docker
+#   docker compose up -d qgc
+
+services:
+  qgc:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: blimp/qgc:latest
+    container_name: blimp_qgc
+    stdin_open: true
+    tty: true
+    network_mode: host
+    environment:
+      - DISPLAY=${DISPLAY:-:0}
+      - QT_X11_NO_MITSHM=1
+      - QT_QPA_PLATFORM=xcb
+      - XDG_RUNTIME_DIR=/tmp/runtime-qgc
+    volumes:
+      # X11
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ${HOME}/.Xauthority:/home/qgc/.Xauthority:rw
+      # PulseAudio (звук)
+      - /run/user/${UID:-1000}/pulse:/run/user/1000/pulse:ro
+      # Конфиг QGC (сохраняется между перезапусками)
+      - qgc-config:/home/qgc/.config/QGroundControl.org
+      # USB (для реальных дронов — раскомментировать)
+      # - /dev/bus/usb:/dev/bus/usb
+    security_opt:
+      - apparmor:unconfined
+
+volumes:
+  qgc-config:

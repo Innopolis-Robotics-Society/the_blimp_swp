@@ -1,2 +1,28 @@
-.mimocode/
+.venv
+venv/
 __pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.coverage
+coverage.xml
+
+# Local dev artifacts inside mavlink_backend/
+mavlink_backend/venv/
+mavlink_backend/__pycache__/
+mavlink_backend/airship_backend.log
+
+# Logs
+*.log
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db

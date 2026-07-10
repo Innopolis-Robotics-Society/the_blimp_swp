@@ -1,0 +1,47 @@
+@startuml
+title The Blimp SWP - Mission Upload Sequence
+
+autonumber
+
+participant "Web Client" as Client
+participant "FastAPI Server" as API
+participant "MAVLink Backend" as Backend
+participant "ArduPilot SITL" as SITL
+
+Client -> API: POST /mission
+activate Client
+activate API
+
+API -> Backend: upload_mission(waypoints)
+activate Backend
+
+Backend -> SITL: waypoint_clear_all_send()
+activate SITL
+
+SITL --> Backend: ACK
+
+deactivate SITL
+
+Backend -> SITL: waypoint_count_send(N)
+
+SITL --> Backend: MISSION_REQUEST (seq=0)
+
+loop "For each waypoint"
+    Backend -> SITL: mission_item_int_send()
+    SITL --> Backend: MISSION_REQUEST (seq=i+1)
+end
+
+SITL --> Backend: MISSION_ACK (ACCEPTED)
+
+deactivate SITL
+deactivate Backend
+deactivate API
+deactivate Client
+
+alt "Success"
+    API --> Client: 200 OK
+else "Upload Failed"
+    API --> Client: 500 Internal Server Error
+end
+
+@enduml
