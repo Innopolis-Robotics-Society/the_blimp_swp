@@ -21,6 +21,19 @@
 - [x] ADRs
 - [x] MVP v2
 
+## Sprint 4 (6–10 July) – Current
+- [ ] Trial release v0.4.0
+- [ ] Customer handover documentation
+- [ ] Contributing and agent guidance
+- [ ] Customer meeting and feedback
+- [ ] UAT with customer
+
+## Sprint 5 (13–17 July) – Next
+- [ ] Incorporate customer feedback
+- [ ] Final release v0.5.0 (MVP v3)
+- [ ] Final documentation updates
+- [ ] Demo Day preparation
+
 ## Future Work
 
 - Integrate with the Capstone team's motor frame.
