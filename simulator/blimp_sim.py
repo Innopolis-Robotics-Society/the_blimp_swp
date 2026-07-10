@@ -60,6 +60,7 @@ class BlimpState:
     velocity: np.ndarray = field(default_factory=lambda: np.zeros(3))
     orientation: np.ndarray = field(default_factory=lambda: np.array([1.0, 0.0, 0.0, 0.0]))
     angular_velocity: np.ndarray = field(default_factory=lambda: np.zeros(3))
+    accel_earth: np.ndarray = field(default_factory=lambda: np.zeros(3))
     timestamp: float = 0.0
 
 
@@ -144,13 +145,15 @@ class BlimpPhysics:
 
     def _derivs(self, pos, vel, quat, angvel, t, motors_arr):
         F_buoy = self._net_buoyancy_force()
-        F_thrust, tau_thrust = self._thrust_forces(motors_arr)
+        F_thrust_body, tau_thrust = self._thrust_forces(motors_arr)
+        R = self._body_to_earth_rotation(quat)
+        F_thrust = R @ F_thrust_body
         F_drag = self._drag_force(vel)
         F_total = F_buoy + F_thrust + F_drag
         a = F_total / self.config.mass
         alpha = self.inertia_inv @ tau_thrust
         q_dot = self._quaternion_derivative(quat, angvel)
-        return vel, a, q_dot, alpha
+        return vel, a, q_dot, alpha, a
 
     def step_rk4(self, motors: np.ndarray, dt: float) -> BlimpState:
         s = self.state
@@ -160,39 +163,46 @@ class BlimpPhysics:
         orig_angvel = s.angular_velocity.copy()
         orig_t = s.timestamp
 
-        k1_v, k1_a, k1_qd, k1_ad = self._derivs(
+        k1_v, k1_a, k1_qd, k1_ad, _ = self._derivs(
             orig_pos, orig_vel, orig_quat, orig_angvel, orig_t, motors)
 
         p2 = orig_pos + 0.5*dt*k1_v
         v2 = orig_vel + 0.5*dt*k1_a
         q2 = self._quaternion_normalize(orig_quat + 0.5*dt*k1_qd)
         w2 = orig_angvel + 0.5*dt*k1_ad
-        k2_v, k2_a, k2_qd, k2_ad = self._derivs(
+        k2_v, k2_a, k2_qd, k2_ad, _ = self._derivs(
             p2, v2, q2, w2, orig_t+0.5*dt, motors)
 
         p3 = orig_pos + 0.5*dt*k2_v
         v3 = orig_vel + 0.5*dt*k2_a
         q3 = self._quaternion_normalize(orig_quat + 0.5*dt*k2_qd)
         w3 = orig_angvel + 0.5*dt*k2_ad
-        k3_v, k3_a, k3_qd, k3_ad = self._derivs(
+        k3_v, k3_a, k3_qd, k3_ad, _ = self._derivs(
             p3, v3, q3, w3, orig_t+0.5*dt, motors)
 
         p4 = orig_pos + dt*k3_v
         v4 = orig_vel + dt*k3_a
         q4 = self._quaternion_normalize(orig_quat + dt*k3_qd)
         w4 = orig_angvel + dt*k3_ad
-        k4_v, k4_a, k4_qd, k4_ad = self._derivs(
+        k4_v, k4_a, k4_qd, k4_ad, _ = self._derivs(
             p4, v4, q4, w4, orig_t+dt, motors)
+
+        accel_earth = (k1_a + 2*k2_a + 2*k3_a + k4_a) / 6.0
 
         self.state = BlimpState(
             position=orig_pos + (dt/6.0)*(k1_v + 2*k2_v + 2*k3_v + k4_v),
-            velocity=orig_vel + (dt/6.0)*(k1_a + 2*k2_a + 2*k3_a + k4_a),
+            velocity=orig_vel + dt*accel_earth,
             orientation=self._quaternion_normalize(
                 orig_quat + (dt/6.0)*(k1_qd + 2*k2_qd + 2*k3_qd + k4_qd)
             ),
             angular_velocity=orig_angvel + (dt/6.0)*(k1_ad + 2*k2_ad + 2*k3_ad + k4_ad),
+            accel_earth=accel_earth,
             timestamp=orig_t + dt,
         )
+        if self.state.position[2] > 0:
+            self.state.position[2] = 0.0
+            if self.state.velocity[2] > 0:
+                self.state.velocity[2] = 0.0
         return self.state
 
 
@@ -256,7 +266,7 @@ class SIMJsonServer:
 
         g_earth = np.array([0.0, 0.0, self.config.gravity])
         R = self.physics._body_to_earth_rotation(q)
-        accel_body = R.T @ g_earth
+        accel_body = R.T @ (state.accel_earth - g_earth)
 
         json_str = (
             '{"timestamp":%.6f,'
