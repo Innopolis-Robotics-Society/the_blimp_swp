@@ -17,6 +17,9 @@
 # ---------------------------------------------------------------------------
 
 x-common: &common
+  build:
+    context: .
+    dockerfile: Dockerfile
   image: blimp/sitl:0.1.0
   network_mode: host          # exposes 5760 (TCP) / 14550 (UDP) on localhost
   stdin_open: true
@@ -55,6 +58,7 @@ services:
       - "/bin/bash"
       - "-lc"
       - >
+        sudo chown -R blimp:blimp /home/blimp/blimp-flight &&
         sim_vehicle.py -v ArduCopter
-        --add-param-file=/home/blimp/blimp-flight/params/blimp.parm
-        --console -w --no-rebuild
+        --model json
+        --console -w --no-rebuild --out 127.0.0.1:14550
