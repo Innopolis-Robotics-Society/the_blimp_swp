@@ -6,9 +6,10 @@
 3. The team worked well together.
 
 ## What did not go well
-1. Some documentation may still need clarification.
-2. Customer feedback is pending.
+1. Customer meeting did not happen — no feedback.
+2. Some documentation still needs polishing.
 
 ## Action points
-1. Follow up with the customer.
-2. Finalize documentation after feedback.
+1. Schedule customer meeting for Week 7.
+2. Finalize MVP v3.
+3. Prepare Demo Day presentation.
