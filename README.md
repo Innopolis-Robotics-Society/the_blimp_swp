@@ -1,96 +1,131 @@
-# the_blimp_swp
+# Autonomous Indoor Airship Simulation
 
-The repo assigned to SWP Team.
-Autonomous Indoor Airship Simulation — SWP course project.
+A simulation environment for an autonomous near-neutral-buoyancy indoor airship (blimp), developed by **Team 19** for the **Innopolis Robotics Lab** (customer: Eugene Shlomov). The project provides a Docker-based stack combining ArduPilot SITL, a Python MAVLink backend, and QGroundControl for visualization, enabling development and testing of autonomous flight logic without physical hardware.
 
-## Project description
-
-This project simulates an indoor airship with near-zero buoyancy using ArduPilot SITL, MAVLink, and Python backend.
+**Current release:** [v0.4.0 - Week 6 Trial Release](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/releases/tag/v0.4.0)
 
 ---
 
 ## Team
-- Daniyar (Product Owner)
-- Arina (Scrum Master)
-- Iuliana (Developer)
-- Svetlana (Developer)
+
+| Name | Role | Responsibilities |
+|------|------|------------------|
+| Daniyar Fairushin | Product Owner | Product backlog, sprint planning, customer communication, release management |
+| Arina Urakova | Scrum Master | Process facilitation, documentation, sprint coordination, Demo Day preparation |
+| Iuliana Giliazutdinova | Developer | MAVLink backend, test suite, API development, CI/CD |
+| Svetlana iakusheva | Developer | QGC integration, Docker configuration, infrastructure, integration testing |
 
 ---
 
-## Local Setup
+## Quick Access
+
+- **Hosted documentation:** https://innopolis-robotics-society.github.io/the_blimp_swp/
+- **Customer handover:** [docs/customer-handover.md](./docs/customer-handover.md)
+- **API documentation (Swagger UI):** http://localhost:8000/docs (after starting the stack)
+- **Latest release:** [v0.4.0](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/releases/tag/v0.4.0)
+
+---
+
+## Quick Start
 
 ### Prerequisites
-- Docker and Docker Compose
-- Python 3.10+
-- QGroundControl
 
-### MAVLink Backend
+- Docker and Docker Compose (v2.0+)
+- Git
 
-```bash
-cd mavlink_backend
-python -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-python api.py
-```
-
-Backend runs on port 8000.
-API docs available at /docs when running.
-
-### SITL (ArduPilot)
+### Run the full stack
 
 ```bash
-cd sitl
-docker build -t ardupilot-sitl .
-docker run -d --name sitl -p 14550:14550/udp ardupilot-sitl
+git clone https://github.com/Innopolis-Robotics-Society/the_blimp_swp.git
+cd the_blimp_swp
+docker compose up -d
 ```
 
-### Run System
+This starts three services:
 
-1. Start SITL (above)
-2. Start backend (above)
-3. Connect QGroundControl to udp:127.0.0.1:14550
-4. Test API via Swagger UI
+| Service | Purpose | Endpoint |
+|---------|---------|----------|
+| `sitl` | ArduPilot SITL simulator | UDP `127.0.0.1:14550` |
+| `backend` | FastAPI MAVLink backend | http://localhost:8000 |
+| `qgc` | QGroundControl visualization | Connects via Docker network |
 
-### Troubleshooting
+### Verify the setup
 
-- Port in use: docker stop sitl && docker rm sitl
-- No connection: Check SITL is running
+```bash
+docker compose ps
+```
+
+Then open:
+- http://localhost:8000/docs - API documentation
+- QGroundControl container - vehicle telemetry should appear automatically
+
+For detailed setup, troubleshooting, and manual-start instructions, see [docs/customer-handover.md](./docs/customer-handover.md).
 
 ---
 
-## Links
+## Project Structure
 
-### Reports
-- [Week 2 Report](reports/week2/README.md)
-- [Week 3 Report](reports/week3/README.md)
-- [Week 4 Report](reports/week4/README.md)
-- [Week 5 Report](reports/week5/README.md)
-- [Week 6 Report](reports/week6/README.md)
-- [Week 7 Report](reports/week7/README.md)
+```
+the_blimp_swp/
+├── mavlink_backend/   # Python FastAPI backend for MAVLink communication
+├── sitl/              # ArduPilot SITL Docker configuration
+├── QGC/               # QGroundControl Docker configuration
+├── docs/              # Technical and customer-facing documentation
+├── reports/           # Weekly sprint reports (Week 1 - current)
+└── docker-compose.yml # Orchestrates the full stack
+```
 
-### Documentation
-- [Hosted Documentation](https://innopolis-robotics-society.github.io/the_blimp_swp/)
-- [Customer Handover](docs/customer-handover.md)
-- [Contributing](CONTRIBUTING.md)
-- [AGENTS.md](AGENTS.md)
+---
 
-### Technical docs
-- [Architecture](docs/architecture/README.md)
-- [ADRs](docs/architecture/adr/README.md)
-- [Development Process](docs/development-process.md)
-- [Quality Requirements](docs/quality-requirements.md)
-- [Quality Requirement Tests](docs/quality-requirement-tests.md)
-- [User Acceptance Tests](docs/user-acceptance-tests.md)
-- [Testing Strategy](docs/testing.md)
-- [Definition of Done](docs/definition-of-done.md)
-- [Roadmap](docs/roadmap.md)
+## Documentation
 
-### Other
-- [CHANGELOG](CHANGELOG.md)
-- [License](LICENSE)
+| Document | Purpose |
+|----------|---------|
+| [docs/customer-handover.md](./docs/customer-handover.md) | Handover state, setup, verification, troubleshooting |
+| [docs/roadmap.md](./docs/roadmap.md) | Project roadmap through course completion |
+| [docs/architecture/](./docs/architecture/) | System architecture and ADRs |
+| [docs/user-acceptance-tests.md](./docs/user-acceptance-tests.md) | UAT scenarios and results |
+| [docs/user-stories.md](./docs/user-stories.md) | User stories and acceptance criteria |
+| [docs/testing.md](./docs/testing.md) | Testing strategy, coverage, and CI status |
+| [docs/quality-requirements.md](./docs/quality-requirements.md) | Quality requirements (ISO/IEC 25010) |
+| [docs/quality-requirement-tests.md](./docs/quality-requirement-tests.md) | Automated quality requirement tests |
+| [docs/development-process.md](./docs/development-process.md) | Development workflow and git process |
+| [docs/definition-of-done.md](./docs/definition-of-done.md) | Team Definition of Done |
+| [CHANGELOG.md](./CHANGELOG.md) | Release history |
+
+---
+
+## Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for:
+- Development workflow
+- PR process and reviewer assignment
+- Code style and testing expectations
+- Documentation standards
+
+See [AGENTS.md](./AGENTS.md) for guidelines on AI-assisted development.
+
+---
+
+## Current Status
+
+**Handover level:** Ready for independent use (pending customer confirmation)
+
+**What works:**
+- Full Docker-based deployment (SITL + backend + QGC)
+- REST API for MAVLink commands and mission upload
+- Automated test suite with CI/CD
+- Comprehensive documentation
+
+**Known limitations:**
+- Simulation only - no physical hardware integration
+- Real flight controller, UWB, and sensor integration are future work
+- API endpoints have no authentication (add before production use)
+
+See [docs/customer-handover.md](./docs/customer-handover.md) for the full list.
 
 ---
 
 ## License
-MIT License — see [LICENSE](LICENSE).
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
