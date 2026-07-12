@@ -1,9 +1,13 @@
 # Sprint 4 Retrospective — Week 6
 
 **Sprint:** Sprint 4
+
 **Period:** 06 July 2026 — 12 July 2026
+
 **Facilitator:** Arina (Scrum Master)
+
 **Date of retrospective:** 12 July 2026
+
 **Participants:** Daniyar, Arina, Iuliana, Svetlana (all present)
 
 ---
