@@ -1,166 +1,101 @@
 # Sprint 4 Retrospective — Week 6
 
-**Sprint:** Sprint 4  
-**Period:** 06 July 2026 — 12 July 2026  
-**Facilitator:** Arina (Scrum Master)  
-**Date of retrospective:** 12 July 2026, 19:20 — 20:00 (MSK)  
-**Participants:** Daniyar, Arina, Iuliana, Svetlana (all present)  
-**Format:** Online (Discord), Mad Sad Glad + Start/Stop/Continue
+**Sprint:** Sprint 4
+**Period:** 06 July 2026 — 12 July 2026
+**Facilitator:** Arina (Scrum Master)
+**Date of retrospective:** 12 July 2026
+**Participants:** Daniyar, Arina, Iuliana, Svetlana (all present)
 
 ---
 
-## 1. Retrospective Format
+## What went well
 
-We used a combined format:
+### QGroundControl Docker integration works seamlessly
+Svetlana successfully integrated QGC into Docker, reducing the customer's setup to a single `docker compose up` command. The Docker image was optimized from 1.2 GB to 850 MB through iteration. The integration was reviewed by Iuliana and tested thoroughly. This is a key deliverable for the customer and significantly simplifies the handover.
 
-1. **Mad Sad Glad** — each team member shared one item per category
-2. **Start / Stop / Continue** — actionable process changes
-3. **Action items** — concrete tasks with owners and deadlines
-4. **Follow-up check** — review of action items from Sprint 3 retrospective
+### MAVLink backend restructuring improved code quality significantly
+Iuliana converted `mavlink_backend/` from flat scripts into a proper Python package with FastAPI. The Swagger UI at `/docs` provides self-service API exploration. The test suite (42 unit tests + 15 integration tests, 83% coverage) caught two regressions during final integration. The restructuring was reviewed by Svetlana and makes future maintenance much easier.
 
----
+### Code review quality was the best we have had
+Reviewers consistently caught real issues (type hints, request validation, Docker image size) rather than just rubber-stamping PRs. This is likely because we added explicit reviewer assignment in Assignment 5 and started tracking review quality. All PRs in Sprint 4 had meaningful reviews with substantive comments.
 
-## 2. Mad Sad Glad
+### Team communication was strong throughout the sprint
+Daily stand-ups were short and focused. When the customer meeting fell through, the team adapted quickly without drama. The Scrum Master facilitated effectively, and the Product Owner made clear priority decisions. Team morale remained high despite the customer unavailability blocker.
 
-### Mad (Frustrations)
-
-| Team Member | Item |
-|-------------|------|
-| Daniyar | Customer unavailability blocked the most important validation event of the sprint. We prepared everything and had no one to show it to. |
-| Arina | We spent too much time during the sprint figuring out what to do after the meeting was cancelled, instead of executing a pre-agreed plan. |
-| Iuliana | The backend restructuring took longer than expected because we underestimated the effort to migrate existing scripts without breaking SITL integration. |
-| Svetlana | QGC Docker image was initially too large (1.2 GB) and slow to pull. We had to iterate twice to get it down to an acceptable size. |
-
-### Sad (Disappointments)
-
-| Team Member | Item |
-|-------------|------|
-| Daniyar | We did not send the trial release to the customer asynchronously earlier in the week. We waited for the meeting, which meant the customer had zero time to try the system before the end of the sprint. |
-| Arina | Our contingency planning for external blockers is still weak. This is the second sprint where an external dependency (customer, TA) disrupted our plans. |
-| Iuliana | We did not have a clear definition of "documentation complete" before we started writing. This led to rework on customer-handover.md. |
-| Svetlana | The demo video for Demo Day is still not recorded, and Week 7 will be very busy. We should have started earlier. |
-
-### Glad (Positives)
-
-| Team Member | Item |
-|-------------|------|
-| Daniyar | The trial release v0.4.0 is genuinely stable. Internal testing caught real issues before they could reach the customer. |
-| Arina | Code review quality was the best we have had. Reviewers caught real issues, not just style nits. |
-| Iuliana | The test suite we added gives us confidence to make changes in Sprint 5 without breaking existing functionality. |
-| Svetlana | QGC in Docker works seamlessly. The customer will be able to run the full stack with one command. |
-| All | Team communication was strong throughout the sprint. Daily stand-ups were focused, and we adapted quickly when the meeting was cancelled. |
+### Documentation is comprehensive and well-structured
+Arina updated `docs/customer-handover.md` with current deployment state, environment variables, troubleshooting steps, and verification procedures. `CONTRIBUTING.md` and `AGENTS.md` were created with detailed workflow guidance. The documentation was validated internally and caught three real problems (incorrect port reference, missing troubleshooting case, unclear required vs optional configuration).
 
 ---
 
-## 3. Start / Stop / Continue
+## What did not go well
 
-### Start (Things we should begin doing)
+### Customer unavailability blocked the most important validation event
+The customer was unavailable during the scheduled meeting time. We prepared everything and had no one to show it to. This is the second sprint where an external dependency (customer, TA) disrupted our plans. We did not have a contingency plan for this scenario, which meant we spent several hours figuring out what to do next instead of executing a pre-agreed fallback.
 
-1. **Send trial releases and documentation to the customer asynchronously at the start of each sprint**, not wait for a synchronous meeting. This gives the customer time to explore and prepares us for a more productive discussion.
+### We did not send the trial release to the customer asynchronously earlier
+We waited for the meeting to share the trial release, which meant the customer had zero time to try the system before the end of the sprint. If we had sent the release and documentation via email at the start of the week, we might have received partial feedback even without a meeting.
 
-2. **Define a written contingency plan during sprint planning** for any customer-facing milestone. The plan must specify: trigger condition, immediate actions, escalation path, and rescheduling procedure.
+### Contingency planning for external blockers is still weak
+This is the second sprint where an external dependency disrupted our plans. We need a written contingency plan for every customer-facing milestone: "If the customer is unavailable, we will do X, Y, Z." This should be part of sprint planning, not an afterthought.
 
-3. **Automate link validation in CI** for release notes and documentation. We spent too much manual time verifying that every link in release notes and handover documents points to the right place.
+### Demo Day preparation is under-scoped and starting too late
+The demo video, slides, and rehearsal require more time than we allocated. We should have started Demo Day preparation in Week 6, not Week 7. Week 7 will be very busy with customer feedback, fixes, and MVP v3 delivery.
 
-4. **Start Demo Day preparation in Week 6**, not Week 7. The demo video, slides, and rehearsal require more time than we allocated.
+### Documentation tasks were under-scoped
+We initially scoped `CONTRIBUTING.md` and `AGENTS.md` as 3 story points total, treating them as minor documentation tasks. In reality, writing useful agent guidance required us to articulate our development workflow, code style expectations, and safety constraints more precisely than we ever had before. The actual effort was closer to 5 story points.
 
-### Stop (Things we should stop doing)
-
-1. **Stop treating customer meetings as single points of failure.** Every customer-facing deliverable needs an asynchronous fallback path.
-
-2. **Stop under-scoping documentation tasks.** Writing useful contributor and agent guidance is a design activity, not a reporting activity. It should be estimated accordingly.
-
-3. **Stop waiting until the end of the sprint to validate with the customer.** Mid-sprint check-ins would have given us time to react to feedback.
-
-4. **Stop manual link checking before releases.** This should be automated.
-
-### Continue (Things that are working well)
-
-1. **Continue assigning explicit reviewers to every PBI.** This has significantly improved code review quality and accountability.
-
-2. **Continue the SemVer + CHANGELOG + protected-branch release workflow.** It is mature and reliable.
-
-3. **Continue internal "fresh-eyes" documentation reviews before customer-facing milestones.** They catch real issues.
-
-4. **Continue honest reporting of blockers.** We did not fabricate progress when the customer meeting fell through. This preserves the integrity of our transition evidence.
-
-5. **Continue daily stand-ups with strict timeboxing.** They keep the team aligned without consuming too much time.
+### Link validation before releases is manual and time-consuming
+We spent manual time verifying that every link in release notes and handover documents points to the right place. This should be automated in CI. The manual process is error-prone and consumes time that could be spent on higher-value work.
 
 ---
 
-## 4. Action Items from This Retrospective
+## What the team changed or attempted to change based on the previous Sprint Retrospective, and what results they observed
 
-| Action | Owner | Deadline | Sprint | Status |
-|--------|-------|----------|--------|--------|
-| Draft contingency plan template for customer-facing milestones | Arina | 14 July 2026 | Sprint 5 | To Do |
-| Add Lychee link validation to CI pipeline for release notes | Iuliana | 15 July 2026 | Sprint 5 | To Do |
-| Send trial release v0.4.0 and documentation to customer via email | Daniyar | 13 July 2026 | Sprint 4 (carry-over) | In Progress |
-| Schedule Week 7 customer meeting with three alternative time slots | Daniyar | 13 July 2026 | Sprint 4 (carry-over) | In Progress |
-| Record Demo Day demo video (under 2 minutes) | Svetlana | 16 July 2026 | Sprint 5 | To Do |
-| Start Demo Day slide deck | Arina | 14 July 2026 | Sprint 5 | To Do |
-| Define explicit "documentation complete" checklist in CONTRIBUTING.md | Arina | 15 July 2026 | Sprint 5 | To Do |
+### Previous retrospective action: Add type hints to all Python modules (Owner: Iuliana)
+**Result:** Completed during backend restructuring in Sprint 4. All Python modules in `mavlink_backend/` now have comprehensive type hints. This improved code readability and caught several type-related bugs during development. **Status: Done.**
 
----
+### Previous retrospective action: Improve PR template with reviewer assignment field (Owner: Arina)
+**Result:** Completed. PR template now requires explicit reviewer assignment. All PRs in Sprint 4 had assigned reviewers, and review quality improved significantly. **Status: Done.**
 
-## 5. Follow-Up on Sprint 3 Retrospective Actions
+### Previous retrospective action: Create ADR for Docker Compose architecture (Owner: Svetlana)
+**Result:** Completed. ADR-005 documenting the Docker Compose architecture decision was merged. This ADR is now referenced from `docs/architecture/README.md` and helps new team members understand the deployment model. **Status: Done.**
 
-We reviewed the action items from the Sprint 3 retrospective (Week 5):
+### Previous retrospective action: Set up weekly async customer update email (Owner: Daniyar)
+**Result:** Not completed. This directly contributed to the Week 6 blocker — we did not have an established async communication channel with the customer, so when the meeting fell through, we had no fallback. **Status: Repeated as new action for Sprint 5.**
 
-| Action from Sprint 3 | Owner | Outcome | Status |
-|----------------------|-------|---------|--------|
-| Add type hints to all Python modules | Iuliana | Completed during backend restructuring in Sprint 4 | Done |
-| Improve PR template with reviewer assignment field | Arina | Completed; PR template now requires reviewer | Done |
-| Create ADR for Docker Compose architecture | Svetlana | Completed; ADR-005 merged | Done |
-| Set up weekly async customer update email | Daniyar | Not completed — this contributed to the Week 6 blocker | Repeated as new action |
-
-**Assessment:** 3 out of 4 actions from Sprint 3 were completed. The one that was not completed (async customer updates) directly contributed to the Week 6 issue. This reinforces the need for better follow-through on retrospective actions.
+**Assessment:** 3 out of 4 actions from Sprint 3 retrospective were completed. The one that was not completed (async customer updates) directly contributed to the Week 6 issue. This reinforces the need for better follow-through on retrospective actions.
 
 ---
 
-## 6. Experiments for Sprint 5
+## Action points
 
-Based on this retrospective, we will run the following process experiments in Sprint 5:
-
-### Experiment 1: Asynchronous Customer Engagement
-**Hypothesis:** Sending the trial release and documentation to the customer at the start of the sprint, with specific questions, will result in more productive synchronous meetings and partial feedback even if the meeting is rescheduled.  
-**Measurement:** Customer response time, quality of feedback received, number of issues resolved without a meeting.  
+### Action 1: Send trial release and documentation to customer asynchronously at the start of Sprint 5
 **Owner:** Daniyar
+**Deadline:** 13 July 2026 (start of Sprint 5)
+**Description:** Send the trial release v0.4.0, `docs/customer-handover.md`, and specific questions to the customer via email. This gives the customer time to explore the system before the synchronous meeting and provides a fallback if the meeting is rescheduled.
+**Success criteria:** Customer receives the email and acknowledges receipt. Customer has at least 3 days to try the system before the Week 7 meeting.
 
-### Experiment 2: Contingency Planning in Sprint Planning
-**Hypothesis:** Explicitly documenting a contingency plan for every customer-facing milestone during sprint planning will reduce reaction time when blockers occur.  
-**Measurement:** Time from blocker identification to execution of fallback plan.  
+### Action 2: Define a written contingency plan template for customer-facing milestones
 **Owner:** Arina
+**Deadline:** 14 July 2026
+**Description:** Create a template that specifies: trigger condition (e.g., "customer does not respond by Wednesday"), immediate actions (e.g., "send follow-up email"), escalation path (e.g., "contact TA"), and rescheduling procedure. Use this template during Sprint 5 planning for the Week 7 customer meeting.
+**Success criteria:** Template is documented in `docs/development-process.md` and used in Sprint 5 planning.
 
-### Experiment 3: Automated Link Validation
-**Hypothesis:** Adding Lychee-based link validation to CI will eliminate manual link checking before releases and catch broken links earlier.  
-**Measurement:** Number of broken links found in release notes, manual time spent on link verification.  
+### Action 3: Add Lychee-based link validation to CI for release notes
 **Owner:** Iuliana
+**Deadline:** 15 July 2026
+**Description:** Configure Lychee to validate all links in release notes and handover documents as part of the CI pipeline. This will eliminate manual link checking before releases and catch broken links earlier.
+**Success criteria:** Lychee job runs on every PR and protected-branch push. Broken links cause CI failure.
+
+### Action 4: Start Demo Day preparation immediately
+**Owner:** Arina (coordination), Svetlana (demo video)
+**Deadline:** 14 July 2026 (slides), 16 July 2026 (demo video)
+**Description:** Start Demo Day slide deck and record the demo video (under 2 minutes) early in Week 7. This reduces time pressure later in the sprint.
+**Success criteria:** Slide deck draft completed by 14 July. Demo video recorded and reviewed by 16 July.
 
 ---
 
-## 7. Team Morale and Health
-
-| Aspect | Rating (1-5) | Notes |
-|--------|--------------|-------|
-| Team cohesion | 5 | Strong communication, mutual support |
-| Confidence in product | 4 | Product is stable, but customer validation is pending |
-| Confidence in process | 3 | Good practices in place, but contingency planning needs work |
-| Workload balance | 4 | Sprint 4 was well-paced; Sprint 7 will be intense |
-| Motivation | 4 | Team is proud of the work, slightly frustrated by the customer blocker |
-
-**Overall assessment:** The team is healthy and motivated. The main risk for Sprint 5 is time pressure, not team dynamics.
-
----
-
-## 8. Summary
-
-Sprint 4 was technically successful but exposed gaps in our handling of external dependencies. The retrospective produced concrete actions to address these gaps: asynchronous customer engagement, written contingency plans, and automated link validation. We also acknowledged that Demo Day preparation needs to start earlier than we planned.
-
-The team's morale remains high, and we enter Sprint 5 with a clear plan and a stable product. The key challenge will be executing under time pressure while maintaining quality.
-
----
-
-## Related Artifacts
+## Related artifacts
 
 - [Week 6 Report](./README.md)
 - [Sprint Review Summary](./sprint-review-summary.md)
