@@ -25,13 +25,14 @@ Deliver a stable trial release for customer testing and prepare handover documen
 
 ## Sprint 4 Dates
 Start: 06 July 2026  
-Finish: 10 July 2026
+Finish: 12 July 2026
 
 ## Sprint 4 Scope
 - [x] Trial release v0.4.0
 - [x] Customer handover documentation
 - [x] Contributing and agent guidance
-- [x] Customer meeting and feedback (scheduled)
+- [x] Documentation updates
+- [ ] Customer meeting (not held — customer unavailable)
 
 ## Total Story Points
 Sprint 4 total: (to be filled after tasks are estimated)
@@ -43,11 +44,8 @@ Sprint 4 total: (to be filled after tasks are estimated)
 
 ---
 
-## Customer Feedback Response Table
-
-| Feedback point | Resulting PBI or issue | Status | Response |
-|---|---|---|---|
-| (to be filled after meeting) | — | — | — |
+## Customer Meeting Status
+The customer was not available for a meeting in Week 6. No feedback was received. The team continued development and prepared handover documentation.
 
 ---
 
@@ -58,7 +56,7 @@ The customer will review the following documents:
 - `docs/customer-handover.md`
 - Access and usage instructions
 
-**Results will be added after the meeting.**
+**The customer did not review the documentation in Week 6 because the meeting did not happen. The team prepared the documentation for review in Week 7.**
 
 ---
 
@@ -71,7 +69,7 @@ The customer will review the following documents:
 ---
 
 ## UAT Results
-(to be filled after customer meeting)
+No UAT session was conducted in Week 6. The customer was unavailable.
 
 ---
 
