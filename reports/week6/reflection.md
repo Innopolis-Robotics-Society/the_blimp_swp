@@ -1,8 +1,11 @@
 # Week 6 Reflection — Sprint 4
 
 **Sprint:** Sprint 4
+
 **Period:** 06 July 2026 — 12 July 2026
+
 **Authors:** Team 19 (Daniyar, Arina, Iuliana, Svetlana)
+
 **Date written:** 12 July 2026
 
 ---
