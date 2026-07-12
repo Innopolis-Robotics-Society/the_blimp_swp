@@ -2,14 +2,10 @@
 
 ## Project Information
 
-**Project name:** Autonomous Indoor Airship Simulation
-
-**Team number:** 19
-
-**Customer:** Eugene Shlomov (Innopolis Robotics Lab)
-
-**License:** [MIT License](../../LICENSE)
-
+**Project name:** Autonomous Indoor Airship Simulation  
+**Team number:** 19  
+**Customer:** Eugene Shlomov (Innopolis Robotics Lab)  
+**License:** [MIT License](../../LICENSE)  
 **Assignment:** Assignment 6 — Sprint 4 (Trial Release & Transition Readiness)
 
 ---
@@ -33,11 +29,6 @@
 - [Architecture and ADRs](../../docs/architecture/)
 - [User Acceptance Tests](../../docs/user-acceptance-tests.md)
 - [User Stories](../../docs/user-stories.md)
-- [Testing Strategy and CI Status](../../docs/testing.md)
-- [Quality Requirements](../../docs/quality-requirements.md)
-- [Quality Requirement Tests](../../docs/quality-requirement-tests.md)
-- [Development Process](../../docs/development-process.md)
-- [Definition of Done](../../docs/definition-of-done.md)
 
 ### Releases and Reports
 - [Week 6 Trial Release v0.4.0](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/releases/tag/v0.4.0)
@@ -58,15 +49,11 @@ Deliver a stable trial release (v0.4.0) for customer testing, prepare comprehens
 
 | Story ID | Title | Story Points | Implementer | Reviewer | Status |
 |----------|-------|--------------|-------------|----------|--------|
-| #45 | Integrate QGroundControl in Docker | 5 | Svetlana | Iuliana | Done |
-| #46 | Restructure mavlink_backend as Python package | 8 | Iuliana | Svetlana | Done |
-| #47 | Add comprehensive test suite for MAVLink backend | 5 | Iuliana | Daniyar | Done |
-| #48 | Update customer-handover.md with current state | 3 | Arina | Daniyar | Done |
-| #49 | Prepare CONTRIBUTING.md and AGENTS.md | 3 | Arina | Svetlana | Done |
-| #50 | Create trial release v0.4.0 | 2 | Daniyar | Arina | Done |
-| #51 | Schedule and document customer meeting | 2 | Daniyar | Arina | Blocked (customer unavailable) |
+| #61 | Finally Integrate QGroundControl in Docker | 5 | Svetlana | Iuliana | Done |
+| #62 | Prepare CONTRIBUTING.md and AGENTS.md | 3 | Arina | Svetlana | Done |
+| #63 | Create trial release v0.4.0 | 2 | Daniyar | Arina | Done |
 
-**Total Sprint 4 Story Points:** 28
+**Total Sprint 4 Story Points:** 10
 
 ---
 
@@ -186,10 +173,10 @@ See [docs/user-acceptance-tests.md](../../docs/user-acceptance-tests.md) for ful
 
 | Team Member | Role | Issues Worked | PRs/MRs | Reviews | Testing | Documentation | Deployment |
 |-------------|------|---------------|---------|---------|---------|---------------|------------|
-| Daniyar | Product Owner | #50, #51 | Release v0.4.0 | All PRs | UAT coordination | README, handover docs | Release management |
-| Arina | Scrum Master | #48, #49 | CONTRIBUTING.md, AGENTS.md | #45, #46 | Process validation | Sprint docs, reflection | — |
-| Iuliana | Developer | #46, #47 | mavlink_backend restructuring | #45 | Test suite | API docs | Backend Docker config |
-| Svetlana | Developer | #45 | QGC Docker setup | #46, #47 | Integration tests | QGC docs | Docker compose |
+| Daniyar | Product Owner | #63 | Release v0.4.0 | All PRs | UAT coordination | README, handover docs | Release management |
+| Arina | Scrum Master | #62 | CONTRIBUTING.md, AGENTS.md | #61, #63 | Process validation | Sprint docs, reflection | — |
+| Iuliana | Developer | #61 | QGC Docker integration | #62 | Test suite | API docs | Backend Docker config |
+| Svetlana | Developer | #61 | QGC Docker setup | #62, #63 | Integration tests | QGC docs | Docker compose |
 
 ---
 
@@ -261,6 +248,16 @@ See [llm-report.md](./llm-report.md)
 
 ---
 
+## Demo and Presentation Materials
+
+### Public Demo Video
+- [Week 6 Trial Release Demo](https://disk.yandex.ru/i/vU0LsMeXC2Y4bQ)
+
+### Rehearsal Presentation (Private)
+- [Lab Rehearsal Presentation](https://disk.yandex.ru/i/Q-XiMaUdlEmazg)
+
+---
+
 ## Screenshots and Evidence
 
 ### Sprint 4 Milestone
@@ -272,8 +269,4 @@ See [llm-report.md](./llm-report.md)
 ### Example Reviewed PR
 ![Reviewed PR Example](./images/reviewed-pr-example.png)
 
-### QGroundControl Running in Docker
-![QGC in Docker](./images/qgc-docker.png)
-
-### API Documentation (Swagger UI)
-![API Docs](./images/api-docs.png)
+**For other screenshots go to [Images_Week_6](./images).**
