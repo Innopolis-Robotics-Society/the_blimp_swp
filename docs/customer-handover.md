@@ -17,7 +17,7 @@
 
 - [ ] Accepted
 - [ ] Accepted with follow-up items
-- [ ] Not yet accepted (meeting pending)
+- [x] Not yet accepted (meeting pending)
 
 ---
 
