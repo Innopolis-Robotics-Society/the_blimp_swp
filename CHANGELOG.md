@@ -12,12 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Planned: final MVP v3 release (v0.5.0)
 - Planned: Demo Day presentation and demo video
 
-## [v0.4.0] — 2026-07-10 — Week 6 Trial Release (Sprint 4)
+## [v0.4.0] - 2026-07-10 - Week 6 Trial Release (Sprint 4)
 
 Trial release for customer testing and handover preparation. This release is the Assignment 6 Week 6 deliverable and represents the handover-candidate version of the product.
 
 ### Added
-- QGroundControl Docker integration (`QGC/` directory) — QGC now runs as a container alongside SITL and the backend, removing the need for a local QGC installation
+- QGroundControl Docker integration (`QGC/` directory) - QGC now runs as a container alongside SITL and the backend, removing the need for a local QGC installation
 - FastAPI-based REST API for MAVLink communication with Swagger UI at `/docs`
 - Comprehensive test suite for `mavlink_backend/` (unit + integration tests, ~83% coverage)
 - `AGENTS.md` with AI-assisted development guidelines
@@ -43,7 +43,7 @@ Trial release for customer testing and handover preparation. This release is the
 - [Week 6 Report](./reports/week6/README.md)
 - [Customer Handover](./docs/customer-handover.md)
 
-## [v0.3.0] — 2026-07-03 — MVP v2 (Sprint 3)
+## [v0.3.0] - 2026-07-03 - MVP v2 (Sprint 3)
 
 Second MVP release with MAVLink backend and SITL integration.
 
@@ -57,7 +57,7 @@ Second MVP release with MAVLink backend and SITL integration.
 - Moved from manual SITL setup to Docker-based deployment
 - Updated documentation structure under `docs/`
 
-## [v0.2.0] — 2026-06-20 — Sprint 2
+## [v0.2.0] - 2026-06-20 - Sprint 2
 
 ### Added
 - Initial project structure
@@ -65,7 +65,7 @@ Second MVP release with MAVLink backend and SITL integration.
 - Product Backlog and Sprint Backlog setup
 - Architecture documentation and first ADRs
 
-## [v0.1.0] — 2026-06-06 — Sprint 1
+## [v0.1.0] - 2026-06-06 - Sprint 1
 
 ### Added
 - Project initialization
