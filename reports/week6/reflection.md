@@ -8,13 +8,13 @@
 ## What we confirmed
 - The product works in SITL simulation.
 - Documentation is sufficient for basic setup.
-- The customer is interested in the product.
+- Dockerized QGroundControl works.
 
 ## Problems we faced
-- Some instructions may not be clear enough.
-- Customer feedback is still pending.
+- Customer meeting did not happen — no direct feedback received.
+- Some instructions may still need clarification.
 
 ## What we will do next
-- Finalize documentation.
-- Incorporate feedback from the customer.
+- Finalize MVP v3 in Week 7.
+- Try to get customer feedback.
 - Prepare for Demo Day.
