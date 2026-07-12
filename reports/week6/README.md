@@ -3,9 +3,13 @@
 ## Project Information
 
 **Project name:** Autonomous Indoor Airship Simulation
+
 **Team number:** 19
+
 **Customer:** Eugene Shlomov (Innopolis Robotics Lab)
+
 **License:** [MIT License](../../LICENSE)
+
 **Assignment:** Assignment 6 — Sprint 4 (Trial Release & Transition Readiness)
 
 ---
