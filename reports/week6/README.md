@@ -33,6 +33,11 @@
 - [Architecture and ADRs](../../docs/architecture/)
 - [User Acceptance Tests](../../docs/user-acceptance-tests.md)
 - [User Stories](../../docs/user-stories.md)
+- [Testing Strategy and CI Status](../../docs/testing.md)
+- [Quality Requirements](../../docs/quality-requirements.md)
+- [Quality Requirement Tests](../../docs/quality-requirement-tests.md)
+- [Development Process](../../docs/development-process.md)
+- [Definition of Done](../../docs/definition-of-done.md)
 
 ### Releases and Reports
 - [Week 6 Trial Release v0.4.0](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/releases/tag/v0.4.0)
