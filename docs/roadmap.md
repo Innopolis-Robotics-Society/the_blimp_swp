@@ -34,9 +34,8 @@
 - [ ] Final documentation updates
 - [ ] Demo Day preparation
 
-## Future Work
-
-- Integrate with the Capstone team's motor frame.
-- Support deployment on real airship hardware.
-- Improve autonomous navigation and localization.
-- Expand automated integration and system testing.
+## Future Work (after course)
+- Integrate with real hardware (Capstone team)
+- Expand UWB localization
+- Improve autonomous navigation
+- Support Windows (if requested)
