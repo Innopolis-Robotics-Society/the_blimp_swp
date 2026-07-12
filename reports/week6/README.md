@@ -260,13 +260,4 @@ See [llm-report.md](./llm-report.md)
 
 ## Screenshots and Evidence
 
-### Sprint 4 Milestone
-![Sprint 4 Milestone](./images/sprint4-milestone.png)
-
-### Week 6 Release v0.4.0
-![Release v0.4.0](./images/release-v0.4.0.png)
-
-### Example Reviewed PR
-![Reviewed PR Example](./images/reviewed-pr-example.png)
-
-**For other screenshots go to [Images_Week_6](./images).**
+**For screenshots go to [Images_Week_6](./images).**
