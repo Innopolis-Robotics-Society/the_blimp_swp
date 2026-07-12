@@ -1,5 +1,21 @@
 # Changelog
 
+## [v0.4.0] - 2026-07-10
+### Added
+- Trial release for customer testing
+- Customer handover documentation
+- Contributing and agent guidance
+- QGroundControl in Docker
+
+### Changed
+- Updated roadmap with Sprint 4
+- Updated documentation for handover
+
+### Fixed
+- No critical issues reported
+
+---
+
 ## [v0.3.0] - 2026-07-05
 ### Added
 - Architecture documentation (static, dynamic, deployment views)
@@ -36,6 +52,8 @@
 
 ### Fixed
 - No critical issues reported
+
+---
 
 ## [Unreleased]
 
