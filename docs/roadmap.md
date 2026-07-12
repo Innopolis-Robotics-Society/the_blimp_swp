@@ -21,12 +21,12 @@
 - [x] ADRs
 - [x] MVP v2
 
-## Sprint 4 (6–10 July) – Current
-- [ ] Trial release v0.4.0
-- [ ] Customer handover documentation
-- [ ] Contributing and agent guidance
-- [ ] Customer meeting and feedback
-- [ ] UAT with customer
+## Sprint 4 (6–12 July) – Done
+- [x] Trial release v0.4.0
+- [x] Customer handover documentation
+- [x] Contributing and agent guidance
+- [x] Documentation updates
+- [ ] Customer meeting (not held — customer unavailable)
 
 ## Sprint 5 (13–17 July) – Next
 - [ ] Incorporate customer feedback
