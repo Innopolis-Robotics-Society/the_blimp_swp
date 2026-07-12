@@ -3,7 +3,7 @@
 **Project:** Autonomous Indoor Airship Simulation  
 **Team:** 19  
 **Customer:** Eugene Shlomov (Innopolis Robotics Lab)  
-**Date:** 10.07.2026
+**Date:** 12.07.2026
 
 ---
 
