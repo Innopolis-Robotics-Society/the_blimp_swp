@@ -33,6 +33,7 @@ A contribution is only considered "Done" when it satisfies the team's [Definitio
 - Update `README.md` if you change setup or usage instructions.
 - Update `CHANGELOG.md` with your changes under the `[Unreleased]` section.
 - Update `docs/customer-handover.md` if deployment steps, environment variables, or known limitations change.
+- Keep architecture documentation and ADRs synchronized with implementation changes.
 
 ## Deeper Documentation
 
@@ -41,6 +42,7 @@ For more details on our processes and architecture, please refer to:
 - [Definition of Done](./docs/definition-of-done.md)
 - [Architecture and ADRs](./docs/architecture/)
 - [Quality Requirements](./docs/quality-requirements.md)
+- [Customer Handover](./docs/customer-handover.md)
 
 ## Questions?
 
