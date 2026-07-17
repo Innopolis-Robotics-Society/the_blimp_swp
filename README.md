@@ -27,7 +27,8 @@ The final release includes:
 - FastAPI MAVLink backend;
 - integration with QGroundControl;
 - complete project documentation;
-- customer handover documentation.
+- customer handover documentation;
+- final MVP demonstration materials.
 
 The customer accepted the delivered project following the final Sprint Review.
 
@@ -35,10 +36,10 @@ The customer accepted the delivered project following the final Sprint Review.
 
 ## Team
 
-- Daniyar (Product Owner)
-- Arina (Scrum Master)
-- Iuliana (Developer)
-- Svetlana (Developer)
+- Daniyar — Product Owner, ArduPilot customization, release management
+- Arina — Scrum Master, documentation, customer handover
+- Iuliana — Developer, MAVLink communication testing
+- Svetlana — Developer, firmware deployment, Docker environment
 
 ---
 
@@ -46,13 +47,16 @@ The customer accepted the delivered project following the final Sprint Review.
 
 ### Product
 
-- **Latest Release:** **v0.5.0 (Final MVP)**
+- **Latest Release:** [v0.5.0 (Final MVP)](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/releases/tag/v0.5.0)
 - **Hosted Documentation:** https://innopolis-robotics-society.github.io/the_blimp_swp/
+
+### Demo
+
+- Final MVP v3 demonstration video: https://disk.yandex.ru/i/QiNKBpdfEEh6EQ
 
 ### Getting Started
 
-- [Customer Handover](docs/customer-handover.md)
-- [Launch Instructions](docs/customer-handover.md#installation-and-launch)
+- [Customer Handover and Installation Guide](docs/customer-handover.md)
 
 ### Contribution
 
@@ -155,6 +159,6 @@ MIT License — see LICENSE.
 
 This repository contains the final version of the Software Engineering course project.
 
-All planned Sprint 5 Product Backlog Items have been completed.
+All planned Sprint 5 Product Backlog Items have been completed, the final v0.5.0 release has been delivered, and the project has been accepted by the customer.
 
 The project has been delivered to the customer together with all required documentation and supporting artifacts.
