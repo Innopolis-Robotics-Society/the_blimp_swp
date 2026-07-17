@@ -1,6 +1,12 @@
-# the_blimp_swp
+# Autonomous Indoor Airship Simulation
 
-Autonomous Indoor Airship Simulation — SWP course project.
+Software Engineering course project developed for the Innopolis Robotics Lab.
+
+The project provides a Docker-based Software-in-the-Loop (SITL) environment for an autonomous indoor airship using customized ArduPilot firmware, MAVLink communication, a FastAPI backend, and QGroundControl integration.
+
+The final project was successfully completed during Sprint 5 (Week 7) and accepted by the customer.
+
+---
 
 ## Project description
 
@@ -8,20 +14,61 @@ This project simulates an indoor airship with near-zero buoyancy using ArduPilot
 
 ---
 
+## Final Project Status
+
+Project status: **Completed**
+
+The Software Engineering project has been successfully completed.
+
+The final release includes:
+
+- Docker-based SITL environment;
+- customized ArduPilot firmware for the blimp platform;
+- FastAPI MAVLink backend;
+- integration with QGroundControl;
+- complete project documentation;
+- customer handover documentation;
+- final MVP demonstration materials.
+
+The customer accepted the delivered project following the final Sprint Review.
+
+---
+
 ## Team
 
-- Daniyar (Product Owner)
-- Arina (Scrum Master)
-- Iuliana (Developer)
-- Svetlana (Developer)
+- Daniyar — Product Owner, ArduPilot customization, release management
+- Arina — Scrum Master, documentation, customer handover
+- Iuliana — Developer, MAVLink communication testing
+- Svetlana — Developer, firmware deployment, Docker environment
 
 ---
 
 ## Quick Access
 
-- **Hosted documentation:** https://innopolis-robotics-society.github.io/the_blimp_swp/
-- **Customer handover:** docs/customer-handover.md
-- **Current release:** v0.4.0 - Week 6 Trial Release
+### Product
+
+- **Latest Release:** [v0.5.0 (Final MVP)](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/releases/tag/v0.5.0)
+- **Hosted Documentation:** [https://innopolis-robotics-society.github.io/the_blimp_swp/](https://innopolis-robotics-society.github.io/the_blimp_swp/)
+
+### Demo
+
+- Final MVP v3 demonstration video: [Yandex Disk](https://disk.yandex.ru/i/QiNKBpdfEEh6EQ)
+
+### Getting Started
+
+- [Customer Handover and Installation Guide](docs/customer-handover.md)
+
+### Contribution
+
+- [CONTRIBUTING.md](CONTRIBUTING.md)
+- [AGENTS.md](AGENTS.md)
+
+### Documentation
+
+- [Architecture](docs/architecture/README.md)
+- [Testing](docs/testing.md)
+- [Quality Requirements](docs/quality-requirements.md)
+- [Roadmap](docs/roadmap.md)
 
 ---
 
@@ -35,19 +82,25 @@ This project simulates an indoor airship with near-zero buoyancy using ArduPilot
 
 ### MAVLink Backend
 
+```bash
 cd mavlink_backend
 python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 python api.py
+```
 
 Backend runs on port 8000. API docs available at /docs when running.
 
 ### SITL (ArduPilot)
 
+```bash
 cd sitl
-docker build -t ardupilot-sitl .
-docker run -d --name sitl -p 14550:14550/udp ardupilot-sitl
+docker compose build
+docker compose up sitl-auto
+```
+
+See [sitl/README.md](sitl/README.md) for details.
 
 ### Run System
 
@@ -58,7 +111,7 @@ docker run -d --name sitl -p 14550:14550/udp ardupilot-sitl
 
 ### Troubleshooting
 
-- Port in use: docker stop sitl && docker rm sitl
+- Port in use: `docker compose down -v`
 - No connection: Check SITL is running
 
 ---
@@ -66,35 +119,50 @@ docker run -d --name sitl -p 14550:14550/udp ardupilot-sitl
 ## Links
 
 ### Reports
-- Week 2 Report: reports/week2/README.md
-- Week 3 Report: reports/week3/README.md
-- Week 4 Report: reports/week4/README.md
-- Week 5 Report: reports/week5/README.md
-- Week 6 Report: reports/week6/README.md
+
+- [Week 2 Report](reports/week2/README.md)
+- [Week 3 Report](reports/week3/README.md)
+- [Week 4 Report](reports/week4/README.md)
+- [Week 5 Report](reports/week5/README.md)
+- [Week 6 Report](reports/week6/README.md)
+- [Week 7 Report](reports/week7/README.md)
   
 ### Documentation
-- Hosted Documentation: https://innopolis-robotics-society.github.io/the_blimp_swp/
-- Customer Handover: docs/customer-handover.md
-- Contributing: CONTRIBUTING.md
-- AGENTS.md: AGENTS.md
+
+- [Hosted Documentation](https://innopolis-robotics-society.github.io/the_blimp_swp/)
+- [Customer Handover](docs/customer-handover.md)
+- [Contributing](CONTRIBUTING.md)
+- [AGENTS.md](AGENTS.md)
 
 ### Technical docs
-- Architecture: docs/architecture/README.md
-- ADRs: docs/architecture/adr/README.md
-- Development Process: docs/development-process.md
-- Quality Requirements: docs/quality-requirements.md
-- Quality Requirement Tests: docs/quality-requirement-tests.md
-- User Acceptance Tests: docs/user-acceptance-tests.md
-- Testing Strategy: docs/testing.md
-- Definition of Done: docs/definition-of-done.md
-- Roadmap: docs/roadmap.md
+
+- [Architecture](docs/architecture/README.md)
+- [ADRs](docs/architecture/adr/README.md)
+- [Development Process](docs/development-process.md)
+- [Quality Requirements](docs/quality-requirements.md)
+- [Quality Requirement Tests](docs/quality-requirement-tests.md)
+- [User Acceptance Tests](docs/user-acceptance-tests.md)
+- [Testing Strategy](docs/testing.md)
+- [Definition of Done](docs/definition-of-done.md)
+- [Roadmap](docs/roadmap.md)
 
 ### Other
-- CHANGELOG: CHANGELOG.md
-- License: LICENSE
+
+- [CHANGELOG](CHANGELOG.md)
+- [LICENSE](LICENSE)
 
 ---
 
 ## License
 
-MIT License — see LICENSE.
+MIT License — see [LICENSE](LICENSE).
+
+---
+
+## Repository Status
+
+This repository contains the final version of the Software Engineering course project.
+
+All planned Sprint 5 Product Backlog Items have been completed, the final v0.5.0 release has been delivered, and the project has been accepted by the customer.
+
+The project has been delivered to the customer together with all required documentation and supporting artifacts.
