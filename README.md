@@ -125,7 +125,7 @@ See [sitl/README.md](sitl/README.md) for details.
 - [Week 4 Report](reports/week4/README.md)
 - [Week 5 Report](reports/week5/README.md)
 - [Week 6 Report](reports/week6/README.md)
-- [Week 7 Report](reports/week7/README.md)
+- [Week 7 Report](https://innopolis-robotics-society.github.io/the_blimp_swp/reports/week7/)
   
 ### Documentation
 
