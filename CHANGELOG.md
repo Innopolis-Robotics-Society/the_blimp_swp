@@ -4,11 +4,48 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
-### Added
-- Planned: customer feedback integration from Week 7 trial
-- Planned: final MVP v3 release (v0.5.0)
-- Planned: Demo Day presentation and demo video
+No planned changes.
 
+## [v0.5.0] - 2026-07-17 - Final MVP (Sprint 5)
+
+Final release of the Autonomous Indoor Airship Simulation project.
+
+This release concludes the Software Engineering course project and includes the completed implementation, final documentation, customer handover, and project acceptance.
+
+### Added
+
+- Sprint 5 documentation (`reports/week7/`)
+- Final Sprint Review summary and transcript
+- Sprint Reflection
+- Sprint Retrospective
+- LLM Usage Report
+- Final customer handover documentation
+- Final project release (MVP v3)
+
+### Changed
+
+- Updated repository documentation following customer review
+- Updated root README for the final project release
+- Updated roadmap to reflect project completion
+- Finalized project documentation for long-term maintenance
+
+### Fixed
+
+- Minor documentation inconsistencies identified during the final repository review
+- Cross-references between documentation artifacts
+
+### Security
+
+- Verified that no credentials, secrets, or sensitive information are stored in the repository
+
+### Documentation
+
+- Release v0.5.0
+- Week 7 Report (`reports/week7/README.md`)
+- Customer Handover (`docs/customer-handover.md`)
+- Sprint Review documentation (`reports/week7/`)
+
+The Software Engineering project has been completed, and the repository reflects the final accepted state of the project.
 ## [v0.4.0] - 2026-07-10 - Week 6 Trial Release (Sprint 4)
 
 Trial release for customer testing and handover preparation. This release is the Assignment 6 Week 6 deliverable and represents the handover-candidate version of the product.
@@ -69,3 +106,11 @@ Second MVP release with MAVLink backend and SITL integration.
 - Team formation and role assignment
 - Initial customer meeting and requirements gathering
 - First user stories and PBIs
+
+---
+
+[v0.5.0]: https://github.com/Innopolis-Robotics-Society/the_blimp_swp/releases/tag/v0.5.0
+[v0.4.0]: https://github.com/Innopolis-Robotics-Society/the_blimp_swp/releases/tag/v0.4.0
+[v0.3.0]: https://github.com/Innopolis-Robotics-Society/the_blimp_swp/releases/tag/v0.3.0
+[v0.2.0]: https://github.com/Innopolis-Robotics-Society/the_blimp_swp/releases/tag/v0.2.0
+[v0.1.0]: https://github.com/Innopolis-Robotics-Society/the_blimp_swp/releases/tag/v0.1.0
