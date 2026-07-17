@@ -104,11 +104,31 @@ The final project delivery includes:
 
 ---
 
+# Final Release
+
+## v0.5.0 - Final MVP
+
+The final release includes:
+
+- completed simulation environment;
+- Docker-based SITL workflow;
+- FastAPI MAVLink backend;
+- QGroundControl integration;
+- customized ArduPilot configuration;
+- complete project documentation.
+
+Release:
+https://github.com/Innopolis-Robotics-Society/the_blimp_swp/releases/tag/v0.5.0
+
+---
+
 # Repository Status
 
-At the completion of Sprint 5, the repository represents the final state of the Software Engineering project.
+At the completion of Sprint 5, the repository represents the final accepted state of the Software Engineering project.
 
-All planned deliverables have been completed and transferred to the customer.
+All planned Sprint 5 Product Backlog Items have been completed, the final release v0.5.0 has been delivered, and the project has been accepted by the customer.
+
+The repository now serves as the primary source of documentation and implementation for future maintenance and development.
 
 ---
 
@@ -122,6 +142,8 @@ All planned deliverables have been completed and transferred to the customer.
 | [Reflection](reflection.md) | Individual and team reflections |
 | [Retrospective](retrospective.md) | Sprint retrospective |
 | [LLM Usage Report](llm-report.md) | Report on the use of LLM tools during the project |
+| Roadmap | Project timeline and milestone overview |
+| [CHANGELOG](../../CHANGELOG.md) | Release history |
 
 ---
 
