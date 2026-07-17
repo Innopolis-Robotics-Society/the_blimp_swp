@@ -1,100 +1,132 @@
-# Week 7 Report – Final Delivery
+# Week 7 Report
 
-## Project Information
-**Project name:** Autonomous Indoor Airship Simulation  
-**License:** [MIT License](../../LICENSE)
+This directory contains the documentation produced during the final sprint of the Software Engineering project.
 
----
-
-## Links
-- [Week 6 Report](../week6/README.md)
-- [Product Backlog](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues)
-- [Sprint 5 Backlog](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/milestone/5)
-- [Sprint 5 Milestone](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/milestone/5)
-- [README.md](../../README.md)
-- [CONTRIBUTING.md](../../CONTRIBUTING.md)
-- [AGENTS.md](../../AGENTS.md)
-- [Customer Handover](../../docs/customer-handover.md)
-- [Hosted Documentation](https://innopolis-robotics-society.github.io/the_blimp_swp/)
-- [CHANGELOG.md](../../CHANGELOG.md)
+Sprint 5 concluded the development of the **Autonomous Indoor Airship Simulation** project. During this sprint, the team completed the remaining implementation tasks, finalized the documentation, demonstrated the system to the customer, and completed the project handover.
 
 ---
 
-## Sprint 5 Goal
-Incorporate customer feedback, deliver final version MVP v3, and prepare for Demo Day.
+# Sprint Information
 
-## Sprint 5 Dates
-Start: 13 July 2026  
-Finish: 17 July 2026
-
-## Sprint 5 Scope
-- [ ] Final release v0.5.0 (MVP v3)
-- [ ] Customer feedback incorporated
-- [ ] Final documentation updates
-- [ ] Demo Day preparation
-
-## Total Story Points
-Sprint 5 total: (to be filled)
+| Item | Value |
+|------|-------|
+| Sprint | Sprint 5 |
+| Duration | Week 7 |
+| Release | v0.5.0 (MVP v3) |
+| Customer | Eugene Shlomov (Innopolis Robotics Lab) |
+| Sprint Goal | Finalize the project, complete customer handover, validate the system, and prepare the final project documentation. |
 
 ---
 
-## Final Release
-- [Release v0.5.0](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/releases/tag/v0.5.0)
+# Sprint Outcome
+
+The sprint goal was successfully achieved.
+
+During the final sprint the team:
+
+- completed the remaining implementation tasks;
+- deployed the customized firmware on the physical airship;
+- verified MAVLink communication between the ground station and the flight controller;
+- finalized the project documentation;
+- completed customer handover;
+- delivered the final MVP (v0.5.0);
+- concluded the Software Engineering project.
+
+The customer accepted the delivered project following the final Sprint Review.
 
 ---
 
-## Customer Feedback Response Table
+# Sprint Backlog
 
-| Feedback point | Resulting PBI or issue | Status | Response |
-|---|---|---|---|
-| (to be filled after Week 7 meeting) | — | — | — |
+All Sprint 5 issues were completed before the final delivery.
 
----
-
-## Final Transition Outcome
-
-### Handover level reached
-- [ ] Ready for independent use
-- [ ] Independently used by customer
-- [ ] Deployed or operated on customer side
-
-### Customer confirmation status
-- [ ] Accepted
-- [ ] Accepted with follow-up items
-- [ ] Not yet accepted
+| Issue | Status |
+|------|--------|
+| [#25 Create one-click launch script](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues/25) | Closed |
+| [#12 Create physical engine for SITL](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues/12) | Closed |
+| [#6 Test RPI-to-FC connection](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues/6) | Closed |
+| [#5 Configure ArduPilot for a Blimp](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues/5) | Closed |
 
 ---
 
-## UAT Results
-(to be filled after Week 7 meeting)
+# Technical Achievements
+
+The following milestones were completed during the final sprint:
+
+- Final project release (v0.5.0)
+- Deployment of the customized ArduPilot firmware
+- Ground-to-airship MAVLink communication verification
+- Customer handover
+- Final repository review
+- Completion of project documentation
 
 ---
 
-## Demo Day Preparation
-- [ ] Slides prepared
-- [ ] Public demo video recorded (<2 min)
-- [ ] Presentation rehearsed
-- [ ] Each team member has a speaking part
+# Customer Review
+
+The final Sprint Review included a demonstration of the completed system and a walkthrough of the repository.
+
+The customer confirmed that:
+
+- the agreed project objectives had been achieved;
+- the delivered functionality satisfied the agreed scope;
+- the documentation was sufficient for future maintenance and development;
+- the repository contained all required deliverables.
+
+The project was accepted without critical issues.
 
 ---
 
-## Status
-- [ ] Final release created
-- [ ] Customer feedback incorporated
-- [ ] Handover confirmed
-- [ ] Demo Day ready
+# Team Contributions
+
+| Team Member | Contribution |
+|-------------|--------------|
+| Daniyar | Product Owner responsibilities, ArduPilot customization, release management, customer communication |
+| Arina | Documentation, customer handover, sprint reports, final repository preparation |
+| Iuliana | MAVLink communication, testing, hardware validation |
+| Svetlana | Firmware deployment, Docker environment, demonstration preparation |
 
 ---
 
-## Next Steps
-- Present at Demo Day
-- Hand over the product to the customer
+# Final Deliverables
+
+The final project delivery includes:
+
+- source code;
+- Docker-based SITL environment;
+- customized ArduPilot firmware;
+- FastAPI MAVLink backend;
+- project documentation;
+- architecture documentation;
+- quality assurance documentation;
+- sprint documentation;
+- customer handover documentation.
 
 ---
 
-## Documents
-- [Reflection](reflection.md)
-- [Retrospective](retrospective.md)
-- [LLM Report](llm-report.md)
-- [Sprint Review Summary](sprint-review-summary.md)
-- [Sprint Review Transcript](sprint-review-transcript.md)
+# Repository Status
+
+At the completion of Sprint 5, the repository represents the final state of the Software Engineering project.
+
+All planned deliverables have been completed and transferred to the customer.
+
+---
+
+# Related Documents
+
+| Document | Description |
+|----------|-------------|
+| [Customer Handover](../../docs/customer-handover.md) | Final project handover documentation |
+| [Sprint Review Summary](sprint-review-summary.md) | Summary of the final Sprint Review |
+| [Sprint Review Transcript](sprint-review-transcript.md) | Meeting transcript |
+| [Reflection](reflection.md) | Individual and team reflections |
+| [Retrospective](retrospective.md) | Sprint retrospective |
+| [LLM Usage Report](llm-report.md) | Report on the use of LLM tools during the project |
+
+---
+
+# Conclusion
+
+Sprint 5 completed the development of the Autonomous Indoor Airship Simulation project.
+
+The final release was delivered, the customer accepted the project, and all required Software Engineering course deliverables were completed.
