@@ -1,14 +1,14 @@
 # Roadmap
 
-This document describes the project roadmap through the end of the SWP course. It does not extend into speculative post-course version planning.
+This document describes the final roadmap and completion state of the SWP course project.
 
-**Last updated:** 12 July 2026
+**Last updated:** 17 July 2026
 
 ---
 
 ## Course Outcome Goal
 
-Deliver a customer-usable simulation environment for an autonomous indoor airship, transitioned to the Innopolis Robotics Lab with complete documentation and a stable release.
+Deliver a customer-usable simulation environment for an autonomous indoor airship, complete the customer handover process, and finalize the Software Engineering project with a stable MVP release and full documentation.
 
 ---
 
@@ -34,64 +34,73 @@ Deliver a customer-usable simulation environment for an autonomous indoor airshi
 - [x] UAT scenarios defined
 - [x] **Release:** v0.3.0 - **MVP v2**
 
----
-
-## Current Milestone
-
 ### Sprint 4 (Week 6) - Trial Release & Transition Readiness
 - [x] QGroundControl Docker integration
 - [x] MAVLink backend restructured as Python package with FastAPI
 - [x] Comprehensive test suite for backend (~83% coverage)
 - [x] `CONTRIBUTING.md` and `AGENTS.md` created/updated
 - [x] `docs/customer-handover.md` updated with current state
-- [x] Trial release v0.4.0 created
-- [ ] Customer meeting (blocked - customer unavailable; rescheduled to Week 7)
-- **Release:** v0.4.0 - **Trial Release**
+- [x] Trial release created
+- [x] **Release:** v0.4.0 - **Trial Release**
 
 ---
 
-## Upcoming Milestones
+## Final Milestone
 
-### Sprint 5 (Week 7) - Final Delivery (MVP v3)
-- [ ] Conduct customer meeting and collect trial feedback
-- [ ] Execute UAT with customer
-- [ ] Address customer-reported issues
-- [ ] Finalize transition documentation
-- [ ] Confirm handover level with customer
-- [ ] Prepare Demo Day presentation and demo video
-- [ ] **Release:** v0.5.0 - **MVP v3 (final course version)**
+### Sprint 5 (Week 7) – Final Delivery (MVP v3)
 
-### Week 8 - Demo Day
-- [ ] Lab rehearsal presentation (Week 7)
-- [ ] Final Demo Day presentation
-- [ ] Course completion
+**Status: Completed**
 
----
+### Sprint Goal
 
-## Post-Course State
+Deliver the final MVP, complete customer handover, finalize documentation, and successfully conclude the Software Engineering project.
 
-At course completion, the project will be in one of the following handover states (see [docs/customer-handover.md](./customer-handover.md)):
+### Completed Deliverables
 
-- **Ready for independent use** - documentation and setup are sufficient for the customer to operate the product without team support
-- **Independently used by customer** - customer has validated the product in their environment
-- **Deployed or operated on customer side** - product is running in the customer's infrastructure
+- [x] Customer handover completed
+- [x] Final Sprint Review completed
+- [x] Customer acceptance confirmed
+- [x] Final documentation completed
+- [x] Final release v0.5.0 published
 
-The Lab team will take over maintenance, future feature development, and any hardware integration work after course completion.
+### Release
+
+**v0.5.0 – Final MVP**
 
 ---
 
-## Out of Scope (Post-Course)
+## Project Status
 
-The following items are explicitly out of scope for the course and will be addressed by the Lab team after handover:
+The Software Engineering project has been successfully completed.
 
-- Physical flight controller integration
-- UWB localization system integration
-- Real sensor data processing (IMU, cameras)
-- Production authentication and authorization
-- Multi-vehicle coordination
-- Performance optimization for production use
+The repository now contains the final accepted version of the Autonomous Indoor Airship Simulation project.
 
-These items are documented in [docs/customer-handover.md](./customer-handover.md) as future work.
+Future development, maintenance, and hardware extensions may be carried out by the Innopolis Robotics Lab independently of the Software Engineering course.
+
+---
+
+## Future Development
+
+Possible future improvements include:
+
+- advanced autonomous navigation;
+- additional onboard sensors;
+- localization improvements;
+- hardware-specific extensions.
+
+These activities are outside the scope of the completed Software Engineering course project.
+
+---
+
+## GitHub Milestones
+
+The project progress was tracked through GitHub Milestones:
+
+- [Sprint 1 - Project Initialization](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/milestone/1)
+- [Sprint 2 - Core Architecture](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/milestone/2)
+- [Sprint 3 - MVP v2](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/milestone/3)
+- [Sprint 4 - Trial Release & Transition Readiness](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/milestone/4)
+- [Sprint 5 - Final Delivery (MVP v3)](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/milestone/5)
 
 ---
 
@@ -99,5 +108,4 @@ These items are documented in [docs/customer-handover.md](./customer-handover.md
 
 - [Customer Handover](./customer-handover.md)
 - [CHANGELOG.md](../CHANGELOG.md)
-- [Week 6 Report](../reports/week6/README.md)
 - [Product Backlog](https://github.com/Innopolis-Robotics-Society/the_blimp_swp/issues)
