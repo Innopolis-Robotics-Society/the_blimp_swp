@@ -4,10 +4,8 @@
 
 **How we used it:**
 
-1. **Final documentation updates** – updated `README.md`, `CONTRIBUTING.md`, `AGENTS.md`, and `docs/customer-handover.md` for final delivery.
+1. **Transcript translation** – We recorded the final customer meeting in Russian. ChatGPT translated the dialogue into English for the sprint review transcript. The original meaning was preserved.
 
-2. **Week 7 reports** – structured `reports/week7/README.md`, `reflection.md`, `retrospective.md`.
-
-3. **Demo Day preparation** – helped prepare presentation structure and talking points.
+2. **Minor formatting assistance** – ChatGPT helped check the structure of the Week 7 report files, but all content was written by the team.
 
 **Important:** All AI-generated content was manually reviewed and adapted. Final decisions were made by the team.
