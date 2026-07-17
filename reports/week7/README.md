@@ -49,6 +49,12 @@ All Sprint 5 issues were completed before the final delivery.
 
 ---
 
+## Sprint Size
+
+Total Sprint 5 size: 20 Story Points
+
+---
+
 # Technical Achievements
 
 The following milestones were completed during the final sprint:
