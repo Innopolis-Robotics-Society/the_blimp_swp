@@ -1,17 +1,12 @@
 # Sprint Review Summary (Week 7)
 
-**Date:** (to be filled after meeting)
-**Participants:**
-- Daniyar (Product Owner)
-- Arina (Scrum Master)
-- Iuliana (Developer)
-- Svetlana (Developer)
-- Eugene (Customer)
+**Date:** 17.07.2026
+**Participants:** Daniyar (PO), Eugene (Customer)
 
 ---
 
 ## Sprint 5 Goal reviewed
-Incorporate customer feedback, deliver final version MVP v3, and prepare for Demo Day.
+Incorporate customer feedback, deliver final version MVP v3, and complete project handover.
 
 ## Delivered increment
 - Final release v0.5.0 (MVP v3)
@@ -20,13 +15,13 @@ Incorporate customer feedback, deliver final version MVP v3, and prepare for Dem
 - Handover completed
 
 ## UAT results
-(to be filled after meeting)
+All UAT scenarios passed.
 
 ## Customer feedback
-(to be filled after meeting)
+Customer confirmed the product meets expectations and is ready for independent use.
 
 ## Decisions
-(to be filled after meeting)
+Project is complete and ready for handover.
 
 ## Action points
 - Present at Demo Day
