@@ -1,6 +1,5 @@
 # the_blimp_swp
 
-The repo assigned to SWP Team.
 Autonomous Indoor Airship Simulation — SWP course project.
 
 ## Project description
@@ -10,6 +9,7 @@ This project simulates an indoor airship with near-zero buoyancy using ArduPilot
 ---
 
 ## Team
+
 - Daniyar (Product Owner)
 - Arina (Scrum Master)
 - Iuliana (Developer)
@@ -17,29 +17,34 @@ This project simulates an indoor airship with near-zero buoyancy using ArduPilot
 
 ---
 
+## Quick Access
+
+- **Hosted documentation:** https://innopolis-robotics-society.github.io/the_blimp_swp/
+- **Customer handover:** docs/customer-handover.md
+- **Current release:** v0.4.0 - Week 6 Trial Release
+
+---
+
 ## Local Setup
 
 ### Prerequisites
+
 - Docker and Docker Compose
 - Python 3.10+
 - QGroundControl
 
 ### MAVLink Backend
 
-```bash
 cd mavlink_backend
 python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 python api.py
-```
 
-Backend runs on port 8000.
-API docs available at /docs when running.
+Backend runs on port 8000. API docs available at /docs when running.
 
 ### SITL (ArduPilot)
 
-```bash
 cd sitl
 docker compose build
 docker compose up sitl-auto
@@ -62,23 +67,37 @@ See [sitl/README.md](sitl/README.md) for details.
 ---
 
 ## Links
-- [Week 2 Report](reports/week2/README.md)
-- [Week 3 Report](reports/week3/README.md)
-- [Week 4 Report](reports/week4/README.md)
-- [Week 5 Report](reports/week5/README.md)
-- [Quality Requirements](docs/quality-requirements.md)
-- [Quality Requirement Tests](docs/quality-requirement-tests.md)
-- [User Acceptance Tests](docs/user-acceptance-tests.md)
-- [Testing Strategy](docs/testing.md)
-- [Definition of Done](docs/definition-of-done.md)
-- [Roadmap](docs/roadmap.md)
-- [CHANGELOG](CHANGELOG.md)
-- [Architecture](docs/architecture/README.md)
-- [ADRs](docs/architecture/adr/README.md)
-- [Development Process](docs/development-process.md)
-- [Hosted Documentation](https://innopolis-robotics-society.github.io/the_blimp_swp/)
+
+### Reports
+- Week 2 Report: reports/week2/README.md
+- Week 3 Report: reports/week3/README.md
+- Week 4 Report: reports/week4/README.md
+- Week 5 Report: reports/week5/README.md
+- Week 6 Report: reports/week6/README.md
+  
+### Documentation
+- Hosted Documentation: https://innopolis-robotics-society.github.io/the_blimp_swp/
+- Customer Handover: docs/customer-handover.md
+- Contributing: CONTRIBUTING.md
+- AGENTS.md: AGENTS.md
+
+### Technical docs
+- Architecture: docs/architecture/README.md
+- ADRs: docs/architecture/adr/README.md
+- Development Process: docs/development-process.md
+- Quality Requirements: docs/quality-requirements.md
+- Quality Requirement Tests: docs/quality-requirement-tests.md
+- User Acceptance Tests: docs/user-acceptance-tests.md
+- Testing Strategy: docs/testing.md
+- Definition of Done: docs/definition-of-done.md
+- Roadmap: docs/roadmap.md
+
+### Other
+- CHANGELOG: CHANGELOG.md
+- License: LICENSE
 
 ---
 
 ## License
-MIT License — see [LICENSE](LICENSE).
+
+MIT License — see LICENSE.

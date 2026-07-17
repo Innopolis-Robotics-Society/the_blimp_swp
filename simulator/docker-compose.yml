@@ -1,0 +1,5 @@
+services:
+  blimp-sim:
+    build: .
+    network_mode: host
+    restart: unless-stopped
