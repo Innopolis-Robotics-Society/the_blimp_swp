@@ -1,7 +1,9 @@
 # Sprint Review Transcript (Week 7)
 
 **Date:** 17.07.2026
+
 **Participants:** Daniyar (PO), Eugene (Customer)
+
 **Recording:** https://disk.yandex.ru/i/Lq9p0FysEshFYw (instructors only)
 
 ---
