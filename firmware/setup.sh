@@ -2,6 +2,20 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+# --- Defaults ---
+VERBOSE=false
+LOCAL=false
+
+# --- Parse flags ---
+while getopts "vl" opt; do
+    case $opt in
+        v) VERBOSE=true ;;
+        l) LOCAL=true ;;
+        *) echo "Usage: $0 [-v] [-l]"; exit 1 ;;
+    esac
+done
+
 source "$SCRIPT_DIR/config.env"
 
 AP_DIR="$WORKSPACE/ardupilot"
@@ -11,28 +25,23 @@ VEHICLE_REPO="https://github.com/DaniK-51/ArduMotorBlimp.git"
 ARDUPILOT_BRANCH="Copter-4.6.3"
 
 ssh_cmd() {
-    ssh "$VM_USER@$VM_HOST" "$@"
+    if [ "$LOCAL" = true ]; then
+        eval "$@"
+    else
+        ssh "$VM_USER@$VM_HOST" "$@"
+    fi
 }
 
 echo "============================================"
 echo " ArduMotorBlimp Setup"
-echo " VM: $VM_USER@$VM_HOST"
+[ "$LOCAL" = true ] && echo " Mode: local" || echo " VM: $VM_USER@$VM_HOST"
 echo " Workspace: $WORKSPACE"
 echo " Board: $BOARD"
 echo "============================================"
 echo ""
 
-# --- Step 1: Check VM access ---
-echo "==> [1/5] Checking VM access..."
-if ! ssh_cmd "echo ok" >/dev/null 2>&1; then
-    echo "ERROR: Cannot connect to $VM_USER@$VM_HOST"
-    echo "Make sure SSH is configured (check ~/.ssh/config)"
-    exit 1
-fi
-echo "    VM accessible"
-
-# --- Step 2: Check/install system dependencies ---
-echo "==> [2/5] Checking system dependencies..."
+# --- Step 1: Check/install system dependencies ---
+echo "==> [1/4] Checking system dependencies..."
 DEPS_OK=true
 for cmd in git python3 arm-none-eabi-gcc cmake; do
     if ! ssh_cmd "command -v $cmd" >/dev/null 2>&1; then
@@ -43,14 +52,18 @@ done
 
 if [ "$DEPS_OK" = false ]; then
     echo "    Installing system dependencies (requires sudo)..."
-    ssh_cmd "sudo apt update && sudo apt install -y git python3 python3-pip python3-venv gcc-arm-none-eabi libnewlib-arm-none-eabi build-essential cmake ninja-build curl wget"
+    if [ "$LOCAL" = true ]; then
+        sudo apt update && sudo apt install -y git python3 python3-pip python3-venv gcc-arm-none-eabi libnewlib-arm-none-eabi build-essential cmake ninja-build curl wget
+    else
+        ssh_cmd "sudo apt update && sudo apt install -y git python3 python3-pip python3-venv gcc-arm-none-eabi libnewlib-arm-none-eabi build-essential cmake ninja-build curl wget"
+    fi
     echo "    Dependencies installed"
 else
     echo "    All dependencies present"
 fi
 
-# --- Step 3: Check ArduPilot ---
-echo "==> [3/5] Checking ArduPilot..."
+# --- Step 2: Check ArduPilot ---
+echo "==> [2/4] Checking ArduPilot..."
 AP_EXISTS=$(ssh_cmd "test -d '$AP_DIR/.git' && echo yes || echo no")
 if [ "$AP_EXISTS" = "yes" ]; then
     AP_TAG=$(ssh_cmd "cd '$AP_DIR' && git describe --tags --exact-match 2>/dev/null || git log --oneline -1")
@@ -69,8 +82,8 @@ else
     echo "    ArduPilot cloned"
 fi
 
-# --- Step 4: Python venv ---
-echo "==> [4/5] Checking Python venv..."
+# --- Step 3: Python venv ---
+echo "==> [3/4] Checking Python venv..."
 VENV_EXISTS=$(ssh_cmd "test -d '$VENV_DIR' && echo yes || echo no")
 if [ "$VENV_EXISTS" = "yes" ]; then
     echo "    venv already exists at $VENV_DIR"
@@ -80,8 +93,8 @@ else
     echo "    venv created with dependencies"
 fi
 
-# --- Step 5: ArduMotorBlimp ---
-echo "==> [5/5] Checking ArduMotorBlimp..."
+# --- Step 4: ArduMotorBlimp ---
+echo "==> [4/4] Checking ArduMotorBlimp..."
 VEHICLE_EXISTS=$(ssh_cmd "test -d '$VEHICLE_DIR/.git' && echo yes || echo no")
 if [ "$VEHICLE_EXISTS" = "yes" ]; then
     ssh_cmd "cd '$VEHICLE_DIR' && git fetch origin && git checkout $VEHICLE_BRANCH && git pull origin $VEHICLE_BRANCH"
@@ -104,5 +117,5 @@ ssh_cmd "cd '$AP_DIR' && rm -rf ArduMotorBlimp && cp -r '$VEHICLE_DIR' ./ArduMot
 echo ""
 echo "============================================"
 echo " Setup complete!"
-echo " Next: ./build-full.sh (or ./build.sh)"
+echo " Next: ./build.sh (or ./build.sh -v)"
 echo "============================================"
