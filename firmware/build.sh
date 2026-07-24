@@ -9,12 +9,25 @@ AUTO_SETUP=false
 LOCAL=false
 
 # --- Parse flags ---
-while getopts "val" opt; do
-    case $opt in
-        v) VERBOSE=true ;;
-        a) AUTO_SETUP=true ;;
-        l) LOCAL=true ;;
-        *) echo "Usage: $0 [-v] [-a] [-l]"; exit 1 ;;
+print_usage() {
+    echo "Usage: $0 [OPTIONS]"
+    echo ""
+    echo "Build ArduMotorBlimp firmware for MicoAir H743 V2."
+    echo ""
+    echo "Options:"
+    echo "  -v, --verbose       Verbose output (full waf output)"
+    echo "  -a, --auto-setup    Auto-run setup.sh if ArduPilot not found"
+    echo "  -l, --local         Run commands locally instead of via SSH"
+    echo "  -h, --help          Show this help message"
+}
+
+while [ $# -gt 0 ]; do
+    case "$1" in
+        -v|--verbose) VERBOSE=true; shift ;;
+        -a|--auto-setup) AUTO_SETUP=true; shift ;;
+        -l|--local) LOCAL=true; shift ;;
+        -h|--help) print_usage; exit 0 ;;
+        *) echo "Unknown option: $1"; print_usage; exit 1 ;;
     esac
 done
 
@@ -42,8 +55,8 @@ if [ "$AP_OK" != "yes" ]; then
         [ "$VERBOSE" = true ] && SETUP_ARGS="$SETUP_ARGS -v"
         "$SCRIPT_DIR/setup.sh" $SETUP_ARGS
     else
-        echo "ERROR: ArduPilot not found at $AP_DIR on VM"
-        echo "Run ./setup.sh first (or use -a to auto-setup)"
+        echo "ERROR: ArduPilot not found at $AP_DIR"
+        echo "Run ./setup.sh first (or use -a / --auto-setup)"
         exit 1
     fi
 fi

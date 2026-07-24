@@ -8,11 +8,23 @@ VERBOSE=false
 LOCAL=false
 
 # --- Parse flags ---
-while getopts "vl" opt; do
-    case $opt in
-        v) VERBOSE=true ;;
-        l) LOCAL=true ;;
-        *) echo "Usage: $0 [-v] [-l]"; exit 1 ;;
+print_usage() {
+    echo "Usage: $0 [OPTIONS]"
+    echo ""
+    echo "First-run setup for ArduMotorBlimp firmware build."
+    echo ""
+    echo "Options:"
+    echo "  -v, --verbose     Verbose output (full command output)"
+    echo "  -l, --local       Run commands locally instead of via SSH"
+    echo "  -h, --help        Show this help message"
+}
+
+while [ $# -gt 0 ]; do
+    case "$1" in
+        -v|--verbose) VERBOSE=true; shift ;;
+        -l|--local) LOCAL=true; shift ;;
+        -h|--help) print_usage; exit 0 ;;
+        *) echo "Unknown option: $1"; print_usage; exit 1 ;;
     esac
 done
 
