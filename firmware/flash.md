@@ -1,16 +1,17 @@
-# Прошивка MicoAir H743 V2
+# Flashing MicoAir H743 V2
 
-## Через MicoAir Configurator
+## Using MicoAir Configurator
 
-1. Подключи MicoAir H743 V2 по USB
-2. Открой https://micoair.com/configurator/
-3. Выбери файл `ardumotorblimp.apj` из папки `firmware/build/`
-4. Нажми прошить
-5. **Дважды переподключи USB** (важно для H743!)
+1. Connect MicoAir H743 V2 to your computer via USB
+2. Open https://micoair.com/configurator/
+3. Navigate to the **Firmware** menu
+4. Select the `ardumotorblimp.apj` file from `firmware/build/`
+5. Click **Flash**
+6. **Disconnect and reconnect USB twice** (important for H743!)
 
-## Альтернатива: через Mission Planner
+## Alternative: Mission Planner
 
-1. Подключи FC по USB
-2. SETUP → Install Firmware → Load custom firmware
-3. Выбери `ardumotorblimp.apj`
-4. Дважды переподключи USB
+1. Connect the flight controller via USB
+2. Go to **SETUP → Install Firmware → Load custom firmware**
+3. Select `ardumotorblimp.apj`
+4. Disconnect and reconnect USB twice
