@@ -9,6 +9,8 @@
 
 ## Быстрый старт
 
+### Через VM (по SSH)
+
 ```bash
 # 1. Создай свой config.env из шаблона
 cp config.env.example config.env
@@ -21,8 +23,22 @@ cp config.env.example config.env
 ./build-full.sh                  # полный вывод
 # или
 ./build.sh                       # компактный вывод
+```
 
-# 4. Прошей (см. flash.md)
+### Локально
+
+```bash
+# 1. Создай свой config.env из шаблона
+cp config.env.example config.env
+# правь WORKSPACE под себя
+
+# 2. Настрой (один раз)
+./setup-local.sh
+
+# 3. Собери прошивку
+./build-local-full.sh            # полный вывод
+# или
+./build-local.sh                 # компактный вывод
 ```
 
 ## Файлы
@@ -31,10 +47,13 @@ cp config.env.example config.env
 |------|----------|
 | `config.env.example` | Шаблон настроек (копируй в `config.env`) |
 | `config.env` | Твои настройки (не коммитится) |
-| `setup.sh` | Первичная настройка VM (зависимости, ArduPilot, venv, vehicle) |
-| `build.sh` | Сборка прошивки (компактный вывод) |
-| `build-full.sh` | Сборка прошивки (полный вывод) |
-| `flash.md` | Инструкция прошивки через MicoAir Configurator |
+| `setup.sh` | Первичная настройка VM (SSH) |
+| `setup-local.sh` | Первичная настройка (локально) |
+| `build.sh` | Сборка через VM (компактный вывод) |
+| `build-full.sh` | Сборка через VM (полный вывод) |
+| `build-local.sh` | Сборка локально (компактный вывод) |
+| `build-local-full.sh` | Сборка локально (полный вывод) |
+| `flash.md` | Инструкция прошивки |
 | `build/` | Собранные `.apj` файлы |
 
 ## Настройки (config.env)
