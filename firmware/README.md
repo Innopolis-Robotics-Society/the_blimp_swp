@@ -15,18 +15,14 @@ Custom ArduMotorBlimp firmware built on ArduPilot Copter-4.6.3.
 cp config.env.example config.env
 # edit VM_HOST, WORKSPACE to match your environment
 
-# 2. Run setup (one time)
-./setup.sh
-
-# 3. Build the firmware
-./build.sh
+# 2. Build (auto-runs setup if needed)
+./build.sh -a
 ```
 
 For local builds (no SSH):
 ```bash
 cp config.env.example config.env
-./setup.sh -l
-./build.sh -l
+./build.sh -a -l
 ```
 
 ## Flags
