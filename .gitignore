@@ -23,9 +23,6 @@ mavlink_backend/airship_backend.log
 .vscode/
 *.swp
 
-# Firmware build config (user-specific)
-firmware/config.env
-
 # OS
 .DS_Store
 Thumbs.db

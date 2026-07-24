@@ -65,7 +65,7 @@ if [ "$AP_EXISTS" = "yes" ]; then
     fi
 else
     echo "    Cloning ArduPilot $ARDUPILOT_BRANCH (this may take 5-15 minutes)..."
-    ssh_cmd "cd '$WORKSPACE' && git clone --branch $ARDUPILOT_BRANCH --recursive https://github.com/ArduPilot/ardupilot.git"
+    ssh_cmd "mkdir -p '$WORKSPACE' && cd '$WORKSPACE' && git clone --branch $ARDUPILOT_BRANCH --recursive https://github.com/ArduPilot/ardupilot.git"
     echo "    ArduPilot cloned"
 fi
 
@@ -76,7 +76,7 @@ if [ "$VENV_EXISTS" = "yes" ]; then
     echo "    venv already exists at $VENV_DIR"
 else
     echo "    Creating Python venv..."
-    ssh_cmd "cd '$WORKSPACE' && python3 -m venv venv && source venv/bin/activate && pip install --upgrade pip wheel setuptools && pip install 'setuptools<70.0.0' 'empy==3.3.4' future toml numpy packaging jinja2 pexpect dronecan"
+    ssh_cmd "mkdir -p '$WORKSPACE' && cd '$WORKSPACE' && python3 -m venv venv && source venv/bin/activate && pip install --upgrade pip wheel setuptools && pip install 'setuptools<70.0.0' 'empy==3.3.4' future toml numpy packaging jinja2 pexpect dronecan"
     echo "    venv created with dependencies"
 fi
 
@@ -87,7 +87,7 @@ if [ "$VEHICLE_EXISTS" = "yes" ]; then
     ssh_cmd "cd '$VEHICLE_DIR' && git fetch origin && git checkout $VEHICLE_BRANCH && git pull origin $VEHICLE_BRANCH"
     echo "    ArduMotorBlimp updated to $VEHICLE_BRANCH"
 else
-    ssh_cmd "cd '$WORKSPACE' && git clone --branch $VEHICLE_BRANCH $VEHICLE_REPO"
+    ssh_cmd "mkdir -p '$WORKSPACE' && cd '$WORKSPACE' && git clone --branch $VEHICLE_BRANCH $VEHICLE_REPO"
     echo "    ArduMotorBlimp cloned"
 fi
 
