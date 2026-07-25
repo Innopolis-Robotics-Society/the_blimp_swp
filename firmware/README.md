@@ -73,7 +73,7 @@ Show help message.
 | `setup.sh` | First-run setup (`-v`, `-l`, `-h`) |
 | `build.sh` | Build firmware (`-v`, `-a`, `-l`, `-h`) |
 | `flash.md` | Flashing instructions via MicoAir Configurator |
-| `build/` | Built `.apj` files |
+| `build/` | Built `.apj` and `.hex` files |
 
 ## Configuration (config.env)
 

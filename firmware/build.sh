@@ -91,15 +91,21 @@ else
     ssh_cmd "cd '$AP_DIR' && rm -rf build/ && source '$WORKSPACE/venv/bin/activate' && ./waf configure --board $BOARD 2>&1 | tail -2 && ./waf build --target bin/ardublimp 2>&1 | tail -10"
 fi
 
-# --- Copy artifact locally ---
-echo "==> Copying ardublimp.apj..."
+# --- Generate hex for DFU flashing ---
+echo "==> Generating DFU hex file..."
+ssh_cmd "cd '$AP_DIR' && source '$WORKSPACE/venv/bin/activate' && pip install intelhex -q && python Tools/scripts/make_intel_hex.py build/$BOARD/bin/ardublimp.bin Tools/bootloaders/${BOARD}_bl.bin 128"
+
+# --- Copy artifacts locally ---
+echo "==> Copying artifacts..."
 mkdir -p "$OUTPUT_DIR"
 if [ "$LOCAL" = true ]; then
     cp "$AP_DIR/build/$BOARD/bin/ardublimp.apj" "$OUTPUT_DIR/ardumotorblimp.apj"
+    cp "$AP_DIR/build/$BOARD/bin/ardublimp_with_bl.hex" "$OUTPUT_DIR/ardumotorblimp_with_bl.hex"
 else
     scp "$VM_USER@$VM_HOST:$AP_DIR/build/$BOARD/bin/ardublimp.apj" "$OUTPUT_DIR/ardumotorblimp.apj"
+    scp "$VM_USER@$VM_HOST:$AP_DIR/build/$BOARD/bin/ardublimp_with_bl.hex" "$OUTPUT_DIR/ardumotorblimp_with_bl.hex"
 fi
 
 echo ""
 echo "==> Done!"
-ls -lh "$OUTPUT_DIR/ardumotorblimp.apj"
+ls -lh "$OUTPUT_DIR/"
