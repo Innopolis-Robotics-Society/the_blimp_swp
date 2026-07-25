@@ -5,9 +5,11 @@
 1. Open the [MicoAir Configurator](https://micoair.com/configurator/)
 2. Connect MicoAir H743 V2 to your computer via USB
 3. Navigate to the **Firmware** menu
-4. Select the `ardumotorblimp.apj` file from `firmware/build/`
+4. Select the `ardumotorblimp_with_bl.hex` file from `firmware/build/`
 5. Click **Flash**
 6. **Disconnect and reconnect USB twice** (important for H743!)
+
+**Note:** MicoConfigurator supports DFU flashing directly — no need for STM32CubeProgrammer.
 
 ## Method 2: Mission Planner
 
