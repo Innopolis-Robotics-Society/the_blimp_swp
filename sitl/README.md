@@ -25,7 +25,7 @@ docker-compose build
 ```bash
 docker-compose up -d sitl
 docker-compose exec sitl bash
-sim_vehicle.py -v ArduCopter --console
+sim_vehicle.py -v ArduMotorBlimp --console
 ```
 
 **Auto-start** (boots straight into SITL with blimp params):

@@ -2,7 +2,7 @@ FROM ubuntu:22.04
 
 # ---------------------------------------------------------------------------
 # Blimp SITL image
-#   - ArduPilot SITL is COMPILED INTO the image at a pinned stable tag.
+#   - ArduPilot SITL + custom ArduMotorBlimp vehicle COMPILED into the image.
 #   - Your repo (params + Lua scripts) is NOT baked in — it is mounted at
 #     runtime via docker-compose volume, so edits on the host are picked up
 #     immediately without rebuilding.
@@ -18,6 +18,10 @@ ENV TZ=Etc/UTC
 # Bump this deliberately, not by accident.
 ARG ARDUPILOT_TAG=Copter-4.6.3
 
+# Custom vehicle repo (ArduMotorBlimp)
+ARG VEHICLE_REPO=DaniK-51/ArduMotorBlimp
+ARG VEHICLE_BRANCH=feat/manual-only
+
 # --- base tooling -----------------------------------------------------------
 RUN apt-get update && apt-get install -y --no-install-recommends \
     sudo git wget curl ca-certificates gnupg lsb-release \
@@ -32,8 +36,11 @@ RUN groupadd --gid $USER_GID $USERNAME \
  && echo "$USERNAME ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/$USERNAME \
  && chmod 0440 /etc/sudoers.d/$USERNAME
 
+# --- copy patch script (before USER switch so it's owned by root) -----------
+COPY docker-scripts/patch-ardupilot.sh docker-scripts/patch_vehicleinfo.py /tmp/
+RUN chmod +x /tmp/patch-ardupilot.sh /tmp/patch_vehicleinfo.py
+
 # --- clone ArduPilot at the pinned tag --------------------------------------
-# Shallow clone of just the tag, then init submodules. This is the heavy step.
 USER $USERNAME
 WORKDIR /home/$USERNAME
 
@@ -43,32 +50,38 @@ RUN git clone --depth 1 --branch ${ARDUPILOT_TAG} \
  && git submodule update --init --recursive --depth 1
 
 # --- install ArduPilot prerequisites ----------------------------------------
-# The official script installs MAVProxy, pymavlink, the arm toolchain bits,
-# empy, future, etc. -y answers yes; we skip the editor/gcc-arm prompts.
 WORKDIR /home/$USERNAME/ardupilot
 RUN bash Tools/environment_install/install-prereqs-ubuntu.sh -y || true
-# Install ALL required Python packages at once
 RUN pip3 install --default-timeout=1000 \
-    mavproxy \
-    pymavlink \
     empy==3.3.4 \
     pexpect \
     future \
-    lxml
-# Make sim_vehicle.py / mavproxy available on PATH for every shell.
+    lxml \
+    pymavlink \
+    mavproxy
 RUN echo 'export PATH=$PATH:/home/'"$USERNAME"'/ardupilot/Tools/autotest' >> /home/$USERNAME/.bashrc \
  && echo 'export PATH=$PATH:/home/'"$USERNAME"'/.local/bin' >> /home/$USERNAME/.bashrc
-ENV PATH="/home/${USERNAME}/ardupilot/Tools/autotest:/home/${USERNAME}/.local/bin:${PATH}"
 
-# --- pre-build the SITL Copter binary ---------------------------------------
-# Building here means container start is fast (no compile on first run).
-# waf configure for SITL, then build copter.
+ENV PATH="/home/$USERNAME/ardupilot/Tools/autotest:/home/$USERNAME/.local/bin:$PATH"
+
+# --- clone custom vehicle (ArduMotorBlimp) into ArduPilot --------------------
+RUN git clone --depth 1 --branch ${VEHICLE_BRANCH} \
+        https://github.com/${VEHICLE_REPO}.git \
+        /home/$USERNAME/ardupilot/ArduMotorBlimp
+
+# Register ArduMotorBlimp in ArduPilot build system and sim_vehicle.py
+RUN sudo /tmp/patch-ardupilot.sh /home/$USERNAME/ardupilot \
+ && grep "vehicles = " /home/$USERNAME/ardupilot/wscript \
+ && sudo rm /tmp/patch-ardupilot.sh
+
+# --- pre-build the SITL ArduMotorBlimp binary -------------------------------
 RUN . /home/$USERNAME/.profile 2>/dev/null; \
+    rm -f build/sitl/target_list; \
     ./waf configure --board sitl \
- && ./waf copter
+ && ./waf build --target bin/ardublimp
 
 # Sanity: confirm the binary exists where sim_vehicle expects it.
-RUN test -f /home/$USERNAME/ardupilot/build/sitl/bin/arducopter
+RUN test -f /home/$USERNAME/ardupilot/build/sitl/bin/ardublimp
 
 WORKDIR /home/$USERNAME
 CMD ["bash"]

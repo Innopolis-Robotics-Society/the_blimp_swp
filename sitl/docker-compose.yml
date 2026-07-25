@@ -1,19 +1,10 @@
 # ---------------------------------------------------------------------------
 # Blimp SITL — docker-compose
 #
-# The image carries ArduPilot SITL (compiled at build time, pinned tag).
-# THIS compose file mounts your blimp-flight repo (params + Lua scripts) into
-# the container at runtime. SITL is launched FROM inside the mounted repo, so
-# the `scripts/` folder ArduPilot looks for is YOUR scripts/ folder on the
-# host — edit a .lua on the host, `scripting restart` in MAVProxy, done.
-#
-# Run this compose file from the ROOT of your blimp-flight repo:
-#   blimp-flight/
-#     ├── docker-compose.yml   <- this file (or symlink it here)
-#     ├── params/
-#     │     └── blimp.parm
-#     └── scripts/
-#           └── blimp_motors.lua
+# The image carries ArduPilot SITL + custom ArduMotorBlimp vehicle
+# (compiled at build time, pinned tag).
+# THIS compose file mounts your params and Lua scripts into the container at
+# runtime. SITL is launched FROM the ardupilot directory.
 # ---------------------------------------------------------------------------
 
 x-common: &common
@@ -28,16 +19,25 @@ x-common: &common
     - DISPLAY                 # only needed if you use --map (X forwarding)
     - QT_X11_NO_MITSHM=1
   volumes:
-    # ---- your repo: params + scripts live here, editable from the host ----
     - ./params:/home/blimp/blimp-flight/params:rw
     - ./scripts:/home/blimp/blimp-flight/scripts:rw
-    # ---- X11 for the MAVProxy --map window (optional) ---------------------
     - /tmp/.X11-unix:/tmp/.X11-unix:rw
     - ${HOME}/.Xauthority:/home/blimp/.Xauthority:rw
-  # Persist the virtual EEPROM between runs by working inside the repo.
-  working_dir: /home/blimp/blimp-flight
+  working_dir: /home/blimp/ardupilot
 
 services:
+  # --------------------------------------------------------------------------
+  # Build: builds the Docker image from Dockerfile.
+  # --------------------------------------------------------------------------
+  sitl-build:
+    build:
+      context: .
+      args:
+        - USER_UID=${UID:-1000}
+        - USER_GID=${GID:-1000}
+    image: blimp/sitl:0.1.0
+    entrypoint: ["true"]
+
   # --------------------------------------------------------------------------
   # Default: interactive shell. You start SITL yourself (full control).
   # --------------------------------------------------------------------------
@@ -58,6 +58,5 @@ services:
       - "/bin/bash"
       - "-lc"
       - >
-        sudo chown -R blimp:blimp /home/blimp/blimp-flight &&
-        sim_vehicle.py -v ArduCopter
-        -w --no-rebuild --out 127.0.0.1:14550
+        sim_vehicle.py -v ArduMotorBlimp
+        --console -w --no-rebuild
