@@ -19,7 +19,7 @@ print_usage() {
     echo "  -v, --verbose       Verbose output (full waf output)"
     echo "  -a, --auto-setup    Auto-run setup.sh if ArduPilot not found"
     echo "  -l, --local         Run commands locally instead of via SSH"
-    echo "  --hex               Also generate DFU hex file (ardublimp_with_bl.hex)"
+    echo "  --hex               Also generate DFU hex file (ardumotorblimp_with_bl.hex)"
     echo "  -h, --help          Show this help message"
 }
 
@@ -90,26 +90,26 @@ ssh_cmd "cd '$AP_DIR' && \
 # --- Build ---
 echo "==> Building for $BOARD..."
 if [ "$VERBOSE" = true ]; then
-    ssh_cmd "cd '$AP_DIR' && rm -rf build/ && source '$WORKSPACE/venv/bin/activate' && ./waf configure --board $BOARD && ./waf build --target bin/ardublimp"
+    ssh_cmd "cd '$AP_DIR' && rm -rf build/ && source '$WORKSPACE/venv/bin/activate' && ./waf configure --board $BOARD && ./waf build --target bin/ardumotorblimp"
 else
-    ssh_cmd "cd '$AP_DIR' && rm -rf build/ && source '$WORKSPACE/venv/bin/activate' && ./waf configure --board $BOARD 2>&1 | tail -2 && ./waf build --target bin/ardublimp 2>&1 | tail -10"
+    ssh_cmd "cd '$AP_DIR' && rm -rf build/ && source '$WORKSPACE/venv/bin/activate' && ./waf configure --board $BOARD 2>&1 | tail -2 && ./waf build --target bin/ardumotorblimp 2>&1 | tail -10"
 fi
 
 # --- Generate hex (optional) ---
 if [ "$GEN_HEX" = true ]; then
     echo "==> Generating DFU hex file..."
-    ssh_cmd "cd '$AP_DIR' && source '$WORKSPACE/venv/bin/activate' && pip install intelhex -q && python Tools/scripts/make_intel_hex.py build/$BOARD/bin/ardublimp.bin Tools/bootloaders/${BOARD}_bl.bin 128"
+    ssh_cmd "cd '$AP_DIR' && source '$WORKSPACE/venv/bin/activate' && pip install intelhex -q && python Tools/scripts/make_intel_hex.py build/$BOARD/bin/ardumotorblimp.bin Tools/bootloaders/${BOARD}_bl.bin 128"
 fi
 
 # --- Copy artifacts locally ---
 echo "==> Copying artifacts..."
 mkdir -p "$OUTPUT_DIR"
 if [ "$LOCAL" = true ]; then
-    cp "$AP_DIR/build/$BOARD/bin/ardublimp.apj" "$OUTPUT_DIR/ardumotorblimp.apj"
-    [ "$GEN_HEX" = true ] && cp "$AP_DIR/build/$BOARD/bin/ardublimp_with_bl.hex" "$OUTPUT_DIR/ardumotorblimp_with_bl.hex"
+    cp "$AP_DIR/build/$BOARD/bin/ardumotorblimp.apj" "$OUTPUT_DIR/ardumotorblimp.apj"
+    [ "$GEN_HEX" = true ] && cp "$AP_DIR/build/$BOARD/bin/ardumotorblimp_with_bl.hex" "$OUTPUT_DIR/ardumotorblimp_with_bl.hex"
 else
-    scp "$VM_USER@$VM_HOST:$AP_DIR/build/$BOARD/bin/ardublimp.apj" "$OUTPUT_DIR/ardumotorblimp.apj"
-    [ "$GEN_HEX" = true ] && scp "$VM_USER@$VM_HOST:$AP_DIR/build/$BOARD/bin/ardublimp_with_bl.hex" "$OUTPUT_DIR/ardumotorblimp_with_bl.hex"
+    scp "$VM_USER@$VM_HOST:$AP_DIR/build/$BOARD/bin/ardumotorblimp.apj" "$OUTPUT_DIR/ardumotorblimp.apj"
+    [ "$GEN_HEX" = true ] && scp "$VM_USER@$VM_HOST:$AP_DIR/build/$BOARD/bin/ardumotorblimp_with_bl.hex" "$OUTPUT_DIR/ardumotorblimp_with_bl.hex"
 fi
 
 echo ""
