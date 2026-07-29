@@ -16,7 +16,7 @@ ENV TZ=Etc/UTC
 
 # Pin to a stable Copter release tag. Do NOT use master — it breaks.
 # Bump this deliberately, not by accident.
-ARG ARDUPILOT_TAG=Copter-4.6.3
+ARG ARDUPILOT_TAG=ArduPilot-4.7
 
 # Custom vehicle repo (ArduMotorBlimp)
 ARG VEHICLE_REPO=DaniK-51/ArduMotorBlimp
