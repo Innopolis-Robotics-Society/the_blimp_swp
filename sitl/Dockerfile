@@ -20,7 +20,7 @@ ARG ARDUPILOT_TAG=Copter-4.6.3
 
 # Custom vehicle repo (ArduMotorBlimp)
 ARG VEHICLE_REPO=DaniK-51/ArduMotorBlimp
-ARG VEHICLE_BRANCH=main
+ARG VEHICLE_BRANCH=feat/building-from-zero
 
 # --- base tooling -----------------------------------------------------------
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -78,10 +78,10 @@ RUN sudo /tmp/patch-ardupilot.sh /home/$USERNAME/ardupilot \
 RUN . /home/$USERNAME/.profile 2>/dev/null; \
     rm -f build/sitl/target_list; \
     ./waf configure --board sitl \
- && ./waf build --target bin/ardublimp
+ && ./waf build --target bin/ardumotorblimp
 
 # Sanity: confirm the binary exists where sim_vehicle expects it.
-RUN test -f /home/$USERNAME/ardupilot/build/sitl/bin/ardublimp
+RUN test -f /home/$USERNAME/ardupilot/build/sitl/bin/ardumotorblimp
 
 WORKDIR /home/$USERNAME
 CMD ["bash"]

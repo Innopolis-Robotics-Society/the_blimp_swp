@@ -17,7 +17,7 @@ new = '''    },
         "frames": {
             "ArduMotorBlimp": {
                 "model": "Blimp",
-                "waf_target": "bin/ardublimp",
+                "waf_target": "bin/ardumotorblimp",
                 "default_params_filename": "default_params/blimp.parm",
             },
         },
